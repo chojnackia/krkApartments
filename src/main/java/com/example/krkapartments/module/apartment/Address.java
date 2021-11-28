@@ -3,10 +3,7 @@ package com.example.krkapartments.module.apartment;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.UUID;
 
@@ -17,7 +14,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Builder
-public class Location {
+public class Address {
 
     @Id
     @GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -32,4 +29,7 @@ public class Location {
 
     @NotBlank(message = "Country is mandatory")
     private String country;
+
+    @OneToOne
+    private Apartment apartment;
 }

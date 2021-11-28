@@ -1,37 +1,26 @@
-package com.example.krkapartments.module.apartment;
+package com.example.krkapartments.module.user;
 
 import com.example.krkapartments.module.booking.Booking;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "APARTMENTS")
+@Table(name = "USERS")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Builder
-public class Apartment {
+public class User {
 
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
 
-    private String apartmentName;
-
-    private double priceForOneDay;
-
-    private String apartmentDescription;
-
-    @OneToMany(mappedBy = "apartment", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Booking> bookings;
-
     @OneToOne
-    private Address address;
+    private Booking booking;
 }
-
