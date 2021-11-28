@@ -1,4 +1,6 @@
 package com.example.krkapartments.module.apartment;
 
-public interface ApartmentRepository {
+import org.springframework.data.repository.CrudRepository;
+
+public interface ApartmentRepository extends CrudRepository {
 }
