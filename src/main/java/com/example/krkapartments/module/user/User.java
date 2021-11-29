@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -21,6 +22,11 @@ public class User {
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
 
-    @OneToOne
-    private Booking booking;
+    private String firstName;
+    private String lastName;
+    @Column(unique = true)
+    private String email;
+
+    @OneToMany(mappedBy = "user")
+    private List<Booking> bookings;
 }

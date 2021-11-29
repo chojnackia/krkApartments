@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 import java.util.UUID;
 
 @Entity
-@Table(name = "LOCATIONS")
+@Table(name = "ADDRESS")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -30,6 +30,6 @@ public class Address {
     @NotBlank(message = "Country is mandatory")
     private String country;
 
-    @OneToOne
+    @OneToOne(mappedBy = "address")
     private Apartment apartment;
 }
