@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 @Service
 public class BookingConverter {
 
-    public static BookingDto convertToBookingDto(Booking booking){
-        if(booking==null) return null;
+    public static BookingDto convertToBookingDto(Booking booking) {
+        if (booking == null) return null;
         return BookingDto.builder()
                 .id(booking.getId())
                 .user(booking.getUser())
@@ -20,8 +20,8 @@ public class BookingConverter {
                 .build();
     }
 
-    public static Booking convertToBooking(BookingDto bookingDto){
-        if(bookingDto==null) return null;
+    public static Booking convertToBooking(BookingDto bookingDto) {
+        if (bookingDto == null) return null;
         return Booking.builder()
                 .id(bookingDto.getId())
                 .user(bookingDto.getUser())
@@ -32,7 +32,7 @@ public class BookingConverter {
                 .build();
     }
 
-    public static List<Booking> convertToBookingDtoList(List<BookingDto> bookingDtos){
+    public static List<Booking> convertToBookingDtoList(List<BookingDto> bookingDtos) {
         return bookingDtos.stream()
                 .map(BookingConverter::convertToBooking)
                 .collect(Collectors.toList());

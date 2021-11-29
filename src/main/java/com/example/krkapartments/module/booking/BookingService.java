@@ -10,7 +10,7 @@ public class BookingService {
 
     private final BookingRepository bookingRepository;
 
-    public List<BookingDto> findAllByOccupiedIsFalse(){
+    public List<BookingDto> findAllByOccupiedIsFalse() {
         List<Booking> bookingList = bookingRepository.findAllByOccupiedIsFalse();
         return bookingList.stream()
                 .map(BookingConverter::convertToBookingDto)
