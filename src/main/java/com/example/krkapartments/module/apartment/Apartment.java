@@ -28,6 +28,8 @@ public class Apartment {
 
     private String apartmentDescription;
 
+    private boolean occupied;
+
     @OneToMany(mappedBy = "apartment", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Booking> bookings;
 

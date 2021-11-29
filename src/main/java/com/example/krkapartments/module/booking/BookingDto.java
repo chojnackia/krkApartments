@@ -2,37 +2,24 @@ package com.example.krkapartments.module.booking;
 
 import com.example.krkapartments.module.apartment.Apartment;
 import com.example.krkapartments.module.user.User;
-import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.UUID;
 
-@Entity
-@Table(name = "BOOKINGS")
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
+@Data
 @Builder
-public class Booking {
+public class BookingDto {
 
-    @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
-
-    @OneToOne
     private User user;
-
-    @ManyToOne
     private Apartment apartment;
-
     private LocalDate checkinDate;
-
     private LocalDate checkoutDate;
-
     private boolean occupied;
-
 }
