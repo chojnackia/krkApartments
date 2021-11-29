@@ -8,5 +8,5 @@ import java.util.UUID;
 
 public interface BookingRepository extends JpaRepository<Booking, UUID> {
 
-    List<Booking> findAllByOccupiedIsFalse(boolean occupied);
+    List<Booking> findAllByOccupiedIsFalse();
 }
