@@ -30,6 +30,6 @@ public class Address {
     @NotBlank(message = "Country is mandatory")
     private String country;
 
-    @OneToOne
+    @OneToOne(mappedBy = "address")
     private Apartment apartment;
 }

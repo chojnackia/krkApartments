@@ -15,8 +15,7 @@ public class UserConverter {
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .email(user.getEmail())
-                .password(user.getPassword())
-                .booking(user.getBooking())
+/*                .booking(user.getBookings())*/
                 .build();
 
     }
@@ -28,8 +27,9 @@ public class UserConverter {
                 .firstName(userDto.getFirstName())
                 .lastName(userDto.getLastName())
                 .email(userDto.getEmail())
-                .password(userDto.getPassword())
-                .booking(userDto.getBooking())
+/*
+                .bookings(userDto.getBooking())
+*/
                 .build();
     }
 

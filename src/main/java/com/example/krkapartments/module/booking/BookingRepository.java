@@ -1,6 +1,5 @@
 package com.example.krkapartments.module.booking;
 
-import com.example.krkapartments.module.apartment.Apartment;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -25,8 +26,7 @@ public class User {
     private String lastName;
     @Column(unique = true)
     private String email;
-    private String password;
 
-    @OneToOne
-    private Booking booking;
+    @OneToMany(mappedBy = "user")
+    private List<Booking> bookings;
 }

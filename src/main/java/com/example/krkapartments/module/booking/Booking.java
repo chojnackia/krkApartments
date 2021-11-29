@@ -23,15 +23,15 @@ public class Booking {
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
 
-    @OneToOne
+    @ManyToOne
     private User user;
 
     @ManyToOne
     private Apartment apartment;
 
-    private LocalDate checkinDate;
+    private LocalDate checkInDate;
 
-    private LocalDate checkoutDate;
+    private LocalDate checkOutDate;
 
     private boolean occupied;
 

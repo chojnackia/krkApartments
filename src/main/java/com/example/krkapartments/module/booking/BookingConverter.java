@@ -14,8 +14,8 @@ public class BookingConverter {
                 .id(booking.getId())
                 .user(booking.getUser())
                 .apartment(booking.getApartment())
-                .checkinDate(booking.getCheckinDate())
-                .checkoutDate(booking.getCheckoutDate())
+                .checkinDate(booking.getCheckInDate())
+                .checkoutDate(booking.getCheckOutDate())
                 .occupied(booking.isOccupied())
                 .build();
     }
@@ -26,8 +26,8 @@ public class BookingConverter {
                 .id(bookingDto.getId())
                 .user(bookingDto.getUser())
                 .apartment(bookingDto.getApartment())
-                .checkinDate(bookingDto.getCheckinDate())
-                .checkoutDate(bookingDto.getCheckoutDate())
+                .checkInDate(bookingDto.getCheckinDate())
+                .checkOutDate(bookingDto.getCheckoutDate())
                 .occupied(bookingDto.isOccupied())
                 .build();
     }
