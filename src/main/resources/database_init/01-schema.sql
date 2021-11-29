@@ -1,6 +1,6 @@
 --liquibase formatted sql
 --changeset em:1
-create table BOOKING
+create table BOOKINGS
 (
     ID BINARY not null primary key,
     USER_ID BINARY,
@@ -38,15 +38,15 @@ create table ADDRESS
     APARTMENT_ID BINARY
 );
 
-alter TABLE BOOKING
+alter TABLE BOOKINGS
     add CONSTRAINT  FKDW0XFNNTHBJ8AFP1IRA6SNDWQ
         foreign key (USER_ID) references USERS(ID);
-alter table BOOKING
+alter table BOOKINGS
     add CONSTRAINT  FKDW0XFNNTHBJ8AFP1IRA6SNDV
         foreign key (APARTMENT_ID) references APARTMENTS(ID);
 alter table USERS
     add constraint FKDW0XFNNTHBJ8AFP1IRA6SNDWH
-        foreign key (BOOKING_ID) references BOOKING(ID);
+        foreign key (BOOKING_ID) references BOOKINGS(ID);
 alter table ADDRESS
     add constraint FKDK0XFNNTHBJ8AFP1IRA6SNDWQI
     foreign key (APARTMENT_ID) references APARTMENTS(ID);
