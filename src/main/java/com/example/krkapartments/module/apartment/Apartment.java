@@ -1,6 +1,7 @@
 package com.example.krkapartments.module.apartment;
 
 import com.example.krkapartments.module.booking.Booking;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -31,6 +32,7 @@ public class Apartment {
     private boolean occupied;
 
     @OneToMany(mappedBy = "apartment", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Booking> bookings;
 
     @OneToOne

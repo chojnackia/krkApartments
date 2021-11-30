@@ -14,7 +14,7 @@ create table BOOKINGS
 DROP TABLE IF EXISTS USERS;
 create table USERS
 (
-    ID       uuid         not null primary key,
+    ID       BINARY         not null primary key,
     EMAIL      VARCHAR(255) not null,
     FIRST_NAME VARCHAR(255) not null,
     LAST_NAME  VARCHAR(255) not null
