@@ -1,5 +1,6 @@
 package com.example.krkapartments.module.address;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -8,16 +9,14 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/address")
+@RequiredArgsConstructor
 public class AddressController {
+
     private final AddressService addressService;
 
-    public AddressController(AddressService addressService) {
-        this.addressService = addressService;
-    }
-
     @GetMapping("/")
-    public List<AddressDto> getAllAddresses() {
-        return addressService.findAll();
+    public List<AddressDto> getAddresses() {
+        return addressService.getAddressList();
     }
 
     @GetMapping("/{id}")

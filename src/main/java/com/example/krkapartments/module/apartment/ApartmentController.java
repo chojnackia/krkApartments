@@ -13,10 +13,9 @@ public class ApartmentController {
 
     private final ApartmentService apartmentService;
 
-
     @GetMapping("/")
-    public List<ApartmentDto> findAllApartments() {
-        return apartmentService.findAllApartments();
+    public List<ApartmentDto> getApartments() {
+        return apartmentService.getApartmentsList();
     }
 
     @PostMapping("/")

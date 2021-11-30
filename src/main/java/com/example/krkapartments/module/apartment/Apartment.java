@@ -2,6 +2,7 @@ package com.example.krkapartments.module.apartment;
 
 import com.example.krkapartments.module.address.Address;
 import com.example.krkapartments.module.booking.Booking;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -20,8 +21,7 @@ import java.util.UUID;
 public class Apartment {
 
     @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
     private UUID id;
 
     @NotBlank(message = "Apartment name is mandatory")
@@ -35,6 +35,7 @@ public class Apartment {
 
     private boolean occupied;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "apartment", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Booking> bookings;
 

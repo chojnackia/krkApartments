@@ -16,11 +16,13 @@ public class ApartmentService {
         this.apartmentRepository = apartmentRepository;
     }
 
-    public List<ApartmentDto> findAllApartments() {
-        List<Apartment> apartments = apartmentRepository.findAll();
-        return apartments.stream()
+    public List<ApartmentDto> getApartmentsList() {
+        return apartmentRepository.findAll()
+                .stream()
                 .map(ApartmentConverter::convertApartmentToDto)
                 .collect(Collectors.toList());
+//        List<Apartment> apartments = apartmentRepository.findAll();
+//        return ApartmentConverter.convertApartmentListToDtoList(apartments);
     }
 
     public ApartmentDto addApartment(ApartmentDto apartmentDto) {

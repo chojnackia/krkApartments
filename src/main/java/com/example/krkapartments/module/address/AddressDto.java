@@ -7,10 +7,10 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class AddressDto {
     private UUID id;
     private String city;

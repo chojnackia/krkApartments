@@ -54,4 +54,3 @@ alter table APARTMENTS
         foreign key (ADDRESS_ID) references ADDRESS (ID);
 
 
-

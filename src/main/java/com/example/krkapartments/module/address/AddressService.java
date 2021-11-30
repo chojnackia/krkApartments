@@ -16,7 +16,7 @@ public class AddressService {
         this.addressRepository = addressRepository;
     }
 
-    public List<AddressDto> findAll() {
+    public List<AddressDto> getAddressList() {
         List<Address> addresses = addressRepository.findAll();
         return addresses.stream()
                 .map(AddressConverter::convertToAddressDto)
