@@ -14,7 +14,6 @@ import java.util.UUID;
 public class BookingController {
 
    private final BookingService bookingService;
-   private final BookingRepository bookingRepository;
 
     @PostMapping("/")
     public BookingDto addBooking(@Valid @RequestBody BookingDto bookingDto) {

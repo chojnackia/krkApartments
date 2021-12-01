@@ -1,16 +1,17 @@
 package com.example.krkapartments.module.booking;
 
 import com.example.krkapartments.module.apartment.Apartment;
-import com.example.krkapartments.module.apartment.ApartmentRepository;
+import com.example.krkapartments.module.apartment.ApartmentConverter;
 import com.example.krkapartments.module.apartment.ApartmentService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
+import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -20,8 +21,9 @@ public class BookingService {
 
     private final BookingRepository bookingRepository;
     private final ApartmentService apartmentService;
+    private final ApartmentConverter apartmentConverter;
 
-    public List<BookingDto> findAllByOccupiedIsFalse() {
+/*    public List<BookingDto> findAllByOccupiedIsFalse() {
         List<Booking> bookingList = bookingRepository.findAllByOccupiedIsFalse();
         return bookingList.stream()
                 .map(BookingConverter::convertToBookingDto)
@@ -34,12 +36,13 @@ public class BookingService {
                 .map(BookingConverter::convertToBookingDto)
                 .collect(Collectors.toList());
 
-    }
+    }*/
 
     public BookingDto addBooking(BookingDto bookingDto) {
         Apartment apartmentInDatabase = apartmentService.findApartmentInDatabase(bookingDto.getApartmentId());
         Booking booking = BookingConverter.convertToBooking(bookingDto, apartmentInDatabase);
         booking.setId(UUID.randomUUID());
+        booking.setIsOccupied(setOccupiedToTrue(bookingDto));
         bookingRepository.save(booking);
         return BookingConverter.convertToBookingDto(booking);
     }
@@ -53,7 +56,7 @@ public class BookingService {
 
     public Booking deactivateBooking(UUID id) {
         Booking booking = findBookingInDatabase(id);
-        booking.setOccupied(false);
+        //booking.setOccupied(false);
         bookingRepository.save(booking);
         return booking;
     }
@@ -77,5 +80,16 @@ public class BookingService {
         return BookingConverter.convertToBookingDto(booking);
     }
 
+    public Map<LocalDate, Boolean> setOccupiedToTrue(BookingDto bookingDto) {
+        Map<LocalDate, Boolean> isOccupiedAtDate = new HashMap<>();
 
+        LocalDate checkInDate = bookingDto.getCheckInDate();
+        LocalDate checkOutDate = bookingDto.getCheckOutDate();
+
+        for (LocalDate date = checkInDate; checkInDate.isBefore(checkOutDate); checkInDate.plusDays(1)) {
+            isOccupiedAtDate.put(date, true);
+        }
+
+        return isOccupiedAtDate;
+    }
 }

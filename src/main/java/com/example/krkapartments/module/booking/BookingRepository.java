@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public interface BookingRepository extends JpaRepository<Booking, UUID> {
 
-    List<Booking> findAllByOccupiedIsFalse();
+/*    List<Booking> findAllByOccupiedIsFalse();
 
-    List<Booking> findAllByOccupiedIsTrue();
+    List<Booking> findAllByOccupiedIsTrue();*/
 }
