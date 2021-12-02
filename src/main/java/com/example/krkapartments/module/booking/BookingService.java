@@ -38,7 +38,7 @@ public class BookingService {
 
     }*/
 
-    public BookingDto addBooking(BookingDto bookingDto) {
+    public BookingDto addBooking(BookingDto bookingDto) throws ApartmentIsOccupiedException {
         Apartment apartmentInDatabase = apartmentService.findApartmentInDatabase(bookingDto.getApartmentId());
         Booking booking = BookingConverter.convertToBooking(bookingDto, apartmentInDatabase);
         booking.setId(UUID.randomUUID());
@@ -80,16 +80,27 @@ public class BookingService {
         return BookingConverter.convertToBookingDto(booking);
     }
 
-    public Map<LocalDate, Boolean> setOccupiedToTrue(BookingDto bookingDto) {
+    public Map<LocalDate, Boolean> setOccupiedToTrue(BookingDto bookingDto) throws ApartmentIsOccupiedException {
         Map<LocalDate, Boolean> isOccupiedAtDate = new HashMap<>();
+
+        List<Booking> occupiedApartments = bookingRepository.findAllByApartmentEqualsAndCheckInDateIsBetweenOrCheckOutDateIsBetween(
+                apartmentService.findApartmentInDatabase(bookingDto.getApartmentId()),
+                bookingDto.getCheckInDate(),
+                bookingDto.getCheckOutDate(),
+                bookingDto.getCheckInDate(),
+                bookingDto.getCheckOutDate());
 
         LocalDate checkInDate = bookingDto.getCheckInDate();
         LocalDate checkOutDate = bookingDto.getCheckOutDate();
 
-        for (LocalDate date = checkInDate; checkInDate.isBefore(checkOutDate); checkInDate.plusDays(1)) {
-            isOccupiedAtDate.put(date, true);
+        if (occupiedApartments.isEmpty()) {
+            for (LocalDate date = checkInDate; date.isBefore(checkOutDate); date = date.plusDays(1)){
+                isOccupiedAtDate.put(date, true);
+            }
+            return isOccupiedAtDate;
+        } else {
+            throw new ApartmentIsOccupiedException("Apartment is occupied between " + checkInDate + " - " + checkOutDate);
         }
 
-        return isOccupiedAtDate;
     }
 }

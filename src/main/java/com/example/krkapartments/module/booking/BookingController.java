@@ -16,7 +16,7 @@ public class BookingController {
    private final BookingService bookingService;
 
     @PostMapping("/")
-    public BookingDto addBooking(@Valid @RequestBody BookingDto bookingDto) {
+    public BookingDto addBooking(@Valid @RequestBody BookingDto bookingDto) throws ApartmentIsOccupiedException {
         return bookingService.addBooking(bookingDto);
     }
 

@@ -38,7 +38,5 @@ public class Apartment {
     @OneToOne
     private Address address;
 
-    @Transient
-    private Map<Apartment, Map<LocalDate, Boolean>> isOccupied;
 }
 

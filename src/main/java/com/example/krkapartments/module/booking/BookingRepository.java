@@ -1,7 +1,9 @@
 package com.example.krkapartments.module.booking;
 
+import com.example.krkapartments.module.apartment.Apartment;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -10,4 +12,6 @@ public interface BookingRepository extends JpaRepository<Booking, UUID> {
 /*    List<Booking> findAllByOccupiedIsFalse();
 
     List<Booking> findAllByOccupiedIsTrue();*/
+
+    List<Booking> findAllByApartmentEqualsAndCheckInDateIsBetweenOrCheckOutDateIsBetween(Apartment apartment, LocalDate checkInDate, LocalDate checkOutDate,  LocalDate checkInDate1, LocalDate checkOutDate1);
 }
