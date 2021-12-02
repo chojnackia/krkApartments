@@ -1,5 +1,8 @@
 package com.example.krkapartments.module.booking;
 
+import com.example.krkapartments.module.apartment.Apartment;
+import com.example.krkapartments.module.apartment.ApartmentRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,30 +16,30 @@ public class BookingConverter {
         return BookingDto.builder()
                 .id(booking.getId())
                 .user(booking.getUser())
-                .apartment(booking.getApartment())
-                .checkinDate(booking.getCheckInDate())
-                .checkoutDate(booking.getCheckOutDate())
-                .occupied(booking.isOccupied())
+                .apartmentId(booking.getApartment().getId())
+                .checkInDate(booking.getCheckInDate())
+                .checkOutDate(booking.getCheckOutDate())
+                //.occupied(booking.isOccupied())
                 .build();
     }
 
-    public static Booking convertToBooking(BookingDto bookingDto) {
+    public static Booking convertToBooking(BookingDto bookingDto, Apartment apartment) {
         if (bookingDto == null) return null;
         return Booking.builder()
                 .id(bookingDto.getId())
                 .user(bookingDto.getUser())
-                .apartment(bookingDto.getApartment())
-                .checkInDate(bookingDto.getCheckinDate())
-                .checkOutDate(bookingDto.getCheckoutDate())
-                .occupied(bookingDto.isOccupied())
+                .apartment(apartment)
+                .checkInDate(bookingDto.getCheckInDate())
+                .checkOutDate(bookingDto.getCheckOutDate())
+                //.occupied(bookingDto.isOccupied())
                 .build();
     }
 
-    public static List<Booking> convertToBookingDtoList(List<BookingDto> bookingDtos) {
+/*    public static List<Booking> convertToBookingDtoList(List<BookingDto> bookingDtos) {
         return bookingDtos.stream()
                 .map(BookingConverter::convertToBooking)
                 .collect(Collectors.toList());
-    }
+    }*/
 
     public static List<BookingDto> convertToBookingList(List<Booking> bookings) {
         return bookings.stream()

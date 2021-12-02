@@ -43,5 +43,6 @@ public class Address {
 
     @JsonIgnore
     @OneToOne(mappedBy = "address")
+    @JsonIgnore
     private Apartment apartment;
 }

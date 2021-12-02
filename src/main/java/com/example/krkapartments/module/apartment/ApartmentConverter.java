@@ -1,8 +1,13 @@
 package com.example.krkapartments.module.apartment;
 
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
+@AllArgsConstructor
 public class ApartmentConverter {
 
     public static ApartmentDto convertApartmentToDto(Apartment apartment) {
@@ -12,6 +17,7 @@ public class ApartmentConverter {
                 .apartmentName(apartment.getApartmentName())
                 .priceForOneDay(apartment.getPriceForOneDay())
                 .apartmentDescription(apartment.getApartmentDescription())
+                //.occupied(apartment.isOccupied())
                 .address(apartment.getAddress())
                 .build();
     }
@@ -24,6 +30,7 @@ public class ApartmentConverter {
                 .apartmentName(apartmentDto.getApartmentName())
                 .priceForOneDay(apartmentDto.getPriceForOneDay())
                 .apartmentDescription(apartmentDto.getApartmentDescription())
+                //.occupied(apartmentDto.isOccupied())
                 .address(apartmentDto.getAddress())
                 .build();
     }

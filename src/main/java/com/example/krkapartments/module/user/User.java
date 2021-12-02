@@ -1,6 +1,7 @@
 package com.example.krkapartments.module.user;
 
 import com.example.krkapartments.module.booking.Booking;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -28,5 +29,6 @@ public class User {
     private String email;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Booking> bookings;
 }
