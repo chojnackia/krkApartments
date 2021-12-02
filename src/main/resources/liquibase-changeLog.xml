@@ -10,5 +10,5 @@ http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd" >
 
 
     <include file="database_init/01-schema.sql"/>
-<!--    <include file="database_init/02-insert-init-data.sql"/>-->
+    <include file="database_init/02-insert-init-data.sql"/>
 </databaseChangeLog>

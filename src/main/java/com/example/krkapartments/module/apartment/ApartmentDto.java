@@ -1,5 +1,6 @@
 package com.example.krkapartments.module.apartment;
 
+import com.example.krkapartments.module.address.Address;
 import com.example.krkapartments.module.booking.Booking;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,7 +19,6 @@ public class ApartmentDto {
     private String apartmentName;
     private double priceForOneDay;
     private String apartmentDescription;
-    private boolean occupied;
     private List<Booking> bookings;
     private Address address;
 }

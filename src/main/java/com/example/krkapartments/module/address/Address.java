@@ -1,5 +1,6 @@
-package com.example.krkapartments.module.apartment;
+package com.example.krkapartments.module.address;
 
+import com.example.krkapartments.module.apartment.Apartment;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
@@ -24,6 +25,15 @@ public class Address {
 
     @NotBlank(message = "City is mandatory")
     private String city;
+
+    @NotBlank(message = "Street name is mandatory")
+    private String streetName;
+
+    @NotBlank(message = "Building number is mandatory")
+    private int buildingNumber;
+
+    @NotBlank(message = "Room number is mandatory")
+    private int roomNumber;
 
     @NotBlank(message = "Post code is mandatory")
     private String postCode;

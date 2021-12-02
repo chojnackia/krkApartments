@@ -1,0 +1,22 @@
+package com.example.krkapartments.module.address;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.UUID;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class AddressDto {
+    private UUID id;
+    private String city;
+    private String streetName;
+    private int buildingNumber;
+    private int roomNumber;
+    private String postCode;
+    private String country;
+}

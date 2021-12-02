@@ -41,7 +41,7 @@ public class Booking {
 
     @ElementCollection
     @CollectionTable(name = "apartment_is_occupied",
-    joinColumns = {@JoinColumn(name = "apartment_id", referencedColumnName = "id")})
+            joinColumns = {@JoinColumn(name = "apartment_id", referencedColumnName = "id")})
     @MapKeyColumn(name = "date")
     private Map<LocalDate, Boolean> isOccupied;
 

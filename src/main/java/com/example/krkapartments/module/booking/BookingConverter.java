@@ -1,8 +1,6 @@
 package com.example.krkapartments.module.booking;
 
 import com.example.krkapartments.module.apartment.Apartment;
-import com.example.krkapartments.module.apartment.ApartmentRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
