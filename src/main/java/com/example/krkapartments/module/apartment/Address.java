@@ -1,5 +1,6 @@
 package com.example.krkapartments.module.apartment;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -31,5 +32,6 @@ public class Address {
     private String country;
 
     @OneToOne(mappedBy = "address")
+    @JsonIgnore
     private Apartment apartment;
 }

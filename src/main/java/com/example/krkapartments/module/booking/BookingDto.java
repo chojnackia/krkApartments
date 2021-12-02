@@ -1,6 +1,5 @@
 package com.example.krkapartments.module.booking;
 
-import com.example.krkapartments.module.apartment.Apartment;
 import com.example.krkapartments.module.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,9 +16,9 @@ import java.util.UUID;
 public class BookingDto {
 
     private UUID id;
+    private UUID apartmentId;
     private User user;
-    private Apartment apartment;
-    private LocalDate checkinDate;
-    private LocalDate checkoutDate;
-    private boolean occupied;
+    private LocalDate checkInDate;
+    private LocalDate checkOutDate;
+    //private boolean occupied;
 }

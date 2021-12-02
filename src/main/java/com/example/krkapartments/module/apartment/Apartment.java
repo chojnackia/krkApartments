@@ -1,11 +1,14 @@
 package com.example.krkapartments.module.apartment;
 
 import com.example.krkapartments.module.booking.Booking;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Entity
@@ -28,12 +31,12 @@ public class Apartment {
 
     private String apartmentDescription;
 
-    private boolean occupied;
-
     @OneToMany(mappedBy = "apartment", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Booking> bookings;
 
     @OneToOne
     private Address address;
+
 }
 
