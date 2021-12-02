@@ -12,7 +12,6 @@ public class ApartmentConverter {
                 .apartmentName(apartment.getApartmentName())
                 .priceForOneDay(apartment.getPriceForOneDay())
                 .apartmentDescription(apartment.getApartmentDescription())
-                .occupied(apartment.isOccupied())
                 .address(apartment.getAddress())
                 .build();
     }
@@ -25,7 +24,6 @@ public class ApartmentConverter {
                 .apartmentName(apartmentDto.getApartmentName())
                 .priceForOneDay(apartmentDto.getPriceForOneDay())
                 .apartmentDescription(apartmentDto.getApartmentDescription())
-                .occupied(apartmentDto.isOccupied())
                 .address(apartmentDto.getAddress())
                 .build();
     }

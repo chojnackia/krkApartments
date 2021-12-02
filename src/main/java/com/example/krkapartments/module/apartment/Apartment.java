@@ -34,8 +34,6 @@ public class Apartment {
     @NotBlank(message = "Apartment Description is mandatory")
     private String apartmentDescription;
 
-    private boolean occupied;
-
     @NotNull
     private boolean active;
 
