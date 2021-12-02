@@ -28,6 +28,7 @@ create table APARTMENTS
     PRICE_FOR_ONE_DAY     DOUBLE  not null,
     APARTMENT_DESCRIPTION VARCHAR(10000),
     OCCUPIED              BOOLEAN not null,
+    ACTIVE                BOOLEAN not null,
     ADDRESS_ID            BINARY
 );
 

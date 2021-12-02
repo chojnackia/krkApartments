@@ -8,6 +8,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.UUID;
 
@@ -34,6 +35,9 @@ public class Apartment {
     private String apartmentDescription;
 
     private boolean occupied;
+
+    @NotNull
+    private boolean active;
 
     @JsonIgnore
     @OneToMany(mappedBy = "apartment", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

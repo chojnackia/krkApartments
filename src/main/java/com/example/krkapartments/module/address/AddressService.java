@@ -2,10 +2,6 @@ package com.example.krkapartments.module.address;
 
 import com.example.krkapartments.exception.AddressNotFoundException;
 import com.example.krkapartments.exception.FieldDoesNotExistException;
-import com.example.krkapartments.module.apartment.Apartment;
-import com.example.krkapartments.module.apartment.ApartmentConverter;
-import com.example.krkapartments.module.apartment.ApartmentDto;
-import liquibase.pro.packaged.O;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 
@@ -49,22 +45,22 @@ public class AddressService {
         return AddressConverter.convertToAddressDto(address);
     }
 
-    public Address findAddressInDatabase(UUID id){
+    public Address findAddressInDatabase(UUID id) {
         return addressRepository.findById(id).orElseThrow(() ->
                 new AddressNotFoundException("Could not find address with id: " + id));
     }
 
-    public AddressDto findByCity(String city){
-        Address address = addressRepository.findByCity(city).orElseThrow(()->
-                new AddressNotFoundException("Could not find address from city: " + city));
+    public AddressDto findByCity(String city) {
+        Address address = addressRepository.findByCity(city).orElseThrow(() ->
+                new AddressNotFoundException("Could not find city: " + city));
         return AddressConverter.convertToAddressDto(address);
     }
 
-    public AddressDto updateAddress(UUID id, Map<Object, Object> fields){
+    public AddressDto updateAddress(UUID id, Map<Object, Object> fields) {
         Address address = findAddressInDatabase(id);
-        fields.forEach((key,value)->{
+        fields.forEach((key, value) -> {
             Field field = ReflectionUtils.findField(Address.class, (String) key);
-            if(field==null){
+            if (field == null) {
                 throw new FieldDoesNotExistException("Field" + key + "does not exist");
             }
             field.setAccessible(true);

@@ -26,7 +26,7 @@ public class AddressController {
     }
 
     @GetMapping("/{city}")
-    public AddressDto getAddressByCity(@PathVariable String city){
+    public AddressDto getAddressByCity(@PathVariable String city) {
         return addressService.findByCity(city);
     }
 
@@ -37,7 +37,7 @@ public class AddressController {
     }
 
     @PatchMapping("/{id}")
-    public AddressDto updateAddress(@PathVariable UUID id, @RequestBody Map<Object, Object> fields){
-        return addressService.updateAddress(id,fields);
+    public AddressDto updateAddress(@PathVariable UUID id, @RequestBody Map<Object, Object> fields) {
+        return addressService.updateAddress(id, fields);
     }
 }
