@@ -90,17 +90,21 @@ public class BookingService {
                 bookingDto.getCheckInDate(),
                 bookingDto.getCheckOutDate());
 
+        List<Booking> anotherOccupiedApartments = bookingRepository.findAllByApartmentEqualsAndCheckInDateBeforeAndCheckOutDateAfter(
+                apartmentService.findApartmentInDatabase(bookingDto.getApartmentId()),
+                bookingDto.getCheckInDate(),
+                bookingDto.getCheckOutDate());
+
         LocalDate checkInDate = bookingDto.getCheckInDate();
         LocalDate checkOutDate = bookingDto.getCheckOutDate();
 
-        if (occupiedApartments.isEmpty()) {
-            for (LocalDate date = checkInDate; date.isBefore(checkOutDate); date = date.plusDays(1)){
+        if (occupiedApartments.isEmpty() && anotherOccupiedApartments.isEmpty()) {
+            for (LocalDate date = checkInDate; date.isBefore(checkOutDate.plusDays(1)); date = date.plusDays(1)){
                 isOccupiedAtDate.put(date, true);
             }
             return isOccupiedAtDate;
         } else {
             throw new ApartmentIsOccupiedException("Apartment is occupied between " + checkInDate + " - " + checkOutDate);
         }
-
     }
 }

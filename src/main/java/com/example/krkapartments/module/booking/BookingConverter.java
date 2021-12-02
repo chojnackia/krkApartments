@@ -9,10 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@AllArgsConstructor
 public class BookingConverter {
-
-    private final ApartmentRepository apartmentRepository;
 
     public static BookingDto convertToBookingDto(Booking booking) {
         if (booking == null) return null;

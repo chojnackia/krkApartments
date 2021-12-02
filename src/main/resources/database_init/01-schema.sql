@@ -60,6 +60,7 @@ alter table APARTMENTS
     add constraint FKDK0XFNNTHBJ8AFP1IRA6SNXTE
     foreign key (ADDRESS_ID) references ADDRESS(ID);
 
+/*
 alter table APARTMENT_IS_OCCUPIED
     add constraint FKDK0XFNNTHBJ8AFP1IRA6SHWDP
-    foreign key (APARTMENT_ID) references BOOKINGS(APARTMENT_ID);
+    foreign key (APARTMENT_ID) references BOOKINGS(APARTMENT_ID);*/

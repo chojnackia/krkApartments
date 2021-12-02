@@ -9,9 +9,7 @@ import java.util.UUID;
 
 public interface BookingRepository extends JpaRepository<Booking, UUID> {
 
-/*    List<Booking> findAllByOccupiedIsFalse();
+    List<Booking> findAllByApartmentEqualsAndCheckInDateIsBetweenOrCheckOutDateIsBetween(Apartment apartment, LocalDate checkInDate, LocalDate checkOutDate, LocalDate checkInDate1, LocalDate checkOutDate1);
 
-    List<Booking> findAllByOccupiedIsTrue();*/
-
-    List<Booking> findAllByApartmentEqualsAndCheckInDateIsBetweenOrCheckOutDateIsBetween(Apartment apartment, LocalDate checkInDate, LocalDate checkOutDate,  LocalDate checkInDate1, LocalDate checkOutDate1);
+    List<Booking> findAllByApartmentEqualsAndCheckInDateBeforeAndCheckOutDateAfter(Apartment apartment, LocalDate checkInDate, LocalDate checkOutDate);
 }
