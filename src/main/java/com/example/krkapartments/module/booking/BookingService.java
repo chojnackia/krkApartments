@@ -99,7 +99,7 @@ public class BookingService {
         LocalDate checkOutDate = bookingDto.getCheckOutDate();
 
         if (occupiedApartments.isEmpty() && anotherOccupiedApartments.isEmpty()) {
-            for (LocalDate date = checkInDate; date.isBefore(checkOutDate.plusDays(1)); date = date.plusDays(1)){
+            for (LocalDate date = checkInDate; date.isBefore(checkOutDate.plusDays(1)); date = date.plusDays(1)) {
                 isOccupiedAtDate.put(date, true);
             }
             return isOccupiedAtDate;

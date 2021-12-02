@@ -41,7 +41,6 @@ public class Address {
     @NotBlank(message = "Country is mandatory")
     private String country;
 
-    @JsonIgnore
     @OneToOne(mappedBy = "address")
     @JsonIgnore
     private Apartment apartment;

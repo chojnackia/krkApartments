@@ -46,7 +46,7 @@ public class ApartmentService {
 
     }
 
-    public List<ApartmentDto> findAllActiveApartments(){
+    public List<ApartmentDto> findAllActiveApartments() {
         Optional<Apartment> apartments = apartmentRepository.findAllByActive(true);
         return apartments.stream()
                 .map(ApartmentConverter::convertApartmentToDto)
