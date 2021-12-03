@@ -6,6 +6,7 @@ import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Map;
 import java.util.UUID;
@@ -18,7 +19,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @ToString
-public class Booking {
+public class Booking implements Serializable {
 
     @Column(nullable = false)
     @Id
@@ -30,18 +31,17 @@ public class Booking {
     @ManyToOne
     private User user;
 
-    @JoinColumn
-    @ManyToOne
+    @JoinColumn(name = "apartment_id")
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Apartment.class)
     private Apartment apartment;
 
     private LocalDate checkInDate;
 
     private LocalDate checkOutDate;
 
-
     @ElementCollection
     @CollectionTable(name = "apartment_is_occupied",
-            joinColumns = {@JoinColumn(name = "apartment_id", referencedColumnName = "id")})
+    joinColumns = {@JoinColumn(name = "apartment_id", referencedColumnName = "apartment_id")})
     @MapKeyColumn(name = "date")
     private Map<LocalDate, Boolean> isOccupied;
 

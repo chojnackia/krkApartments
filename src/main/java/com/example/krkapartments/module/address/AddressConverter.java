@@ -8,7 +8,7 @@ public class AddressConverter {
                 .city(address.getCity())
                 .streetName(address.getStreetName())
                 .buildingNumber(address.getBuildingNumber())
-                .roomNumber(address.getRoomNumber())
+                .apartmentNumber(address.getApartmentNumber())
                 .postCode(address.getPostCode())
                 .country(address.getCountry())
                 .build();
@@ -21,7 +21,7 @@ public class AddressConverter {
                 .city(addressDto.getCity())
                 .streetName(addressDto.getStreetName())
                 .buildingNumber(addressDto.getBuildingNumber())
-                .roomNumber(addressDto.getRoomNumber())
+                .apartmentNumber(addressDto.getApartmentNumber())
                 .postCode(addressDto.getPostCode())
                 .country(addressDto.getCountry())
                 .build();

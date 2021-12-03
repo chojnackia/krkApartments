@@ -24,6 +24,7 @@ public class Apartment {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(name = "apartment_id")
     private UUID id;
 
     @NotBlank(message = "Apartment name is mandatory")
@@ -37,7 +38,6 @@ public class Apartment {
 
     @NotNull
     private boolean active;
-
 
     @OneToMany(mappedBy = "apartment", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore

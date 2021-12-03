@@ -32,8 +32,8 @@ public class Address {
     @NotBlank(message = "Building number is mandatory")
     private int buildingNumber;
 
-    @NotBlank(message = "Room number is mandatory")
-    private int roomNumber;
+    @NotBlank(message = "Apartment number is mandatory")
+    private int apartmentNumber;
 
     @NotBlank(message = "Post code is mandatory")
     private String postCode;
