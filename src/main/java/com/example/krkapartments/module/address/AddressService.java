@@ -31,8 +31,8 @@ public class AddressService {
         Address address = AddressConverter.convertDtoToAddress(addressDto);
         address.setId(UUID.randomUUID());
         Optional<Address> occurrences = addressRepository
-                .findAllByCityAndStreetNameAndBuildingNumberAndRoomNumber(address.getCity(),
-                        address.getStreetName(), address.getBuildingNumber(), address.getRoomNumber());
+                .findAllByCityAndStreetNameAndBuildingNumberAndApartmentNumber(address.getCity(),
+                        address.getStreetName(), address.getBuildingNumber(), address.getApartmentNumber());
         if (occurrences.isEmpty()) {
             addressRepository.save(address);
             return address;

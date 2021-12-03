@@ -16,7 +16,7 @@ public class AddressDto {
     private String city;
     private String streetName;
     private int buildingNumber;
-    private int roomNumber;
+    private int apartmentNumber;
     private String postCode;
     private String country;
 }

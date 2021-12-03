@@ -43,6 +43,7 @@ public class BookingService {
         Booking booking = BookingConverter.convertToBooking(bookingDto, apartmentInDatabase);
         booking.setId(UUID.randomUUID());
         booking.setIsOccupied(setOccupiedToTrue(bookingDto));
+
         bookingRepository.save(booking);
         return BookingConverter.convertToBookingDto(booking);
     }

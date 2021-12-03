@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public interface AddressRepository extends JpaRepository<Address, UUID> {
 
-    Optional<Address> findAllByCityAndStreetNameAndBuildingNumberAndRoomNumber(String city, String streetName, int buildingNumber, int roomNumber);
+    Optional<Address> findAllByCityAndStreetNameAndBuildingNumberAndApartmentNumber(String city, String streetName, int buildingNumber, int apartmentNumber);
 
     Optional<Address> findByCity(String city);
 }
