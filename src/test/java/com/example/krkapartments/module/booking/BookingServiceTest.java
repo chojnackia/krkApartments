@@ -2,6 +2,7 @@ package com.example.krkapartments.module.booking;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -13,6 +14,9 @@ class BookingServiceTest {
     @Mock
     private BookingRepository bookingRepository;
 
+    @InjectMocks
+    private BookingService bookingService;
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
@@ -20,6 +24,8 @@ class BookingServiceTest {
 
     @Test
     void shouldAddBooking() {
+
+
     }
 
     @Test
@@ -38,7 +44,4 @@ class BookingServiceTest {
     void updateBooking() {
     }
 
-    @Test
-    void setOccupiedToTrue() {
-    }
 }

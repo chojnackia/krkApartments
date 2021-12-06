@@ -28,6 +28,8 @@ public class User {
     @Column(unique = true)
     private String email;
 
+    private String telephoneNumber;
+
     @OneToMany(mappedBy = "user")
     @JsonIgnore
     private List<Booking> bookings;
