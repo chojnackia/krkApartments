@@ -2,13 +2,13 @@ package com.example.krkapartments.module.apartment;
 
 import com.example.krkapartments.module.address.Address;
 import com.example.krkapartments.module.booking.Booking;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,7 +24,6 @@ public class Apartment {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "apartment_id")
     private UUID id;
 
     @NotBlank(message = "Apartment name is mandatory")
@@ -40,8 +39,7 @@ public class Apartment {
     private boolean active;
 
     @OneToMany(mappedBy = "apartment", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JsonIgnore
-    private List<Booking> bookings;
+    private List<Booking> bookings = new ArrayList<>();
 
     @OneToOne
     private Address address;
