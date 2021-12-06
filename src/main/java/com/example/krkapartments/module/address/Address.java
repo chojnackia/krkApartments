@@ -3,6 +3,8 @@ package com.example.krkapartments.module.address;
 import com.example.krkapartments.module.apartment.Apartment;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -19,7 +21,7 @@ import java.util.UUID;
 public class Address {
 
     @Id
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "ID")
     private UUID id;
 
@@ -44,4 +46,20 @@ public class Address {
     @OneToOne(mappedBy = "address")
     @JsonIgnore
     private Apartment apartment;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Address address = (Address) o;
+
+        return new EqualsBuilder().append(buildingNumber, address.buildingNumber).append(apartmentNumber, address.apartmentNumber).append(id, address.id).append(city, address.city).append(streetName, address.streetName).append(postCode, address.postCode).append(country, address.country).isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37).append(id).append(city).append(streetName).append(buildingNumber).append(apartmentNumber).append(postCode).append(country).toHashCode();
+    }
 }

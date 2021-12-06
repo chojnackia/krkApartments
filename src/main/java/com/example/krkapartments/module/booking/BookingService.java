@@ -1,5 +1,8 @@
 package com.example.krkapartments.module.booking;
 
+import com.example.krkapartments.exception.ApartmentIsOccupiedException;
+import com.example.krkapartments.exception.BookingNotFoundException;
+import com.example.krkapartments.exception.FieldDoesNotExistException;
 import com.example.krkapartments.module.apartment.Apartment;
 import com.example.krkapartments.module.apartment.ApartmentConverter;
 import com.example.krkapartments.module.apartment.ApartmentService;

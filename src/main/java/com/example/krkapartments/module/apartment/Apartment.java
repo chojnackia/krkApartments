@@ -2,6 +2,7 @@ package com.example.krkapartments.module.apartment;
 
 import com.example.krkapartments.module.address.Address;
 import com.example.krkapartments.module.booking.Booking;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -36,6 +37,7 @@ public class Apartment {
     private String apartmentDescription;
 
     @NotNull
+    @JsonIgnore
     private boolean active;
 
     @OneToMany(mappedBy = "apartment", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

@@ -1,5 +1,6 @@
 package com.example.krkapartments.module.booking;
 
+import com.example.krkapartments.exception.ApartmentIsOccupiedException;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

@@ -80,4 +80,10 @@ public class ApartmentService {
         return ApartmentConverter.convertApartmentToDto(apartment);
     }
 
+    public List<ApartmentDto> findAll() {
+        List<Apartment> apartments = apartmentRepository.findAll();
+        return apartments.stream()
+                .map(ApartmentConverter::convertApartmentToDto)
+                .collect(Collectors.toList());
+    }
 }

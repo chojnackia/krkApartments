@@ -69,4 +69,12 @@ public class AddressService {
         addressRepository.save(address);
         return AddressConverter.convertToAddressDto(address);
     }
+
+    public List<AddressDto> findAll(){
+        List<Address> addresses = addressRepository.findAll();
+        return addresses.stream()
+                .map(AddressConverter::convertToAddressDto)
+                .collect(Collectors.toList());
+    }
+
 }
