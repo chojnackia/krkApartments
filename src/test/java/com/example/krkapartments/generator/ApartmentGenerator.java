@@ -9,11 +9,14 @@ import java.util.UUID;
 
 public class ApartmentGenerator {
 
-    private static final UUID id1 = UUID.randomUUID();
-    private static final UUID id2 = UUID.randomUUID();
-    private static final UUID id3 = UUID.randomUUID();
-    private static final UUID id4 = UUID.randomUUID();
-    private static final UUID id5 = UUID.randomUUID();
+    private static final UUID id1 = UUID.fromString("1ae88fa0-38b0-11ec-8d3d-0242ac130003");
+    private static final UUID id2 = UUID.fromString("1ae88fa0-38b0-11ec-8d3d-0242ac130003");
+    private static final UUID id3 = UUID.fromString("1ae88fa0-38b0-11ec-8d3d-0242ac130004");
+    private static final UUID id4 = UUID.fromString("1ae88fa0-38b0-11ec-8d3d-0242ac130005");
+    private static final UUID id5 = UUID.fromString("1ae88fa0-38b0-11ec-8d3d-0242ac130006");
+
+
+
 
     static List<Apartment> generateApartmentList() {
         List<Apartment> apartments = new ArrayList<>();
@@ -34,11 +37,11 @@ public class ApartmentGenerator {
 
     static List<ApartmentDto> generateApartmentDtoList() {
         List<ApartmentDto> apartments = new ArrayList<>();
-        ApartmentDto apartments1 = new ApartmentDto(id1, "The Beściak", 300, "Beściak z najlepszych", new ArrayList<>(), null);
-        ApartmentDto apartments2 = new ApartmentDto(id2, "Najdroższy", 350, "Najdroższy z najlepszych", new ArrayList<>(), null);
-        ApartmentDto apartments3 = new ApartmentDto(id3, "Taki se", 325, "Taki se z najlepszych", new ArrayList<>(), null);
-        ApartmentDto apartments4 = new ApartmentDto(id4, "Sredniak", 275, "Sredniak z najlepszych", new ArrayList<>(), null);
-        ApartmentDto apartments5 = new ApartmentDto(id5, "Najtańszy", 250, "Najtańszy z najlepszych", new ArrayList<>(), null);
+        ApartmentDto apartments1 = new ApartmentDto(id1, "The Beściak", 300, "Beściak z najlepszych",true ,new ArrayList<>(), null);
+        ApartmentDto apartments2 = new ApartmentDto(id2, "Najdroższy", 350, "Najdroższy z najlepszych",true , new ArrayList<>(), null);
+        ApartmentDto apartments3 = new ApartmentDto(id3, "Taki se", 325, "Taki se z najlepszych",true , new ArrayList<>(), null);
+        ApartmentDto apartments4 = new ApartmentDto(id4, "Sredniak", 275, "Sredniak z najlepszych", true ,new ArrayList<>(), null);
+        ApartmentDto apartments5 = new ApartmentDto(id5, "Najtańszy", 250, "Najtańszy z najlepszych",true , new ArrayList<>(), null);
 
 
         apartments.add(apartments1);

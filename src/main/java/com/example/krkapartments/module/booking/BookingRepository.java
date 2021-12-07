@@ -18,4 +18,7 @@ public interface BookingRepository extends JpaRepository<Booking, UUID> {
     List<Booking> findAllByCheckInDateBeforeAndCheckOutDateAfter(LocalDate checkInDate, LocalDate checkOutDate);
 
     List<Booking> findAllByApartment(Apartment apartment);
+
+    List<Booking> findAllByApartment_IdAndCheckInDateIsBetweenOrCheckOutDateIsBetween(UUID apartmentId, LocalDate checkInDate, LocalDate checkOutDate, LocalDate checkInDate1, LocalDate checkOutDate1);
+
 }

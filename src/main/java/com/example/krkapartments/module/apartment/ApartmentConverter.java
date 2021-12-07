@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@AllArgsConstructor
 public class ApartmentConverter {
 
     public static ApartmentDto convertApartmentToDto(Apartment apartment) {
@@ -17,7 +16,8 @@ public class ApartmentConverter {
                 .apartmentName(apartment.getApartmentName())
                 .priceForOneDay(apartment.getPriceForOneDay())
                 .apartmentDescription(apartment.getApartmentDescription())
-                //.occupied(apartment.isOccupied())
+                .active(apartment.isActive())
+                .bookings(apartment.getBookings())
                 .address(apartment.getAddress())
                 .build();
     }
@@ -30,7 +30,8 @@ public class ApartmentConverter {
                 .apartmentName(apartmentDto.getApartmentName())
                 .priceForOneDay(apartmentDto.getPriceForOneDay())
                 .apartmentDescription(apartmentDto.getApartmentDescription())
-                //.occupied(apartmentDto.isOccupied())
+                .active(apartmentDto.isActive())
+                .bookings(apartmentDto.getBookings())
                 .address(apartmentDto.getAddress())
                 .build();
     }

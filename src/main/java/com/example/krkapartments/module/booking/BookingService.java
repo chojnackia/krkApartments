@@ -52,8 +52,6 @@ public class BookingService {
                 bookingDto.getCheckInDate(),
                 bookingDto.getCheckOutDate());
 
-        List<Booking> apartmentsExisting = bookingRepository.findAllByApartment(apartmentService.findApartmentInDatabase(bookingDto.getApartmentId()));
-
         LocalDate checkInDate = bookingDto.getCheckInDate();
         LocalDate checkOutDate = bookingDto.getCheckOutDate();
 
@@ -61,7 +59,7 @@ public class BookingService {
         Booking booking = BookingConverter.convertToBooking(bookingDto, apartmentInDatabase);
         booking.setId(UUID.randomUUID());
 
-        if ((occupiedApartments == null && anotherOccupiedApartments == null) || apartmentsExisting.isEmpty()) {
+        if ((occupiedApartments.isEmpty() && anotherOccupiedApartments.isEmpty())) {
             bookingRepository.save(booking);
         } else {
             throw new ApartmentIsOccupiedException("Apartment is occupied between " + checkInDate + " - " + checkOutDate);

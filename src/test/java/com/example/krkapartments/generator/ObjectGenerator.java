@@ -34,12 +34,11 @@ public class ObjectGenerator {
 
         bookings.get(0).setApartment(apartmentList.get(0));
         bookings.get(1).setApartment(apartmentList.get(1));
-        bookings.get(2).setApartment(apartmentList.get(0));
+        bookings.get(2).setApartment(apartmentList.get(2));
 
         bookings.get(0).setUser(users.get(0));
         bookings.get(1).setUser(users.get(1));
         bookings.get(2).setUser(users.get(0));
 
     }
-
 }

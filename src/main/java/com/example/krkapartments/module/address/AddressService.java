@@ -20,7 +20,7 @@ public class AddressService {
         this.addressRepository = addressRepository;
     }
 
-    public List<AddressDto> getAddressList() {
+    public List<AddressDto> findAll() {
         List<Address> addresses = addressRepository.findAll();
         return addresses.stream()
                 .map(AddressConverter::convertToAddressDto)
@@ -31,7 +31,7 @@ public class AddressService {
         Address address = AddressConverter.convertDtoToAddress(addressDto);
         address.setId(UUID.randomUUID());
         Optional<Address> occurrences = addressRepository
-                .findAllByCityAndStreetNameAndBuildingNumberAndApartmentNumber(address.getCity(),
+                .findByCityAndStreetNameAndBuildingNumberAndApartmentNumber(address.getCity(),
                         address.getStreetName(), address.getBuildingNumber(), address.getApartmentNumber());
         if (occurrences.isEmpty()) {
             addressRepository.save(address);
@@ -41,7 +41,7 @@ public class AddressService {
     }
 
     public AddressDto findById(UUID id) {
-        Address address = addressRepository.findById(id).orElseThrow(() -> new AddressNotFoundException("Could not find address with id: " + id));
+        Address address = findAddressInDatabase(id);
         return AddressConverter.convertToAddressDto(address);
     }
 
@@ -49,19 +49,12 @@ public class AddressService {
         return addressRepository.findById(id).orElseThrow(() ->
                 new AddressNotFoundException("Could not find address with id: " + id));
     }
-
-    public AddressDto findByCity(String city) {
-        Address address = addressRepository.findByCity(city).orElseThrow(() ->
-                new AddressNotFoundException("Could not find city: " + city));
-        return AddressConverter.convertToAddressDto(address);
-    }
-
     public AddressDto updateAddress(UUID id, Map<Object, Object> fields) {
         Address address = findAddressInDatabase(id);
         fields.forEach((key, value) -> {
             Field field = ReflectionUtils.findField(Address.class, (String) key);
             if (field == null) {
-                throw new FieldDoesNotExistException("Field" + key + "does not exist");
+                throw new FieldDoesNotExistException("Field " + key + " does not exist");
             }
             field.setAccessible(true);
             ReflectionUtils.setField(field, address, value);
@@ -70,11 +63,5 @@ public class AddressService {
         return AddressConverter.convertToAddressDto(address);
     }
 
-    public List<AddressDto> findAll(){
-        List<Address> addresses = addressRepository.findAll();
-        return addresses.stream()
-                .map(AddressConverter::convertToAddressDto)
-                .collect(Collectors.toList());
-    }
 
 }

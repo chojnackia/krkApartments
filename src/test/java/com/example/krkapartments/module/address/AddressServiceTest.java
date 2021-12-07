@@ -1,6 +1,7 @@
 package com.example.krkapartments.module.address;
 
 import com.example.krkapartments.exception.AddressNotFoundException;
+import com.example.krkapartments.exception.FieldDoesNotExistException;
 import com.example.krkapartments.generator.ObjectGenerator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,17 +9,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.groups.Default;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
-import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class AddressServiceTest {
@@ -73,7 +67,6 @@ class AddressServiceTest {
         //when
         //then
         assertThat(e.getMessage()).isEqualTo("Could not find address with id: " + id);
-
     }
 
     @Test
@@ -106,21 +99,83 @@ class AddressServiceTest {
         assertThat(addedAddress).isEqualTo(expectedAddress);
 
     }
-//    @Test
-//    void shouldReturnLocationWhenAddedLocationExistingInDatabase() {
-//        //given
-//        AddressDto addressDto = generator.getAddressDtos().get(0);
-//        Address expectedAddress = generator.getAddressList().get(0);
-//        Optional<Address> optionalAddress = Optional.of(expectedAddress);
-//
-//        //when
-//        Mockito.when(addressRepository.findByStreetNameAndBuildingNumberAndApartmentNumberAndCityAndCountry(addressDto.getStreetName(), addressDto.getBuildingNumber(), addressDto.getApartmentNumber(), addressDto.getCity(), addressDto.getCountry()))
-//                .thenReturn(optionalAddress);
-//        Address addedAddress = addressService.addAddress(addressDto);
-//        addedAddress.setApartment(null);
-//        //then
-//        assertThat(expectedAddress).isEqualTo(addedAddress);
-//    }
+    @Test
+    void shouldReturnAddressWhenAddedAddressExistingInDatabase() {
+        //given
+        AddressDto addressDto = generator.getAddressDtos().get(0);
+        Address expectedAddress = generator.getAddressList().get(0);
+        Optional<Address> optionalAddress = Optional.of(expectedAddress);
+
+        //when
+        Mockito.when(addressRepository.findByCityAndStreetNameAndBuildingNumberAndApartmentNumber(
+                addressDto.getCity(),
+                addressDto.getStreetName(),
+                addressDto.getBuildingNumber(),
+                addressDto.getApartmentNumber()
+                )).thenReturn(optionalAddress);
+        Address addedAddress = addressService.addAddress(addressDto);
+        addedAddress.setId(expectedAddress.getId());
+        addedAddress.setApartment(null);
+        //then
+        assertThat(expectedAddress).isEqualTo(addedAddress);
+    }
+
+    @Test
+    void shouldUpdateAddress() {
+        //given
+        AddressDto expectedAddressDto = generator.getAddressDtos().get(0);
+        expectedAddressDto.setCountry("UpdatedCountry");
+        expectedAddressDto.setCity("UpdatedCity");
+        expectedAddressDto.setPostCode("UpdatedPostCode");
+        expectedAddressDto.setStreetName("UpdatedStreetName");
+        expectedAddressDto.setBuildingNumber(8);
+        expectedAddressDto.setApartmentNumber(8);
+        UUID id = expectedAddressDto.getId();
+        Optional<Address> address = Optional.of(generator.getAddressList().get(0));
+
+        Mockito.when(addressRepository.findById(id)).thenReturn(address);
+        Map<Object, Object> changesMap = new HashMap<>();
+       changesMap.put("country", "UpdatedCountry");
+       changesMap.put("city", "UpdatedCity");
+       changesMap.put("postCode", "UpdatedPostCode");
+       changesMap.put("streetName", "UpdatedStreetName");
+       changesMap.put("buildingNumber", 8);
+       changesMap.put("apartmentNumber", 8);
+        //when
+        AddressDto updatedAddressDto = addressService.updateAddress(id, changesMap);
+        //then
+        assertThat(updatedAddressDto).isEqualTo(expectedAddressDto);
+    }
+
+    @Test
+    void shouldThrowAddressNotFoundExceptionIfSearchedAddressNotExist(){
+        //given
+        UUID id = UUID.randomUUID();
+
+        AddressNotFoundException e = Assertions.assertThrows(AddressNotFoundException.class, ()-> addressService.findById(id));
+        //when
+        //then
+        assertThat(e.getMessage()).isEqualTo("Could not find address with id: " + id);
+    }
+
+    @Test
+    void shouldThrowFieldNotExistExceptionWhenTryingUpdateNonExistingField(){
+        //given
+        AddressDto expectedAddressDto = generator.getAddressDtos().get(0);
+        UUID id = expectedAddressDto.getId();
+        UUID updatedId = UUID.fromString("1715c6ec-7939-4f9b-b0ad-6c6a11111111");
+        Optional<Address>address = Optional.ofNullable(generator.getAddressList().get(0));
+
+        Mockito.when(addressRepository.findById(id)).thenReturn(address);
+        Map<Object, Object> changesMap = new HashMap<>();
+        String key = "NonExistingField";
+        changesMap.put(key,updatedId);
+
+        //when
+        FieldDoesNotExistException e = Assertions.assertThrows(FieldDoesNotExistException.class, ()-> addressService.updateAddress(id, changesMap));
+        //then
+        assertThat(e.getMessage()).isEqualTo("Field " + key + " does not exist");
+    }
 
 
 }

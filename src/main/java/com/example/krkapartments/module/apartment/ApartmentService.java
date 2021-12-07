@@ -2,6 +2,9 @@ package com.example.krkapartments.module.apartment;
 
 import com.example.krkapartments.exception.ApartmentNotFoundException;
 import com.example.krkapartments.exception.FieldDoesNotExistException;
+import com.example.krkapartments.module.address.Address;
+import com.example.krkapartments.module.address.AddressConverter;
+import com.example.krkapartments.module.address.AddressDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
@@ -19,10 +22,9 @@ public class ApartmentService {
 
     private final ApartmentRepository apartmentRepository;
 
-    public List<ApartmentDto> getApartmentsList() {
-        Optional<Apartment> apartmentList = apartmentRepository.findAllByActive(true);
-        return apartmentList
-                .stream()
+    public List<ApartmentDto> findAllActiveApartments() {
+        List<Apartment> apartmentList = apartmentRepository.findAllByActive(true);
+        return apartmentList.stream()
                 .map(ApartmentConverter::convertApartmentToDto)
                 .collect(Collectors.toList());
     }
@@ -42,15 +44,12 @@ public class ApartmentService {
 
     public Apartment findApartmentInDatabase(UUID id) {
         return apartmentRepository.findById(id).orElseThrow(() ->
-                new ApartmentNotFoundException("Could not find Apartment with id: " + id));
+                new ApartmentNotFoundException("Could not find apartment with id: " + id));
 
     }
-
-    public List<ApartmentDto> findAllActiveApartments() {
-        Optional<Apartment> apartments = apartmentRepository.findAllByActive(true);
-        return apartments.stream()
-                .map(ApartmentConverter::convertApartmentToDto)
-                .collect(Collectors.toList());
+    public ApartmentDto findById(UUID id) {
+        Apartment apartment = findApartmentInDatabase(id);
+        return ApartmentConverter.convertApartmentToDto(apartment);
     }
 
 
@@ -59,7 +58,7 @@ public class ApartmentService {
         fields.forEach((key, value) -> {
             Field field = ReflectionUtils.findField(Apartment.class, (String) key);
             if (field == null) {
-                throw new FieldDoesNotExistException("Field" + key + "does not exist");
+                throw new FieldDoesNotExistException("Field " + key + " does not exist");
             }
             field.setAccessible(true);
             ReflectionUtils.setField(field, apartment, value);
@@ -68,10 +67,7 @@ public class ApartmentService {
         return ApartmentConverter.convertApartmentToDto(apartment);
     }
 
-    public ApartmentDto findById(UUID id) {
-        Apartment apartment = apartmentRepository.findById(id).orElseThrow(() -> new ApartmentNotFoundException("Could not find apartment with id: " + id));
-        return ApartmentConverter.convertApartmentToDto(apartment);
-    }
+
 
     public ApartmentDto deactivateApartment(UUID id) {
         Apartment apartment = findApartmentInDatabase(id);
@@ -86,4 +82,6 @@ public class ApartmentService {
                 .map(ApartmentConverter::convertApartmentToDto)
                 .collect(Collectors.toList());
     }
+
+
 }
