@@ -9,9 +9,7 @@ import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
@@ -22,34 +20,12 @@ public class BookingService {
     private final ApartmentService apartmentService;
     private final ApartmentConverter apartmentConverter;
 
-/*    public List<BookingDto> findAllByOccupiedIsFalse() {
-        List<Booking> bookingList = bookingRepository.findAllByOccupiedIsFalse();
-        return bookingList.stream()
-                .map(BookingConverter::convertToBookingDto)
-                .collect(Collectors.toList());
-    }
-
-    public List<BookingDto> findAllByOccupiedIsTrue() {
-        List<Booking> bookingList = bookingRepository.findAllByOccupiedIsTrue();
-        return bookingList.stream()
-                .map(BookingConverter::convertToBookingDto)
-                .collect(Collectors.toList());
-
-    }*/
-
     public BookingDto addBooking(BookingDto bookingDto) throws ApartmentIsOccupiedException {
 
-        List<Booking> occupiedApartments = bookingRepository.findAllByCheckInDateIsBetweenOrCheckOutDateIsBetween(
-                bookingDto.getCheckInDate(),
-                bookingDto.getCheckOutDate(),
-                bookingDto.getCheckInDate(),
-                bookingDto.getCheckOutDate());
-
-        List<Booking> anotherOccupiedApartments = bookingRepository.findAllByCheckInDateBeforeAndCheckOutDateAfter(
+        List<Booking> occupiedApartments = bookingRepository.findAllByApartmentEqualsAndCheckInDateIsBetweenOrCheckOutDateIsBetween(
+                apartmentService.findApartmentInDatabase(bookingDto.getApartmentId()),
                 bookingDto.getCheckInDate(),
                 bookingDto.getCheckOutDate());
-
-        List<Booking> apartmentsExisting = bookingRepository.findAllByApartment(apartmentService.findApartmentInDatabase(bookingDto.getApartmentId()));
 
         LocalDate checkInDate = bookingDto.getCheckInDate();
         LocalDate checkOutDate = bookingDto.getCheckOutDate();
@@ -58,8 +34,8 @@ public class BookingService {
         Booking booking = BookingConverter.convertToBooking(bookingDto, apartmentInDatabase);
         booking.setId(UUID.randomUUID());
 
-        if ((occupiedApartments == null && anotherOccupiedApartments == null) || apartmentsExisting.isEmpty()) {
-            bookingRepository.save(booking);
+        if (occupiedApartments.isEmpty()){
+             bookingRepository.save(booking);
         } else {
             throw new ApartmentIsOccupiedException("Apartment is occupied between " + checkInDate + " - " + checkOutDate);
         }

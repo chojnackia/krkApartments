@@ -9,11 +9,11 @@ import java.util.UUID;
 
 public class ApartmentGenerator {
 
-    private static final UUID id1 = UUID.randomUUID();
-    private static final UUID id2 = UUID.randomUUID();
-    private static final UUID id3 = UUID.randomUUID();
-    private static final UUID id4 = UUID.randomUUID();
-    private static final UUID id5 = UUID.randomUUID();
+    private static final UUID id1 = UUID.fromString("1ae88fa0-38b0-11ec-8d3d-0242ac130003");
+    private static final UUID id2 = UUID.fromString("1ae88fa0-38b0-11ec-8d3d-0242ac130004");
+    private static final UUID id3 = UUID.fromString("1ae88fa0-38b0-11ec-8d3d-0242ac130005");
+    private static final UUID id4 = UUID.fromString("1ae88fa0-38b0-11ec-8d3d-0242ac130006");
+    private static final UUID id5 = UUID.fromString("1ae88fa0-38b0-11ec-8d3d-0242ac130007");
 
     static List<Apartment> generateApartmentList() {
         List<Apartment> apartments = new ArrayList<>();

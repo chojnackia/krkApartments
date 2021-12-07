@@ -24,7 +24,7 @@ public class BookingGenerator {
         Booking booking1 = Booking.builder()
                 .id(id1)
                 .user(new User())
-                .apartment(new Apartment())
+                .apartment(null)
                 .checkInDate(LocalDate.of(2021, 10, 1))
                 .checkOutDate(LocalDate.of(2021, 10, 10))
                 .build();
@@ -58,22 +58,22 @@ public class BookingGenerator {
         BookingDto bookingDto1 = BookingDto.builder()
                 .id(id1)
                 .apartmentId(new Apartment().getId())
-                .checkInDate(LocalDate.of(2021, 11, 1))
-                .checkOutDate(LocalDate.of(2021, 11, 10))
+                .checkInDate(LocalDate.of(2021, 10, 1))
+                .checkOutDate(LocalDate.of(2021, 10, 10))
                 .user(new User()).build();
 
         BookingDto bookingDto2 = BookingDto.builder()
                 .id(id2)
                 .apartmentId(new Apartment().getId())
-                .checkInDate(LocalDate.of(2021, 11, 1))
-                .checkOutDate(LocalDate.of(2021, 11, 10))
+                .checkInDate(LocalDate.of(2021, 10, 1))
+                .checkOutDate(LocalDate.of(2021, 10, 10))
                 .user(new User()).build();
 
         BookingDto bookingDto3 = BookingDto.builder()
                 .id(id3)
                 .apartmentId(new Apartment().getId())
-                .checkInDate(LocalDate.of(2021, 11, 11))
-                .checkOutDate(LocalDate.of(2021, 11, 15))
+                .checkInDate(LocalDate.of(2021, 10, 11))
+                .checkOutDate(LocalDate.of(2021, 10, 15))
                 .user(new User()).build();
 
         bookingDtos.add(bookingDto1);
