@@ -44,7 +44,6 @@ public class Apartment implements Serializable {
     private boolean active;
 
     @OneToMany(mappedBy = "apartment", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JsonIgnore
     private List<Booking> bookings = new ArrayList<>();
 
     @OneToOne
@@ -65,5 +64,6 @@ public class Apartment implements Serializable {
     public int hashCode() {
         return new HashCodeBuilder(17, 37).append(id).append(apartmentName).append(priceForOneDay).append(apartmentDescription).append(active).append(bookings).append(address).toHashCode();
     }
+
 }
 
