@@ -17,7 +17,6 @@ public class BookingConverter {
                 .apartmentId(booking.getApartment().getId())
                 .checkInDate(booking.getCheckInDate())
                 .checkOutDate(booking.getCheckOutDate())
-                //.occupied(booking.isOccupied())
                 .build();
     }
 
@@ -29,7 +28,6 @@ public class BookingConverter {
                 .apartment(apartment)
                 .checkInDate(bookingDto.getCheckInDate())
                 .checkOutDate(bookingDto.getCheckOutDate())
-                //.occupied(bookingDto.isOccupied())
                 .build();
     }
 

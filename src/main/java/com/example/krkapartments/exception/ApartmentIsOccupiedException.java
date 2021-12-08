@@ -1,4 +1,4 @@
-package com.example.krkapartments.module.booking;
+package com.example.krkapartments.exception;
 
 
 public class ApartmentIsOccupiedException extends Throwable {

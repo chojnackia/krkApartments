@@ -22,7 +22,7 @@ create table USERS
 DROP TABLE IF EXISTS APARTMENTS;
 create table APARTMENTS
 (
-    APARTMENT_ID                    BINARY  not null primary key,
+    ID                    BINARY  not null primary key,
     APARTMENT_NAME        VARCHAR(255),
     PRICE_FOR_ONE_DAY     DOUBLE  not null,
     APARTMENT_DESCRIPTION VARCHAR(10000),
@@ -42,24 +42,12 @@ create table ADDRESS
     COUNTRY   VARCHAR(255)
 );
 
-DROP TABLE IF EXISTS APARTMENT_IS_OCCUPIED;
-create table APARTMENT_IS_OCCUPIED
-(
-    APARTMENT_ID BINARY not null,
-    IS_OCCUPIED BOOLEAN not null,
-    DATE DATE not null
-);
-
 alter TABLE BOOKINGS
     add CONSTRAINT FKDW0XFNNTHBJ8AFP1IRA6SNDWQ
         foreign key (USER_ID) references USERS (ID);
 alter table BOOKINGS
     add CONSTRAINT FKDW0XFNNTHBJ8AFP1IRA6SNDV
-        foreign key (APARTMENT_ID) references APARTMENTS (APARTMENT_ID);
+        foreign key (APARTMENT_ID) references APARTMENTS (ID);
 alter table APARTMENTS
     add constraint FKDK0XFNNTHBJ8AFP1IRA6SNXTE
         foreign key (ADDRESS_ID) references ADDRESS (ID);
-
-alter table APARTMENT_IS_OCCUPIED
-    add constraint FKDK0XFNNTHBJ8AFP1IRA6SHWDP
-    foreign key (APARTMENT_ID) references BOOKINGS(APARTMENT_ID);
