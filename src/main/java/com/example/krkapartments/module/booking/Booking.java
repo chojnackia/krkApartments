@@ -1,8 +1,8 @@
 package com.example.krkapartments.module.booking;
 
 import com.example.krkapartments.module.apartment.Apartment;
+
 import com.example.krkapartments.module.user.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -11,9 +11,6 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 @Entity

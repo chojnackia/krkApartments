@@ -1,5 +1,6 @@
 package com.example.krkapartments.module.booking;
 
+import com.example.krkapartments.exception.ApartmentIsOccupiedException;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,9 +26,9 @@ public class BookingController {
         return bookingService.findAllBookings();
     }
 
-    @PatchMapping("/deactivate/{id}")
-    public Booking deactivateBooking(@PathVariable UUID id) {
-        return bookingService.deactivateBooking(id);
+    @DeleteMapping("/{id}")
+    public Booking deleteBooking(@PathVariable UUID id) {
+        return bookingService.deleteBooking(id);
     }
 
     @PatchMapping("/{id}")
