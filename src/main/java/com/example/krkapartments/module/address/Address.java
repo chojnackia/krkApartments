@@ -1,5 +1,7 @@
-package com.example.krkapartments.module.apartment;
+package com.example.krkapartments.module.address;
 
+import com.example.krkapartments.module.apartment.Apartment;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -8,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 import java.util.UUID;
 
 @Entity
-@Table(name = "LOCATIONS")
+@Table(name = "ADDRESS")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -24,12 +26,22 @@ public class Address {
     @NotBlank(message = "City is mandatory")
     private String city;
 
+    @NotBlank(message = "Street name is mandatory")
+    private String streetName;
+
+    @NotBlank(message = "Building number is mandatory")
+    private int buildingNumber;
+
+    @NotBlank(message = "Apartment number is mandatory")
+    private int apartmentNumber;
+
     @NotBlank(message = "Post code is mandatory")
     private String postCode;
 
     @NotBlank(message = "Country is mandatory")
     private String country;
 
-    @OneToOne
+    @OneToOne(mappedBy = "address")
+    @JsonIgnore
     private Apartment apartment;
 }

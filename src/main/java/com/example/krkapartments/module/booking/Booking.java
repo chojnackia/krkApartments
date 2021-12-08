@@ -2,46 +2,60 @@ package com.example.krkapartments.module.booking;
 
 import com.example.krkapartments.module.apartment.Apartment;
 import com.example.krkapartments.module.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Entity
 @Table(name = "BOOKINGS")
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Getter
 @Setter
-@Builder
-public class Booking {
+public class Booking implements Serializable {
 
+    @Column(nullable = false)
     @Id
-    @GeneratedValue(generator = "uuid2")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
 
-    @OneToOne
+    @JoinColumn
+    @ManyToOne
     private User user;
 
-    @ManyToOne
+    @JoinColumn(name = "apartment_id")
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Apartment.class)
     private Apartment apartment;
 
-    private LocalDate checkinDate;
+    private LocalDate checkInDate;
 
-    private LocalDate checkoutDate;
+    private LocalDate checkOutDate;
 
-    private String creditCardNumber;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
 
-    private CreditCardType creditCardType;
+        if (o == null || getClass() != o.getClass()) return false;
 
-    private String creditCardName;
+        Booking booking = (Booking) o;
 
-    private int creditCardExpiryMonth;
+        return new EqualsBuilder().append(id, booking.id).append(user, booking.user).append(apartment, booking.apartment).append(checkInDate, booking.checkInDate).append(checkOutDate, booking.checkOutDate).isEquals();
+    }
 
-    private int creditCardExpiryYear;
-
-
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37).append(id).append(user).append(apartment).append(checkInDate).append(checkOutDate).toHashCode();
+    }
 }
