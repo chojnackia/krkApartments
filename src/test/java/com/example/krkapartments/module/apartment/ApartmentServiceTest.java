@@ -4,7 +4,6 @@ import com.example.krkapartments.exception.ApartmentNotFoundException;
 import com.example.krkapartments.exception.FieldDoesNotExistException;
 import com.example.krkapartments.generator.ObjectGenerator;
 import com.example.krkapartments.module.address.Address;
-import com.example.krkapartments.module.address.AddressDto;
 import com.example.krkapartments.module.booking.Booking;
 import com.example.krkapartments.module.user.User;
 import com.example.krkapartments.module.user.UserDto;
@@ -14,8 +13,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+
 import java.util.*;
 import java.util.stream.Collectors;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ApartmentServiceTest {
@@ -129,7 +130,7 @@ class ApartmentServiceTest {
         List<Booking> bookings = generator.getBookingList();
         List<User> users = generator.getUserList();
         List<UserDto> usersDto = generator.getUserDtoList();
-        generator.generateDependencies(apartments, addresses, bookings, users, usersDto);
+        generator.generateDependencies(apartments, addresses, bookings, users);
 
         List<Apartment> activeApartments = apartments.stream()
                 .filter(Apartment::isActive)
@@ -220,19 +221,12 @@ class ApartmentServiceTest {
     void shouldReturnApartmentWhenAddedApartmentExistingInDatabase(){
         //given
         ApartmentDto apartmentDto = generator.getApartmentDtos().get(0);
-        Address address = generator.getAddressList().get(0);
         Apartment expectedApartment = generator.getApartmentList().get(0);
-        expectedApartment.setAddress(address);
         Optional<Apartment> optionalApartment = Optional.of(expectedApartment);
         //when
-        Mockito.when(apartmentRepository.findByApartmentNameAndAddress(
-                apartmentDto.getApartmentName(),
-                apartmentDto.getAddress()
-        )).thenReturn(optionalApartment);
+        Mockito.when(apartmentRepository.findByApartmentName(apartmentDto.getApartmentName())).thenReturn(optionalApartment);
         Apartment addedApartment = apartmentService.addApartment(apartmentDto);
         addedApartment.setId(expectedApartment.getId());
-        addedApartment.setAddress(expectedApartment.getAddress());
-        addedApartment.setBookings(expectedApartment.getBookings());
         //then
         assertThat(expectedApartment).isEqualTo(addedApartment);
     }

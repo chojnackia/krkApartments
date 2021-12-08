@@ -25,7 +25,7 @@ public class ObjectGenerator {
     private final List<UserDto> userDtoList = UserGenerator.generateUserDtoList();
 
 
-    public void generateDependencies(List<Apartment> apartments, List<Address> addresses, List<Booking> bookings, List<User> users, List<UserDto> userDtoList) {
+    public void generateDependencies(List<Apartment> apartments, List<Address> addresses, List<Booking> bookings, List<User> users) {
         apartments.get(0).setAddress(addresses.get(0));
         apartments.get(1).setAddress(addresses.get(1));
         apartments.get(2).setAddress(addresses.get(2));
@@ -34,11 +34,24 @@ public class ObjectGenerator {
 
         bookings.get(0).setApartment(apartmentList.get(0));
         bookings.get(1).setApartment(apartmentList.get(1));
-        bookings.get(2).setApartment(apartmentList.get(2));
+        bookings.get(2).setApartment(apartmentList.get(0));
 
         bookings.get(0).setUser(users.get(0));
         bookings.get(1).setUser(users.get(1));
         bookings.get(2).setUser(users.get(0));
 
     }
+
+    public void generateDtoDependencies(List<ApartmentDto> apartmentDtos, List<AddressDto> addressDtos, List<BookingDto> bookingDtos, List<User> users) {
+
+        bookingDtos.get(0).setApartmentId(apartmentList.get(0).getId());
+        bookingDtos.get(1).setApartmentId(apartmentList.get(1).getId());
+        bookingDtos.get(2).setApartmentId(apartmentList.get(0).getId());
+
+        bookingDtos.get(0).setUser(users.get(0));
+        bookingDtos.get(1).setUser(users.get(1));
+        bookingDtos.get(2).setUser(users.get(0));
+
+    }
+
 }

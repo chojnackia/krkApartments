@@ -3,8 +3,9 @@ package com.example.krkapartments.module.booking;
 import com.example.krkapartments.module.apartment.Apartment;
 
 import com.example.krkapartments.module.user.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -39,12 +40,19 @@ public class Booking implements Serializable {
 
     private LocalDate checkOutDate;
 
-/*    @ManyToMany
-    private List<ApartmentReservation> apartmentReservation;*/
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
 
-/*    @ElementCollection
-    @CollectionTable(name = "apartment_is_occupied",
-            joinColumns = {@JoinColumn(name = "apartment_id", referencedColumnName = "apartment_id")})
-    @MapKeyColumn(name = "date")
-    private List<LocalDate> date;*/
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Booking booking = (Booking) o;
+
+        return new EqualsBuilder().append(id, booking.id).append(user, booking.user).append(apartment, booking.apartment).append(checkInDate, booking.checkInDate).append(checkOutDate, booking.checkOutDate).isEquals();
     }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37).append(id).append(user).append(apartment).append(checkInDate).append(checkOutDate).toHashCode();
+    }
+}

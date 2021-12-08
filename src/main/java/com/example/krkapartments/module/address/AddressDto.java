@@ -1,7 +1,5 @@
 package com.example.krkapartments.module.address;
 
-import com.example.krkapartments.module.apartment.Apartment;
-import liquibase.pro.packaged.A;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
