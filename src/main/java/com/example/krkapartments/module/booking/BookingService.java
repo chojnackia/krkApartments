@@ -1,5 +1,8 @@
 package com.example.krkapartments.module.booking;
 
+import com.example.krkapartments.exception.ApartmentIsOccupiedException;
+import com.example.krkapartments.exception.BookingNotFoundException;
+import com.example.krkapartments.exception.FieldDoesNotExistException;
 import com.example.krkapartments.module.apartment.Apartment;
 import com.example.krkapartments.module.apartment.ApartmentConverter;
 import com.example.krkapartments.module.apartment.ApartmentService;
@@ -9,7 +12,9 @@ import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
@@ -34,8 +39,9 @@ public class BookingService {
         Booking booking = BookingConverter.convertToBooking(bookingDto, apartmentInDatabase);
         booking.setId(UUID.randomUUID());
 
-        if (occupiedApartments.isEmpty()){
-             bookingRepository.save(booking);
+
+        if (occupiedApartments.isEmpty()) {
+            bookingRepository.save(booking);
         } else {
             throw new ApartmentIsOccupiedException("Apartment is occupied between " + checkInDate + " - " + checkOutDate);
         }
@@ -49,10 +55,10 @@ public class BookingService {
                 .collect(Collectors.toList());
     }
 
-    public Booking deactivateBooking(UUID id) {
-        Booking booking = findBookingInDatabase(id);
-        bookingRepository.save(booking);
-        return booking;
+    public Booking deleteBooking(UUID id) {
+        Booking bookingToDelete = findBookingInDatabase(id);
+        bookingRepository.deleteById(id);
+        return bookingToDelete;
     }
 
     public Booking findBookingInDatabase(UUID id) {

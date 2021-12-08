@@ -1,5 +1,6 @@
 package com.example.krkapartments.module.booking;
 
+import com.example.krkapartments.exception.ApartmentIsOccupiedException;
 import com.example.krkapartments.generator.ObjectGenerator;
 import com.example.krkapartments.module.address.Address;
 import com.example.krkapartments.module.address.AddressDto;
@@ -129,15 +130,16 @@ class BookingServiceTest {
 
     @Test
     void shouldFindAllBookings() {
-
         bookingService.findAllBookings();
-
         verify(bookingRepository).findAll();
-
     }
 
     @Test
-    void shouldDeactivateBooking() {
+    void shouldDeleteBooking() {
+        Booking booking = generator.getBookingList().get(0);
+        Mockito.when(bookingRepository.findById(booking.getId())).thenReturn(Optional.of(booking));
+        bookingService.deleteBooking(booking.getId());
+        Mockito.verify(bookingRepository, Mockito.times(1)).deleteById(booking.getId());
     }
 
     @Test

@@ -129,7 +129,7 @@ class ApartmentServiceTest {
         List<Booking> bookings = generator.getBookingList();
         List<User> users = generator.getUserList();
         List<UserDto> usersDto = generator.getUserDtoList();
-        generator.generateDependencies(apartments, addresses, bookings, users, usersDto);
+        generator.generateDependencies(apartments, addresses, bookings, users);
 
         List<Apartment> activeApartments = apartments.stream()
                 .filter(Apartment::isActive)
