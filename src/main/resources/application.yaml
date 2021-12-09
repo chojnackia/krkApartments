@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    username: sa
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    hibernate:
+      #ddl-auto: update
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+
+przelewy24:
+  transactionUrl: https://sandbox.przelewy24.pl/api/v1/transaction/register
+  verifyUrl: https://sandbox.przelewy24.pl/api/v1/transaction/verify
+  testUrl: https://sandbox.przelewy24.pl/api/v1/testAccess
+  username: 163123
+  password: 343035e535f1269888a4417003689511
+  crc: d134e3520fc26721
