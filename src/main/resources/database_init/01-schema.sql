@@ -41,7 +41,18 @@ create table ADDRESS
     POST_CODE VARCHAR(255),
     COUNTRY   VARCHAR(255)
 );
-
+CREATE TABLE ADMINS
+(
+    UUID       uuid         not null primary key,
+    ACTIVE     BOOLEAN      not null,
+    EMAIL      VARCHAR(255) not null,
+    FIRST_NAME VARCHAR(255) not null,
+    LAST_NAME  VARCHAR(255) not null,
+    PASSWORD   VARCHAR(255) not null,
+    ROLE       VARCHAR(255) not null
+);
+ALTER TABLE ADMINS
+    ADD CONSTRAINT UK_OB8KQYQQGMEFL0ACO34AKDTPE UNIQUE (EMAIL);
 alter TABLE BOOKINGS
     add CONSTRAINT FKDW0XFNNTHBJ8AFP1IRA6SNDWQ
         foreign key (USER_ID) references USERS (ID);
