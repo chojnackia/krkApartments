@@ -40,9 +40,9 @@ import static java.lang.String.format;
 @Service("PaymentService")
 public class PaymentService {
 
-    TransactionRepository repository;
-    Gson gson;
-    ApplicationConfiguration applicationConfiguration;
+   private final TransactionRepository repository;
+   private final Gson gson;
+   private final ApplicationConfiguration applicationConfiguration;
 
     public PaymentService(TransactionRepository repository, ApplicationConfiguration applicationConfiguration) {
         this.applicationConfiguration = applicationConfiguration;
@@ -105,8 +105,8 @@ public class PaymentService {
                 .setEmail(email)
                 .setCountry("PL")
                 .setLanguage("pl")
-                .setUrlReturn("https://webhook.site/5559a60a-1e36-4ead-9e8c-9b1b8ff79e5f")
-                .setUrlStatus("https://webhook.site/5559a60a-1e36-4ead-9e8c-9b1b8ff79e5f")
+                .setUrlReturn("http://www.localhost:8080/")
+                .setUrlStatus("http://www.localhost:8080/")
                 .setSign(encrypt(format("{\"sessionId\":\"%s\",\"merchantId\":%s,\"amount\":%s,\"currency\":\"%s\",\"crc\":\"%s\"}", sessionId, applicationConfiguration.getUsername(), amount, "PLN", applicationConfiguration.getCrc())))
                 .build();
     }
