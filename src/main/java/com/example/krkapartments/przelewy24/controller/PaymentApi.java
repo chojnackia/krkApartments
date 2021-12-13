@@ -35,7 +35,6 @@ public class PaymentApi {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<ClientTransactionResponse> startTransaction(@RequestBody @Valid ClientTransactionRequest request) throws IOException {
         return new ResponseEntity<>(paymentService.sendTransactionRequest(request), HttpStatus.OK);
-
     }
 
     @PostMapping("/transaction/return")
@@ -43,5 +42,4 @@ public class PaymentApi {
     public void returnTransaction(@RequestBody @Valid ReturnTransactionRequest request) throws IOException {
         paymentService.checkTransaction(request);
     }
-
 }
