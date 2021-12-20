@@ -71,6 +71,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/register/**").permitAll()
                 .antMatchers("/booking/**").permitAll()
+                .antMatchers("/api/**").permitAll()
                 .anyRequest().permitAll();
         http.addFilterBefore(
                 jwtTokenFilter,

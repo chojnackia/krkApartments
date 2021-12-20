@@ -31,6 +31,7 @@ public class PaymentApi {
         paymentService.test();
     }
 
+
     @PostMapping("/transaction/request")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<ClientTransactionResponse> startTransaction(@RequestBody @Valid ClientTransactionRequest request) throws IOException {
