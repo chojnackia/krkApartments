@@ -179,6 +179,4 @@ public class PaymentService {
                 .email(request.getEmail())
                 .telephoneNumber(request.getPhone()).build();
     }
-
-
 }
