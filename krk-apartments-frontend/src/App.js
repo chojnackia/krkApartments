@@ -12,6 +12,8 @@ class App extends Component {
     this.setState({clients: body});
   }
 
+
+  //Switch do zmiany, nie korzysta się z tego
   render() {
     return (
         <Router>
