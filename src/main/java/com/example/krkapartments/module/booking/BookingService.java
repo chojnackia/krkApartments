@@ -42,6 +42,7 @@ public class BookingService {
 
         if (occupiedApartments.isEmpty()) {
             bookingRepository.save(booking);
+
         } else {
             throw new ApartmentIsOccupiedException("Apartment is occupied between " + checkInDate + " - " + checkOutDate);
         }

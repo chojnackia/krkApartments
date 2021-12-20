@@ -19,4 +19,5 @@ public class ClientTransactionRequest {
     private String email;
     @NonNull
     private String client;
+    private String phone;
 }
