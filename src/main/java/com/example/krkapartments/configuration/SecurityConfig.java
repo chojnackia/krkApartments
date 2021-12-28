@@ -18,6 +18,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -71,6 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/register/**").permitAll()
                 .antMatchers("/booking/**").permitAll()
+                .antMatchers("/apartments/**").permitAll()
                 .antMatchers("/api/**").permitAll()
                 .anyRequest().permitAll();
         http.addFilterBefore(
@@ -83,7 +85,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public CorsFilter corsFilter(){
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true);
+        config.setAllowCredentials(false);
         config.addAllowedOrigin("*");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");

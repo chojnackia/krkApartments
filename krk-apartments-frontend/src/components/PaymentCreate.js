@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import {withRouter } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 
 class PaymentCreate extends Component {
     
     emptyItem = {
         amount: '',
+        currency: '',
         email: '',
         phone: '',
         client: '',
+        description: '',
         token: ''
     };
 
@@ -69,6 +70,11 @@ class PaymentCreate extends Component {
                                onChange={this.handleChange} autoComplete="amount"/>
                     </FormGroup>
                     <FormGroup>
+                        <Label for="currency">Currency</Label>
+                        <Input type="text" name="currency" id="currency" value={item.currency || ''}
+                               onChange={this.handleChange} autoComplete="currency"/>
+                    </FormGroup>
+                    <FormGroup>
                         <Label for="email">Email</Label>
                         <Input type="text" name="email" id="email" value={item.email || ''}
                                onChange={this.handleChange} autoComplete="email"/>
@@ -84,6 +90,11 @@ class PaymentCreate extends Component {
                                onChange={this.handleChange} autoComplete="phone"/>
                     </FormGroup>
                     <FormGroup>
+                        <Label for="description">Description</Label>
+                        <Input type="text" name="description" id="description" value={item.description || ''}
+                               onChange={this.handleChange} autoComplete="description"/>
+                    </FormGroup>
+                    <FormGroup>
                         <Button color="primary" type="submit">Save</Button>{' '}
                     </FormGroup>
                 </Form>
@@ -92,4 +103,4 @@ class PaymentCreate extends Component {
     }
     
 }
-export default withRouter(PaymentCreate);
+export default PaymentCreate;

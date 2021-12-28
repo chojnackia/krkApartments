@@ -15,6 +15,7 @@ import java.io.IOException;
 @Slf4j
 @RestController
 @AllArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000/api/transaction/request")
 @RequestMapping(path = "/api")
 public class PaymentApi {
 

@@ -124,8 +124,8 @@ public class PaymentService {
                 .setEmail(email)
                 .setCountry("PL")
                 .setLanguage("pl")
-                .setUrlReturn("http://www.localhost:8080/")
-                .setUrlStatus("http://www.localhost:8080/")
+                .setUrlReturn("http://www.localhost:3000/apartments-list")
+                .setUrlStatus("http://www.localhost:3000/apartments-list")
                 .setSign(encrypt(format("{\"sessionId\":\"%s\",\"merchantId\":%s,\"amount\":%s,\"currency\":\"%s\",\"crc\":\"%s\"}", sessionId, applicationConfiguration.getUsername(), amount, "PLN", applicationConfiguration.getCrc())))
                 .build();
     }

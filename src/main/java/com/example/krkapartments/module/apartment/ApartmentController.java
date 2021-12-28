@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/apartment")
+@RequestMapping("/apartments")
 @RequiredArgsConstructor
 public class ApartmentController {
 
