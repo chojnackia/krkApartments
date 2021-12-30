@@ -1,4 +1,3 @@
-import { responsiveProperty } from "@mui/material/styles/cssUtils";
 import React, { useState } from "react";
 import { Button, Container, Form, FormGroup, Input, Label } from "reactstrap";
 
@@ -19,7 +18,6 @@ export const PaymentCreate = (props: PaymentProps) => {
     const [phone, setPhone] = useState('784308709')
     const [client, setClient] = useState('Adam Chojnacki')
     const [description, setDescription] = useState('aaaaa')
-    const [token, setToken] = useState('')
 
     const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const enteredAmount = event.target.value;
@@ -51,18 +49,21 @@ export const PaymentCreate = (props: PaymentProps) => {
         setDescription(enteredDescription);
     }
     
-    const item = {
+
+
+    const handleSubmit : React.FormEventHandler<HTMLFormElement> =  (event)  => {
+            const item = {
         amount: amount,
         currency: currency,
         email: email,
         phone: phone,
         client: client,
         description: description,
-        token: token,
+        //token: token,
     };
 
-    const handleSubmit =  (event: { preventDefault: () => void; })  => {
         event.preventDefault();
+        
         fetch('/api/transaction/request', {
             method: 'POST',
             headers: {

@@ -1,6 +1,5 @@
 package com.example.krkapartments.module.apartment;
 
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +16,7 @@ public class ApartmentConverter {
                 .priceForOneDay(apartment.getPriceForOneDay())
                 .apartmentDescription(apartment.getApartmentDescription())
                 .active(apartment.isActive())
+                .bookingUrl(apartment.getBookingUrl())
                 .bookings(apartment.getBookings())
                 .address(apartment.getAddress())
                 .build();
@@ -31,6 +31,7 @@ public class ApartmentConverter {
                 .priceForOneDay(apartmentDto.getPriceForOneDay())
                 .apartmentDescription(apartmentDto.getApartmentDescription())
                 .active(apartmentDto.isActive())
+                .bookingUrl(apartmentDto.getBookingUrl())
                 .bookings(apartmentDto.getBookings())
                 .address(apartmentDto.getAddress())
                 .build();

@@ -2,9 +2,11 @@ package com.example.krkapartments.module.booking;
 
 import com.example.krkapartments.exception.ApartmentIsOccupiedException;
 import lombok.AllArgsConstructor;
+import net.fortuna.ical4j.data.ParserException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -17,7 +19,7 @@ public class BookingController {
     private final BookingService bookingService;
 
     @PostMapping("/")
-    public BookingDto addBooking(@Valid @RequestBody BookingDto bookingDto) throws ApartmentIsOccupiedException {
+    public BookingDto addBooking(@Valid @RequestBody BookingDto bookingDto) throws ApartmentIsOccupiedException, ParserException, IOException {
         return bookingService.addBooking(bookingDto);
     }
 

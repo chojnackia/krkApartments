@@ -6,10 +6,13 @@ import com.example.krkapartments.exception.FieldDoesNotExistException;
 import com.example.krkapartments.module.apartment.Apartment;
 import com.example.krkapartments.module.apartment.ApartmentConverter;
 import com.example.krkapartments.module.apartment.ApartmentService;
+import com.example.krkapartments.module.calendar.CalendarService;
 import lombok.AllArgsConstructor;
+import net.fortuna.ical4j.data.ParserException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.util.List;
@@ -23,9 +26,11 @@ public class BookingService {
 
     private final BookingRepository bookingRepository;
     private final ApartmentService apartmentService;
-    private final ApartmentConverter apartmentConverter;
+    private final CalendarService calendarService;
 
-    public BookingDto addBooking(BookingDto bookingDto) throws ApartmentIsOccupiedException {
+    public BookingDto addBooking(BookingDto bookingDto) throws ApartmentIsOccupiedException, ParserException, IOException {
+
+        calendarService.synchronizeCalendar();
 
         List<Booking> occupiedApartments = bookingRepository.findAllByApartmentEqualsAndCheckInDateIsBetweenOrCheckOutDateIsBetween(
                 apartmentService.findApartmentInDatabase(bookingDto.getApartmentId()),

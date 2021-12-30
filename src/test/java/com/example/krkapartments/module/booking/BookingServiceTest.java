@@ -5,7 +5,9 @@ import com.example.krkapartments.generator.ObjectGenerator;
 import com.example.krkapartments.module.address.Address;
 import com.example.krkapartments.module.address.AddressDto;
 import com.example.krkapartments.module.apartment.*;
+import com.example.krkapartments.module.calendar.CalendarService;
 import com.example.krkapartments.module.user.User;
+import net.fortuna.ical4j.data.ParserException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,6 +15,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -29,7 +32,7 @@ class BookingServiceTest {
 
     private BookingService bookingService;
 
-    private ApartmentConverter apartmentConverter;
+    private CalendarService calendarService;
 
     @Mock
     private ApartmentService apartmentService;
@@ -41,11 +44,11 @@ class BookingServiceTest {
     void init() {
         MockitoAnnotations.openMocks(this);
         apartmentService = new ApartmentService(apartmentRepository);
-        bookingService = new BookingService(bookingRepository, apartmentService, apartmentConverter);
+        bookingService = new BookingService(bookingRepository, apartmentService, calendarService);
     }
 
     @Test
-    void shouldAddBooking() throws ApartmentIsOccupiedException {
+    void shouldAddBooking() throws ApartmentIsOccupiedException, ParserException, IOException {
         List<Apartment> apartments = generator.getApartmentList();
         List<Address> addresses = generator.getAddressList();
         List<Booking> bookings = generator.getBookingList();
@@ -73,7 +76,7 @@ class BookingServiceTest {
     }
 
     @Test
-    void shouldAddBookingWhenDateAlreadyExistForAnotherApartment() throws ApartmentIsOccupiedException {
+    void shouldAddBookingWhenDateAlreadyExistForAnotherApartment() throws ApartmentIsOccupiedException, ParserException, IOException {
         List<Apartment> apartments = generator.getApartmentList();
         List<Address> addresses = generator.getAddressList();
         List<Booking> bookings = generator.getBookingList();

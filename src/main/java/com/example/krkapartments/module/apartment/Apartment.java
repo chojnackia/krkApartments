@@ -43,6 +43,8 @@ public class Apartment implements Serializable {
     @JsonIgnore
     private boolean active;
 
+    private String bookingUrl;
+
     @OneToMany(mappedBy = "apartment", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Booking> bookings = new ArrayList<>();
 
@@ -57,13 +59,12 @@ public class Apartment implements Serializable {
 
         Apartment apartment = (Apartment) o;
 
-        return new EqualsBuilder().append(priceForOneDay, apartment.priceForOneDay).append(active, apartment.active).append(id, apartment.id).append(apartmentName, apartment.apartmentName).append(apartmentDescription, apartment.apartmentDescription).append(bookings, apartment.bookings).append(address, apartment.address).isEquals();
+        return new EqualsBuilder().append(priceForOneDay, apartment.priceForOneDay).append(active, apartment.active).append(id, apartment.id).append(apartmentName, apartment.apartmentName).append(apartmentDescription, apartment.apartmentDescription).append(bookingUrl, apartment.bookingUrl).append(bookings, apartment.bookings).append(address, apartment.address).isEquals();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder(17, 37).append(id).append(apartmentName).append(priceForOneDay).append(apartmentDescription).append(active).append(bookings).append(address).toHashCode();
+        return new HashCodeBuilder(17, 37).append(id).append(apartmentName).append(priceForOneDay).append(apartmentDescription).append(active).append(bookingUrl).append(bookings).append(address).toHashCode();
     }
-
 }
 
