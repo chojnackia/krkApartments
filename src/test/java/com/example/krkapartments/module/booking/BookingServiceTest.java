@@ -32,8 +32,6 @@ class BookingServiceTest {
 
     private BookingService bookingService;
 
-    private CalendarService calendarService;
-
     @Mock
     private ApartmentService apartmentService;
 
@@ -44,7 +42,7 @@ class BookingServiceTest {
     void init() {
         MockitoAnnotations.openMocks(this);
         apartmentService = new ApartmentService(apartmentRepository);
-        bookingService = new BookingService(bookingRepository, apartmentService, calendarService);
+        bookingService = new BookingService(bookingRepository, apartmentService);
     }
 
     @Test

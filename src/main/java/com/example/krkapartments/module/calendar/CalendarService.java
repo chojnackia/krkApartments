@@ -8,14 +8,23 @@ import com.example.krkapartments.module.booking.Booking;
 import com.example.krkapartments.module.booking.BookingRepository;
 import lombok.AllArgsConstructor;
 import net.fortuna.ical4j.data.CalendarBuilder;
+import net.fortuna.ical4j.data.CalendarOutputter;
 import net.fortuna.ical4j.data.ParserException;
 import net.fortuna.ical4j.model.Calendar;
 import net.fortuna.ical4j.model.Component;
+import net.fortuna.ical4j.model.Property;
+import net.fortuna.ical4j.model.PropertyList;
 import net.fortuna.ical4j.model.component.VEvent;
+import net.fortuna.ical4j.model.property.CalScale;
+import net.fortuna.ical4j.model.property.ProdId;
+import net.fortuna.ical4j.model.property.Uid;
+import net.fortuna.ical4j.model.property.Version;
+import net.fortuna.ical4j.validate.ValidationException;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -40,7 +49,7 @@ public class CalendarService {
                 .map(ApartmentConverter::convertDtoToApartment)
                 .collect(Collectors.toList());
 
-        for (Apartment apartment : apartments){
+        for (Apartment apartment : apartments) {
             URL bookingUrl = new URL(apartment.getBookingUrl());
             try (InputStream is = bookingUrl.openStream()) {
                 Calendar c = new CalendarBuilder().build(is);
@@ -69,42 +78,35 @@ public class CalendarService {
             }
         }
     }
-}
 
-/*  public void createCalendarFile() {
+  /*  @Scheduled(fixedRate = 1000 * 60 * 60) //Calendar synchronization every 60 seconds
+    public void createCalendarFile() {
 
- *//* Event start and end time in milliseconds *//*
-        Long startDateTimeInMillis = 1615956275000L;
-        Long endDateTimeInMillis = 1615959875000L;
-
-        // Calendar calendarStartTime = new GregorianCalendar();
-        //calendarStartTime.setTimeInMillis(startDateTimeInMillis);
-
-        // Time zone info
-        TimeZone tz = calendarStartTime.getTimeZone();
-        ZoneId zid = tz.toZoneId();
-
-        *//* Generate unique identifier *//*
-        UUID uuid = UUID.randomUUID();
-
-        *//* Create the event *//*
-        String eventSummary = "Happy New Year";
-        // LocalDateTime start = LocalDateTime.ofInstant(calendarStartTime.toInstant(), zid);
-        // LocalDateTime end = LocalDateTime.ofInstant(Instant.ofEpochMilli(endDateTimeInMillis), zid);
-        VEvent event = new VEvent(eventSummary);
-        event.getProperties().add(uuid);
-
-        *//* Create calendar *//*
         Calendar calendar = new Calendar();
-        calendar.getProperties().add(new ProdId("-//Ben Fortuna//iCal4j 1.0//EN"));
+
+        String eventSummary = "CLOSED - Not available";
+        VEvent event = new VEvent(Boolean.parseBoolean(eventSummary));
+
+        PropertyList<Property> eventProps = event.getProperties();
+
+        java.time.ZonedDateTime now = java.time.ZonedDateTime.now();
+
+        String uidTimestamp = java.time.format.DateTimeFormatter
+                .ofPattern("uuuuMMdd'T'hhmmssXX")
+                .format(now);
+        //In the real world this could be a number from a generated sequence:
+        String uidSequence = "/" + (int) Math.ceil(Math.random() * 1000);
+        String uidDomain = "@krk.apartments.com";
+
+        eventProps.add(new Uid(uidTimestamp + uidSequence + uidDomain));
+
+        calendar.getProperties().add(new ProdId("-//KrkApartments//iCal4j 1.0//EN"));
         calendar.getProperties().add(Version.VERSION_2_0);
         calendar.getProperties().add(CalScale.GREGORIAN);
 
-        *//* Add event to calendar *//*
         calendar.getComponents().add(event);
 
-        *//* Create a file *//*
-        String filePath = "mymeeting.ics";
+        String filePath = "export.ics";
         FileOutputStream fout = null;
         try {
 
@@ -112,11 +114,7 @@ public class CalendarService {
             CalendarOutputter outputter = new CalendarOutputter();
             outputter.output(calendar, fout);
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (ValidationException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ValidationException | IOException e) {
             e.printStackTrace();
         } finally {
             if (fout != null) {
@@ -127,5 +125,7 @@ public class CalendarService {
                 }
             }
         }
+
     }*/
+}
 

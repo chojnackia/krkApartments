@@ -26,13 +26,15 @@ public class BookingService {
 
     private final BookingRepository bookingRepository;
     private final ApartmentService apartmentService;
-    private final CalendarService calendarService;
 
     public BookingDto addBooking(BookingDto bookingDto) throws ApartmentIsOccupiedException, ParserException, IOException {
 
-        calendarService.synchronizeCalendar();
-
         List<Booking> occupiedApartments = bookingRepository.findAllByApartmentEqualsAndCheckInDateIsBetweenOrCheckOutDateIsBetween(
+                apartmentService.findApartmentInDatabase(bookingDto.getApartmentId()),
+                bookingDto.getCheckInDate(),
+                bookingDto.getCheckOutDate());
+
+        List<Booking> occupiedApartmentsV2 = bookingRepository.findAllByApartmentEqualsAndAndCheckInDateIsBeforeAndAndCheckOutDateIsAfter(
                 apartmentService.findApartmentInDatabase(bookingDto.getApartmentId()),
                 bookingDto.getCheckInDate(),
                 bookingDto.getCheckOutDate());
@@ -45,7 +47,7 @@ public class BookingService {
         booking.setId(UUID.randomUUID());
 
 
-        if (occupiedApartments.isEmpty()) {
+        if (occupiedApartments.isEmpty() && occupiedApartmentsV2.isEmpty()) {
             bookingRepository.save(booking);
 
         } else {
