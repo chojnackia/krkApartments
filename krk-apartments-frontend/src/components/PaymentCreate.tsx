@@ -12,12 +12,12 @@ type PaymentProps = {
 }
 
 export const PaymentCreate = (props: PaymentProps) => {
-    const [amount, setAmount] = useState('1000')
-    const [currency, setCurrency] = useState('PLN')
-    const [email, setEmail] = useState('chojnackiadaam@op.pl')
-    const [phone, setPhone] = useState('784308709')
-    const [client, setClient] = useState('Adam Chojnacki')
-    const [description, setDescription] = useState('aaaaa')
+    const [amount, setAmount] = useState('')
+    const [currency, setCurrency] = useState('')
+    const [email, setEmail] = useState('')
+    const [phone, setPhone] = useState('')
+    const [client, setClient] = useState('')
+    const [description, setDescription] = useState('')
 
     const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const enteredAmount = event.target.value;

@@ -10,15 +10,9 @@ import lombok.AllArgsConstructor;
 import net.fortuna.ical4j.data.CalendarBuilder;
 import net.fortuna.ical4j.data.CalendarOutputter;
 import net.fortuna.ical4j.data.ParserException;
-import net.fortuna.ical4j.model.Calendar;
-import net.fortuna.ical4j.model.Component;
-import net.fortuna.ical4j.model.Property;
-import net.fortuna.ical4j.model.PropertyList;
+import net.fortuna.ical4j.model.*;
 import net.fortuna.ical4j.model.component.VEvent;
-import net.fortuna.ical4j.model.property.CalScale;
-import net.fortuna.ical4j.model.property.ProdId;
-import net.fortuna.ical4j.model.property.Uid;
-import net.fortuna.ical4j.model.property.Version;
+import net.fortuna.ical4j.model.property.*;
 import net.fortuna.ical4j.validate.ValidationException;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -28,7 +22,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.text.ParseException;
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.ZoneId;
 import java.util.List;
 import java.util.UUID;
@@ -79,12 +75,12 @@ public class CalendarService {
         }
     }
 
-  /*  @Scheduled(fixedRate = 1000 * 60 * 60) //Calendar synchronization every 60 seconds
-    public void createCalendarFile() {
+    @Scheduled(fixedRate = 1000 * 60 * 60) //Calendar synchronization every 60 seconds
+    public void createCalendarFile() throws ParseException {
 
         Calendar calendar = new Calendar();
 
-        String eventSummary = "CLOSED - Not available";
+        String eventSummary = " CLOSED - Not available";
         VEvent event = new VEvent(Boolean.parseBoolean(eventSummary));
 
         PropertyList<Property> eventProps = event.getProperties();
@@ -98,13 +94,18 @@ public class CalendarService {
         String uidSequence = "/" + (int) Math.ceil(Math.random() * 1000);
         String uidDomain = "@krk.apartments.com";
 
-        eventProps.add(new Uid(uidTimestamp + uidSequence + uidDomain));
 
-        calendar.getProperties().add(new ProdId("-//KrkApartments//iCal4j 1.0//EN"));
         calendar.getProperties().add(Version.VERSION_2_0);
+        calendar.getProperties().add(new ProdId("-//KrkApartments//iCal4j 1.0//EN"));
         calendar.getProperties().add(CalScale.GREGORIAN);
-
+        calendar.getProperties().add(Method.PUBLISH);
         calendar.getComponents().add(event);
+
+
+        eventProps.add(new DtStart(new Date("20220101")));
+        eventProps.add(new DtEnd(new Date("20220303")));
+        eventProps.add(new Uid(uidTimestamp + uidSequence + uidDomain));
+        eventProps.add(new Summary(eventSummary));
 
         String filePath = "export.ics";
         FileOutputStream fout = null;
@@ -126,6 +127,6 @@ public class CalendarService {
             }
         }
 
-    }*/
+    }
 }
 
