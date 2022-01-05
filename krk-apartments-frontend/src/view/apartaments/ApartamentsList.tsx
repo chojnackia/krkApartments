@@ -1,8 +1,8 @@
 import React from "react";
-import BasicLayout from "../../layouts/BasicLayout";
+// import BasicLayout from "../../layouts/BasicLayout";
 
 export default function ApartamentsList() {
-  return <BasicLayout>
-    Apartments
-    </BasicLayout>
+   return// <BasicLayout>
+  //   Apartments
+  //   </BasicLayout>
 }
