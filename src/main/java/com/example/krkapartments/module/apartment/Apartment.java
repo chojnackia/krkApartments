@@ -46,6 +46,7 @@ public class Apartment implements Serializable {
     private String bookingUrl;
 
     @OneToMany(mappedBy = "apartment", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Booking> bookings = new ArrayList<>();
 
     @OneToOne
