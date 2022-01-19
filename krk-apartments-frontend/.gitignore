@@ -21,3 +21,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+### db ###
+/test_db*
+test_db.mv.db
+test_db.trace.db
+test_db.lock.db
