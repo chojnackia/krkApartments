@@ -4,8 +4,10 @@ import com.example.krkapartments.exception.ApartmentIsOccupiedException;
 import com.example.krkapartments.generator.ObjectGenerator;
 import com.example.krkapartments.module.address.Address;
 import com.example.krkapartments.module.address.AddressDto;
-import com.example.krkapartments.module.apartment.*;
-import com.example.krkapartments.module.calendar.CalendarService;
+import com.example.krkapartments.module.apartment.Apartment;
+import com.example.krkapartments.module.apartment.ApartmentDto;
+import com.example.krkapartments.module.apartment.ApartmentRepository;
+import com.example.krkapartments.module.apartment.ApartmentService;
 import com.example.krkapartments.module.user.User;
 import net.fortuna.ical4j.data.ParserException;
 import org.junit.jupiter.api.Assertions;
@@ -45,16 +47,17 @@ class BookingServiceTest {
         bookingService = new BookingService(bookingRepository, apartmentService);
     }
 
+    List<Apartment> apartments = generator.getApartmentList();
+    List<Address> addresses = generator.getAddressList();
+    List<Booking> bookings = generator.getBookingList();
+    List<User> users = generator.getUserList();
+
+    List<ApartmentDto> apartmentDtos = generator.getApartmentDtos();
+    List<AddressDto> addressDtos = generator.getAddressDtos();
+    List<BookingDto> bookingDtos = generator.getBookingDtoList();
+
     @Test
     void shouldAddBooking() throws ApartmentIsOccupiedException, ParserException, IOException {
-        List<Apartment> apartments = generator.getApartmentList();
-        List<Address> addresses = generator.getAddressList();
-        List<Booking> bookings = generator.getBookingList();
-        List<User> users = generator.getUserList();
-
-        List<ApartmentDto> apartmentDtos = generator.getApartmentDtos();
-        List<AddressDto> addressDtos = generator.getAddressDtos();
-        List<BookingDto> bookingDtos = generator.getBookingDtoList();
 
         BookingDto bookingDto = generator.getBookingDtoList().get(0);
 
@@ -75,14 +78,6 @@ class BookingServiceTest {
 
     @Test
     void shouldAddBookingWhenDateAlreadyExistForAnotherApartment() throws ApartmentIsOccupiedException, ParserException, IOException {
-        List<Apartment> apartments = generator.getApartmentList();
-        List<Address> addresses = generator.getAddressList();
-        List<Booking> bookings = generator.getBookingList();
-        List<User> users = generator.getUserList();
-
-        List<ApartmentDto> apartmentDtos = generator.getApartmentDtos();
-        List<AddressDto> addressDtos = generator.getAddressDtos();
-        List<BookingDto> bookingDtos = generator.getBookingDtoList();
 
         BookingDto bookingDto = generator.getBookingDtoList().get(1);
 
@@ -102,14 +97,6 @@ class BookingServiceTest {
 
     @Test
     void shouldThrowAppartmentIsOccupiedException() {
-        List<Apartment> apartments = generator.getApartmentList();
-        List<Address> addresses = generator.getAddressList();
-        List<Booking> bookings = generator.getBookingList();
-        List<User> users = generator.getUserList();
-
-        List<ApartmentDto> apartmentDtos = generator.getApartmentDtos();
-        List<AddressDto> addressDtos = generator.getAddressDtos();
-        List<BookingDto> bookingDtos = generator.getBookingDtoList();
 
         BookingDto bookingDto = generator.getBookingDtoList().get(0);
         Booking bookingInDatabase = bookings.get(0);

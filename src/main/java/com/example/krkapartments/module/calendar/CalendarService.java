@@ -48,7 +48,6 @@ public class CalendarService {
             URL bookingUrl = new URL(apartment.getBookingUrl());
             try (InputStream is = bookingUrl.openStream()) {
                 Calendar c = new CalendarBuilder().build(is);
-                VEvent vEvent = new VEvent();
                 List<VEvent> events = c.getComponents(Component.VEVENT);
                 Apartment apartmentInDatabase = apartmentService.findApartmentInDatabase(apartment.getId());
 

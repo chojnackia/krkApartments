@@ -103,6 +103,7 @@ public class PaymentService {
         executeRequest(httpRequest);
 
     }
+
     public VerifyTransactionRequest createVerificationRequest(Transaction transaction) {
         VerifyTransactionRequest transactionRequest = new VerifyTransactionRequest(transaction);
         transactionRequest.setSign(encrypt(format("{\"sessionId\":\"%s\",\"orderId\":%s,\"amount\":%s,\"currency\":\"%s\",\"crc\":\"%s\"}", transaction.getSessionId(), transaction.getOrderId(), transaction.getAmount(), transaction.getCurrency(), applicationConfiguration.getCrc())));

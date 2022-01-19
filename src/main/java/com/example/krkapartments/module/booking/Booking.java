@@ -1,7 +1,6 @@
 package com.example.krkapartments.module.booking;
 
 import com.example.krkapartments.module.apartment.Apartment;
-
 import com.example.krkapartments.module.user.User;
 import lombok.*;
 import org.apache.commons.lang3.builder.EqualsBuilder;

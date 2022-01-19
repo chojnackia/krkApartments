@@ -3,8 +3,8 @@ package com.example.krkapartments.security;
 import com.example.krkapartments.module.admin.Admin;
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -60,8 +60,8 @@ public class JwtTokenUtil {
         return claims.getExpiration();
     }
 
-    public  boolean validate(String token) {
-        try{
+    public boolean validate(String token) {
+        try {
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token);
             return true;
         } catch (SignatureException ex) {

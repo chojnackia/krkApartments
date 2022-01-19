@@ -1,6 +1,6 @@
 #FileLock
-#Wed Jan 05 20:41:41 CET 2022
-server=192.168.1.116\:63671
+#Wed Jan 19 17:10:28 CET 2022
+server=192.168.1.116\:53197
 hostName=GFT-R2ogfI4xsZA.gft.com
 method=file
-id=17e2bc2eb864f4df6c5808c517f1b857bcbd9cb2387
+id=17e731a91479bf2faac01bab39bb8ce502b0db47406
