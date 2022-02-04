@@ -16,7 +16,7 @@ export function PaymentCreate() {
 
     const onSubmit: SubmitHandler<PaymentInputs> =  (event)  => {
 
-        fetch('/api/transaction/request', {
+        fetch('http://localhost:8100/api/transaction/request', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

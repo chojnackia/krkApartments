@@ -16,6 +16,12 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -32,6 +38,7 @@ class BookingServiceTest {
     @Mock
     private BookingRepository bookingRepository;
 
+    @Mock
     private BookingService bookingService;
 
     @Mock
@@ -61,6 +68,7 @@ class BookingServiceTest {
 
         BookingDto bookingDto = generator.getBookingDtoList().get(0);
 
+
         generator.generateDependencies(apartments, addresses, bookings, users);
         generator.generateDtoDependencies(apartmentDtos, addressDtos, bookingDtos, users);
 
@@ -73,6 +81,7 @@ class BookingServiceTest {
 
         assertThat(addedBooking).isEqualTo(bookingDto);
         Mockito.verify(bookingRepository, times(1)).save(Mockito.any(Booking.class));
+
 
     }
 

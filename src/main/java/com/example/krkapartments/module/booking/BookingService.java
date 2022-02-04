@@ -46,6 +46,7 @@ public class BookingService {
 
 
         if (occupiedApartments.isEmpty() && occupiedApartmentsV2.isEmpty()) {
+
             bookingRepository.save(booking);
 
         } else {
