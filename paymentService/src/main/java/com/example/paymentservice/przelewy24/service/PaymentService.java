@@ -14,8 +14,6 @@ import com.example.paymentservice.przelewy24.service.request.ReturnTransactionRe
 import com.example.paymentservice.przelewy24.service.request.VerifyTransactionRequest;
 import com.example.paymentservice.przelewy24.service.response.TransactionResponse;
 import com.google.gson.Gson;
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;

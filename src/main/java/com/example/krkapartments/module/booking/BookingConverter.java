@@ -15,6 +15,7 @@ public class BookingConverter {
                 .apartmentId(booking.getApartment().getId())
                 .checkInDate(booking.getCheckInDate())
                 .checkOutDate(booking.getCheckOutDate())
+                .paymentStatus(booking.getPaymentStatus())
                 .build();
     }
 
@@ -26,6 +27,7 @@ public class BookingConverter {
                 .apartment(apartment)
                 .checkInDate(bookingDto.getCheckInDate())
                 .checkOutDate(bookingDto.getCheckOutDate())
+                .paymentStatus(bookingDto.getPaymentStatus())
                 .build();
     }
 

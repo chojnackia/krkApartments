@@ -39,6 +39,9 @@ public class Booking implements Serializable {
 
     private LocalDate checkOutDate;
 
+    @Enumerated(EnumType.STRING)
+    private BookingPayment paymentStatus;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

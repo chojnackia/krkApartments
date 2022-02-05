@@ -64,7 +64,7 @@ class BookingServiceTest {
     List<BookingDto> bookingDtos = generator.getBookingDtoList();
 
     @Test
-    void shouldAddBooking() throws ApartmentIsOccupiedException, ParserException, IOException {
+    void shouldAddBooking() throws ApartmentIsOccupiedException {
 
         BookingDto bookingDto = generator.getBookingDtoList().get(0);
 
@@ -86,7 +86,7 @@ class BookingServiceTest {
     }
 
     @Test
-    void shouldAddBookingWhenDateAlreadyExistForAnotherApartment() throws ApartmentIsOccupiedException, ParserException, IOException {
+    void shouldAddBookingWhenDateAlreadyExistForAnotherApartment() throws ApartmentIsOccupiedException{
 
         BookingDto bookingDto = generator.getBookingDtoList().get(1);
 
