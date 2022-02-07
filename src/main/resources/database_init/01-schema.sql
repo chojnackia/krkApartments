@@ -27,7 +27,6 @@ create table APARTMENTS
     PRICE_FOR_ONE_DAY     DOUBLE  not null,
     APARTMENT_DESCRIPTION VARCHAR(10000),
     ACTIVE                BOOLEAN not null,
-    BOOKING_URL           VARCHAR(255),
     ADDRESS_ID            BINARY
 );
 

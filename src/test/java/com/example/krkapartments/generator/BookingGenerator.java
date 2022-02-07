@@ -52,7 +52,7 @@ public class BookingGenerator {
         return bookings;
     }
 
-    static List<BookingDto> generateBookingDtoList() {
+    static List<BookingDto> generateBookingDtoList(){
         List<BookingDto> bookingDtos = new ArrayList<>();
 
         BookingDto bookingDto1 = BookingDto.builder()

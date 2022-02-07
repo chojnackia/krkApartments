@@ -9,10 +9,10 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class AddressConverterTest {
 
-    private final ObjectGenerator generator = new ObjectGenerator();
+    private final ObjectGenerator generator =new ObjectGenerator();
 
     @BeforeEach
-    void init() {
+    void init(){
         MockitoAnnotations.openMocks(this);
     }
 
@@ -30,7 +30,7 @@ class AddressConverterTest {
     }
 
     @Test
-    void shouldConvertDtoIntoAddress() {
+    void shouldConvertDtoIntoAddress(){
         //given
         AddressDto addressDto = generator.getAddressDtos().get(0);
         Address expectedAddress = generator.getAddressList().get(0);

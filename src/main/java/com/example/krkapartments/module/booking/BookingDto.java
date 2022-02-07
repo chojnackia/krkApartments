@@ -20,5 +20,4 @@ public class BookingDto {
     private User user;
     private LocalDate checkInDate;
     private LocalDate checkOutDate;
-    private BookingPayment paymentStatus;
 }

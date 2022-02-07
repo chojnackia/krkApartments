@@ -1,5 +1,6 @@
 package com.example.krkapartments.module.user;
 
+import com.example.krkapartments.module.booking.Booking;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,13 +14,11 @@ import java.util.UUID;
 @Data
 @Builder
 public class UserDto {
-
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private UUID id;
     private String firstName;
     private String lastName;
     private String email;
     private String telephoneNumber;
-/*    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private Booking booking;*/
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private Booking booking;
 }
