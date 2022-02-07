@@ -49,6 +49,7 @@ public class AddressService {
         return addressRepository.findById(id).orElseThrow(() ->
                 new AddressNotFoundException("Could not find address with id: " + id));
     }
+
     public AddressDto updateAddress(UUID id, Map<Object, Object> fields) {
         Address address = findAddressInDatabase(id);
         fields.forEach((key, value) -> {

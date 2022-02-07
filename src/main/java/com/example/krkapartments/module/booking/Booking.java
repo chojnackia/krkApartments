@@ -1,7 +1,6 @@
 package com.example.krkapartments.module.booking;
 
 import com.example.krkapartments.module.apartment.Apartment;
-
 import com.example.krkapartments.module.user.User;
 import lombok.*;
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -39,6 +38,9 @@ public class Booking implements Serializable {
     private LocalDate checkInDate;
 
     private LocalDate checkOutDate;
+
+    @Enumerated(EnumType.STRING)
+    private BookingPayment paymentStatus;
 
     @Override
     public boolean equals(Object o) {

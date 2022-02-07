@@ -1,7 +1,6 @@
 package com.example.krkapartments.module.booking;
 
 import com.example.krkapartments.module.apartment.Apartment;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,6 +15,7 @@ public class BookingConverter {
                 .apartmentId(booking.getApartment().getId())
                 .checkInDate(booking.getCheckInDate())
                 .checkOutDate(booking.getCheckOutDate())
+                .paymentStatus(booking.getPaymentStatus())
                 .build();
     }
 
@@ -27,6 +27,7 @@ public class BookingConverter {
                 .apartment(apartment)
                 .checkInDate(bookingDto.getCheckInDate())
                 .checkOutDate(bookingDto.getCheckOutDate())
+                .paymentStatus(bookingDto.getPaymentStatus())
                 .build();
     }
 

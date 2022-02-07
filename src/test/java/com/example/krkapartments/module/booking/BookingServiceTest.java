@@ -4,15 +4,26 @@ import com.example.krkapartments.exception.ApartmentIsOccupiedException;
 import com.example.krkapartments.generator.ObjectGenerator;
 import com.example.krkapartments.module.address.Address;
 import com.example.krkapartments.module.address.AddressDto;
-import com.example.krkapartments.module.apartment.*;
+import com.example.krkapartments.module.apartment.Apartment;
+import com.example.krkapartments.module.apartment.ApartmentDto;
+import com.example.krkapartments.module.apartment.ApartmentRepository;
+import com.example.krkapartments.module.apartment.ApartmentService;
 import com.example.krkapartments.module.user.User;
+import net.fortuna.ical4j.data.ParserException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.test.context.ActiveProfiles;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -27,9 +38,8 @@ class BookingServiceTest {
     @Mock
     private BookingRepository bookingRepository;
 
+    @Mock
     private BookingService bookingService;
-
-    private ApartmentConverter apartmentConverter;
 
     @Mock
     private ApartmentService apartmentService;
@@ -41,21 +51,23 @@ class BookingServiceTest {
     void init() {
         MockitoAnnotations.openMocks(this);
         apartmentService = new ApartmentService(apartmentRepository);
-        bookingService = new BookingService(bookingRepository, apartmentService, apartmentConverter);
+        bookingService = new BookingService(bookingRepository, apartmentService);
     }
+
+    List<Apartment> apartments = generator.getApartmentList();
+    List<Address> addresses = generator.getAddressList();
+    List<Booking> bookings = generator.getBookingList();
+    List<User> users = generator.getUserList();
+
+    List<ApartmentDto> apartmentDtos = generator.getApartmentDtos();
+    List<AddressDto> addressDtos = generator.getAddressDtos();
+    List<BookingDto> bookingDtos = generator.getBookingDtoList();
 
     @Test
     void shouldAddBooking() throws ApartmentIsOccupiedException {
-        List<Apartment> apartments = generator.getApartmentList();
-        List<Address> addresses = generator.getAddressList();
-        List<Booking> bookings = generator.getBookingList();
-        List<User> users = generator.getUserList();
-
-        List<ApartmentDto> apartmentDtos = generator.getApartmentDtos();
-        List<AddressDto> addressDtos = generator.getAddressDtos();
-        List<BookingDto> bookingDtos = generator.getBookingDtoList();
 
         BookingDto bookingDto = generator.getBookingDtoList().get(0);
+
 
         generator.generateDependencies(apartments, addresses, bookings, users);
         generator.generateDtoDependencies(apartmentDtos, addressDtos, bookingDtos, users);
@@ -70,18 +82,11 @@ class BookingServiceTest {
         assertThat(addedBooking).isEqualTo(bookingDto);
         Mockito.verify(bookingRepository, times(1)).save(Mockito.any(Booking.class));
 
+
     }
 
     @Test
-    void shouldAddBookingWhenDateAlreadyExistForAnotherApartment() throws ApartmentIsOccupiedException {
-        List<Apartment> apartments = generator.getApartmentList();
-        List<Address> addresses = generator.getAddressList();
-        List<Booking> bookings = generator.getBookingList();
-        List<User> users = generator.getUserList();
-
-        List<ApartmentDto> apartmentDtos = generator.getApartmentDtos();
-        List<AddressDto> addressDtos = generator.getAddressDtos();
-        List<BookingDto> bookingDtos = generator.getBookingDtoList();
+    void shouldAddBookingWhenDateAlreadyExistForAnotherApartment() throws ApartmentIsOccupiedException{
 
         BookingDto bookingDto = generator.getBookingDtoList().get(1);
 
@@ -101,14 +106,6 @@ class BookingServiceTest {
 
     @Test
     void shouldThrowAppartmentIsOccupiedException() {
-        List<Apartment> apartments = generator.getApartmentList();
-        List<Address> addresses = generator.getAddressList();
-        List<Booking> bookings = generator.getBookingList();
-        List<User> users = generator.getUserList();
-
-        List<ApartmentDto> apartmentDtos = generator.getApartmentDtos();
-        List<AddressDto> addressDtos = generator.getAddressDtos();
-        List<BookingDto> bookingDtos = generator.getBookingDtoList();
 
         BookingDto bookingDto = generator.getBookingDtoList().get(0);
         Booking bookingInDatabase = bookings.get(0);

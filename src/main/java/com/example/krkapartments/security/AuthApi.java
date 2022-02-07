@@ -22,9 +22,9 @@ public class AuthApi {
     private final AdminService adminService;
 
     @PostMapping("login")
-    public ResponseEntity<AdminDto> login(@RequestBody AuthRequest request){
+    public ResponseEntity<AdminDto> login(@RequestBody AuthRequest request) {
 
-        try{
+        try {
             Authentication authentication = authenticationManager
                     .authenticate(
                             new UsernamePasswordAuthenticationToken(
@@ -42,7 +42,7 @@ public class AuthApi {
     }
 
     @PostMapping("/register")
-    public AdminDto registerNewAdminAccount(@RequestBody AdminRegistrationDto adminRegistrationDto){
+    public AdminDto registerNewAdminAccount(@RequestBody AdminRegistrationDto adminRegistrationDto) {
         return adminService.registerNewAdminAccount(adminRegistrationDto);
     }
 

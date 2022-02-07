@@ -2,9 +2,6 @@ package com.example.krkapartments.module.apartment;
 
 import com.example.krkapartments.exception.ApartmentNotFoundException;
 import com.example.krkapartments.exception.FieldDoesNotExistException;
-import com.example.krkapartments.module.address.Address;
-import com.example.krkapartments.module.address.AddressConverter;
-import com.example.krkapartments.module.address.AddressDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
@@ -47,6 +44,7 @@ public class ApartmentService {
                 new ApartmentNotFoundException("Could not find apartment with id: " + id));
 
     }
+
     public ApartmentDto findById(UUID id) {
         Apartment apartment = findApartmentInDatabase(id);
         return ApartmentConverter.convertApartmentToDto(apartment);
@@ -66,7 +64,6 @@ public class ApartmentService {
         apartmentRepository.save(apartment);
         return ApartmentConverter.convertApartmentToDto(apartment);
     }
-
 
 
     public ApartmentDto deactivateApartment(UUID id) {
