@@ -12,4 +12,6 @@ public interface BookingRepository extends JpaRepository<Booking, UUID> {
 
     @Query("SELECT b FROM Booking b WHERE b.apartment = ?1 AND (b.checkInDate BETWEEN ?2 AND ?3 OR b.checkOutDate BETWEEN ?2 AND ?3)")
     List<Booking> findAllByApartmentEqualsAndCheckInDateIsBetweenOrCheckOutDateIsBetween(Apartment apartment, LocalDate checkInDate, LocalDate checkOutDate);
+
+    List<Booking> findAllByApartmentEqualsAndAndCheckInDateIsBeforeAndAndCheckOutDateIsAfter(Apartment apartment, LocalDate checkInDate, LocalDate checkOutDate);
 }
