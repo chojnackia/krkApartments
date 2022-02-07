@@ -125,7 +125,7 @@ public class PaymentService {
                 .setCountry("PL")
                 .setLanguage("pl")
                 .setUrlReturn("http://www.localhost:3000/")
-                .setUrlStatus("http://www.localhost:3000/")
+                .setUrlStatus("http://www.localhost:8080/")
                 .setSign(encrypt(format("{\"sessionId\":\"%s\",\"merchantId\":%s,\"amount\":%s,\"currency\":\"%s\",\"crc\":\"%s\"}", sessionId, applicationConfiguration.getUsername(), amount, "PLN", applicationConfiguration.getCrc())))
                 .build();
     }
@@ -141,7 +141,6 @@ public class PaymentService {
         saveTransaction(new Transaction(transactionRequest.getMerchantId(), transactionRequest.getPosId(), transactionRequest.getSessionId(), transactionRequest.getAmount(), transactionRequest.getCurrency(), null, TransactionStatus.CREATED.getStatus()));
         String result = executeRequest(httpRequest);
         TransactionResponse transactionResponse = gson.fromJson(result, TransactionResponse.class);
-        // userRepository.save(addUser(request));
         restConsumer.sendDataForUserCreation(createUserDto(request));
 
         return new ClientTransactionResponse(transactionRequest, transactionResponse.getData().getToken());
