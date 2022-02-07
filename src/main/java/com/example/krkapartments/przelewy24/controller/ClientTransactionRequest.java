@@ -1,4 +1,4 @@
-package com.example.krkapartments.przelewy24.controller;
+package com.example.paymentservice.przelewy24.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,4 +19,5 @@ public class ClientTransactionRequest {
     private String email;
     @NonNull
     private String client;
+    private String phone;
 }

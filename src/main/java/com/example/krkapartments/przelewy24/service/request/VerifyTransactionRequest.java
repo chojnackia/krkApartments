@@ -1,6 +1,6 @@
-package com.example.krkapartments.przelewy24.service.request;
+package com.example.paymentservice.przelewy24.service.request;
 
-import com.example.krkapartments.przelewy24.data.entity.Transaction;
+import com.example.paymentservice.przelewy24.data.entity.Transaction;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,9 +1,10 @@
-package com.example.krkapartments.przelewy24.controller;
+package com.example.paymentservice.przelewy24.controller;
 
 
-import com.example.krkapartments.przelewy24.service.PaymentService;
-import com.example.krkapartments.przelewy24.service.request.ReturnTransactionRequest;
+import com.example.paymentservice.przelewy24.service.PaymentService;
+import com.example.paymentservice.przelewy24.service.request.ReturnTransactionRequest;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,11 +15,15 @@ import java.io.IOException;
 
 @Slf4j
 @RestController
-@AllArgsConstructor
+@CrossOrigin(origins = "*")
 @RequestMapping(path = "/api")
 public class PaymentApi {
 
     PaymentService paymentService;
+
+    public PaymentApi(PaymentService paymentService) {
+        this.paymentService = paymentService;
+    }
 
     @GetMapping("/hello")
     @ResponseStatus(HttpStatus.OK)
@@ -30,6 +35,7 @@ public class PaymentApi {
     public void test() throws IOException {
         paymentService.test();
     }
+
 
     @PostMapping("/transaction/request")
     @ResponseStatus(HttpStatus.OK)
