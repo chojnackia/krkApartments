@@ -32,20 +32,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(email -> adminRepository.findByEmailAllIgnoreCase(email)
+        auth.userDetailsService(email-> adminRepository.findByEmailAllIgnoreCase(email)
                 .orElseThrow(() -> new UserNotFoundException("Invalid user or password")));
 
         auth.userDetailsService(password -> adminRepository.findByPassword(password)
-                .orElseThrow(() -> new UserNotFoundException("Invalid user or password")));
+                .orElseThrow(()->new UserNotFoundException("Invalid user or password")));
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    protected void configure(HttpSecurity http) throws Exception{
         http = http.cors().and().csrf().disable();
 
         http = http
@@ -71,8 +71,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/register/**").permitAll()
                 .antMatchers("/booking/**").permitAll()
-                .antMatchers("/apartments/**").permitAll()
-                .antMatchers("/api/**").permitAll()
                 .anyRequest().permitAll();
         http.addFilterBefore(
                 jwtTokenFilter,
@@ -81,10 +79,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public CorsFilter corsFilter() {
+    public CorsFilter corsFilter(){
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(false);
+        config.setAllowCredentials(true);
         config.addAllowedOrigin("*");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
@@ -94,7 +92,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     @Bean
-    public AuthenticationManager authenticationManagerBean() throws Exception {
+    public AuthenticationManager authenticationManagerBean() throws Exception{
         return super.authenticationManagerBean();
     }
 

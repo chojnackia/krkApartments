@@ -1,8 +1,8 @@
 package com.example.krkapartments.module.admin;
 
-import com.example.krkapartments.exception.AdminAlreadyExistException;
 import com.example.krkapartments.exception.InvalidEmailException;
 import com.example.krkapartments.exception.InvalidUserOrPasswordException;
+import com.example.krkapartments.exception.AdminAlreadyExistException;
 import com.example.krkapartments.module.user.UserRole;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -36,7 +36,6 @@ public class AdminService {
             throw new AdminAlreadyExistException("User with the following email already exists: " + email);
         }
     }
-
     private void validatePassword(String password) {
         Matcher matcher = VALID_PASSWORD_REGEX.matcher(password);
         if (!matcher.find()) {
@@ -46,12 +45,12 @@ public class AdminService {
         }
     }
 
-    public List<AdminDto> getAdminList() {
+    public List<AdminDto> getAdminList(){
         List<Admin> adminList = adminRepository.findAll();
         return AdminConverter.entityToDto(adminList);
     }
 
-    public AdminDto registerNewAdminAccount(AdminRegistrationDto adminRegistrationDto) {
+    public AdminDto registerNewAdminAccount(AdminRegistrationDto adminRegistrationDto){
         validateEmail(adminRegistrationDto.getEmail());
         validatePassword(adminRegistrationDto.getPassword());
 

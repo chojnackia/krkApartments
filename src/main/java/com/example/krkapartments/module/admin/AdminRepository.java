@@ -7,6 +7,5 @@ import java.util.UUID;
 
 public interface AdminRepository extends JpaRepository<Admin, UUID> {
     Optional<Admin> findByEmailAllIgnoreCase(String email);
-
     Optional<Admin> findByPassword(String password);
 }

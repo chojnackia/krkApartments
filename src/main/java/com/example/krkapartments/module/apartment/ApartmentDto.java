@@ -19,7 +19,6 @@ public class ApartmentDto {
     private String apartmentName;
     private double priceForOneDay;
     private String apartmentDescription;
-    private String bookingUrl;
     private boolean active;
     private List<Booking> bookings;
     private Address address;
