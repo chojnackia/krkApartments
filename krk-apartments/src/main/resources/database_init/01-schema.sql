@@ -3,9 +3,9 @@
 DROP TABLE IF EXISTS BOOKINGS;
 create table BOOKINGS
 (
-    ID             BINARY  not null primary key,
-    USER_ID        BINARY,
-    APARTMENT_ID   BINARY,
+    ID             UUID  not null primary key,
+    USER_ID        UUID,
+    APARTMENT_ID   UUID,
     CHECK_IN_DATE  DATE    not null,
     CHECK_OUT_DATE DATE    not null
 );
@@ -13,7 +13,7 @@ create table BOOKINGS
 DROP TABLE IF EXISTS USERS;
 create table USERS
 (
-    ID       BINARY         not null primary key,
+    ID         UUID         not null primary key,
     EMAIL      VARCHAR(255) not null,
     FIRST_NAME VARCHAR(255) not null,
     LAST_NAME  VARCHAR(255) not null
@@ -22,19 +22,19 @@ create table USERS
 DROP TABLE IF EXISTS APARTMENTS;
 create table APARTMENTS
 (
-    ID                    BINARY  not null primary key,
+    ID                    UUID  not null primary key,
     APARTMENT_NAME        VARCHAR(255),
-    PRICE_FOR_ONE_DAY     DOUBLE  not null,
+    PRICE_FOR_ONE_DAY     DOUBLE PRECISION  not null,
     APARTMENT_DESCRIPTION VARCHAR(10000),
     ACTIVE                BOOLEAN not null,
     BOOKING_URL           VARCHAR(255),
-    ADDRESS_ID            BINARY
+    ADDRESS_ID            UUID
 );
 
 DROP TABLE IF EXISTS ADDRESS;
 create table ADDRESS
 (
-    ID        BINARY not null primary key,
+    ID        UUID not null primary key,
     CITY      VARCHAR(255),
     STREET_NAME VARCHAR(255),
     BUILDING_NUMBER INTEGER not null,
@@ -42,9 +42,10 @@ create table ADDRESS
     POST_CODE VARCHAR(255),
     COUNTRY   VARCHAR(255)
 );
+DROP TABLE IF EXISTS ADMINS;
 CREATE TABLE ADMINS
 (
-    UUID       uuid         not null primary key,
+    UUID       UUID         not null primary key,
     ACTIVE     BOOLEAN      not null,
     EMAIL      VARCHAR(255) not null,
     FIRST_NAME VARCHAR(255) not null,
