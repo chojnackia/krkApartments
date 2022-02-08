@@ -15,6 +15,7 @@ public class UserConverter {
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .email(user.getEmail())
+                .telephoneNumber(user.getTelephoneNumber())
                 .build();
 
     }
@@ -26,6 +27,7 @@ public class UserConverter {
                 .firstName(userDto.getFirstName())
                 .lastName(userDto.getLastName())
                 .email(userDto.getEmail())
+                .telephoneNumber(userDto.getTelephoneNumber())
                 .build();
     }
 

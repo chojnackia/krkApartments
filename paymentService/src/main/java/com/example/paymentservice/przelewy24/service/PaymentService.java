@@ -1,6 +1,6 @@
 package com.example.paymentservice.przelewy24.service;
 
-import com.example.paymentservice.przelewy24.User.UserDto;
+import com.example.paymentservice.przelewy24.user.UserDto;
 import com.example.paymentservice.przelewy24.configuration.ApplicationConfiguration;
 import com.example.paymentservice.przelewy24.consumer.RestConsumerImpl;
 import com.example.paymentservice.przelewy24.controller.ClientTransactionRequest;
@@ -141,7 +141,7 @@ public class PaymentService {
         saveTransaction(new Transaction(transactionRequest.getMerchantId(), transactionRequest.getPosId(), transactionRequest.getSessionId(), transactionRequest.getAmount(), transactionRequest.getCurrency(), null, TransactionStatus.CREATED.getStatus()));
         String result = executeRequest(httpRequest);
         TransactionResponse transactionResponse = gson.fromJson(result, TransactionResponse.class);
-        // userRepository.save(addUser(request));
+        //TODO zrobic z tego osobny thread
         restConsumer.sendDataForUserCreation(createUserDto(request));
 
         return new ClientTransactionResponse(transactionRequest, transactionResponse.getData().getToken());
@@ -173,10 +173,10 @@ public class PaymentService {
         String lastName = fullName.substring(idx + 1);
 
         return UserDto.builder()
-//                .id(UUID.randomUUID())
                 .firstName(firstName)
                 .lastName(lastName)
                 .email(request.getEmail())
-                .telephoneNumber(request.getPhone()).build();
+                .telephoneNumber(request.getPhone())
+                .build();
     }
 }

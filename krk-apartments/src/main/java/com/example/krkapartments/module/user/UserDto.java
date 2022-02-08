@@ -1,7 +1,5 @@
 package com.example.krkapartments.module.user;
 
-import com.example.krkapartments.module.booking.Booking;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,6 +17,6 @@ public class UserDto {
     private String lastName;
     private String email;
     private String telephoneNumber;
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private Booking booking;
+/*    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private Booking booking;*/
 }
