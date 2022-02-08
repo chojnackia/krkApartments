@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### db ###
+/test_db*
+test_db.mv.db
+test_db.trace.db
+test_db.lock.db
