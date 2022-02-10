@@ -1,0 +1,41 @@
+services:
+  Krk:
+    image: 'krk-apartments'
+    ports:
+      - "8080:8080"
+      depends_on:
+        PostgreSQL:
+          condition: service_healthy
+      environment:
+          - SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/krkapartments
+          - SPRING_DATASOURCE_USERNAME=postgres
+          - SPRING_DATASOURCE_PASSWORD=password
+          - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+  Payment:
+    image: 'payment-service'
+    ports:
+      - "8100:8100"
+      depends_on:
+        PostgreSQL:
+          condition: service_healthy
+      environment:
+        - SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/krkapartments
+        - SPRING_DATASOURCE_USERNAME=postgres
+        - SPRING_DATASOURCE_PASSWORD=password
+        - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+
+  PostgreSQL:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=krkapartments
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
