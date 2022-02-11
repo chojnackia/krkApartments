@@ -1,0 +1,56 @@
+services:
+  krk:
+      image: 'krk-apartments'
+      ports:
+        - "8080:8080"
+      restart: always
+      depends_on:
+        postgresql:
+          condition: service_healthy
+      environment:
+          - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresql:5432/krkapartments
+          - SPRING_DATASOURCE_USERNAME=postgres
+          - SPRING_DATASOURCE_PASSWORD=password
+          - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+  payment:
+      image: 'payment-service'
+      ports:
+      - "8100:8100"
+      restart: always
+      depends_on:
+        postgresql:
+          condition: service_healthy
+      environment:
+        - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresql:5432/krkapartments
+        - SPRING_DATASOURCE_USERNAME=postgres
+        - SPRING_DATASOURCE_PASSWORD=password
+        - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+  frontend:
+      container_name: krk-apartments-frontend
+      build: ./krk-apartments-frontend
+      volumes:
+        - './s:/krk-apartments/krk-apartments-frontend/src'
+        - 'krk-apartments/krk-apartments-frontend/node_modules'
+      ports:
+        - "3000:3000"
+      stdin_open: true
+      environment:
+        - CHOKIDAR_USEPOLLING=true
+      command: npm start
+
+
+  postgresql:
+      image: 'postgres'
+      ports:
+      - "5432:5432"
+      environment:
+        - POSTGRES_PASSWORD=password
+        - POSTGRES_USER=postgres
+        - POSTGRES_DB=krkapartments
+      healthcheck:
+        test: ["CMD-SHELL", "pg_isready -U postgres"]
+        interval: 10s
+        timeout: 5s
+        retries: 5
