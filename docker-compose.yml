@@ -1,5 +1,5 @@
 services:
-  Krk:
+  krk:
       image: 'krk-apartments'
       ports:
         - "8080:8080"
@@ -13,7 +13,7 @@ services:
           - SPRING_DATASOURCE_PASSWORD=password
           - SPRING_JPA_HIBERNATE_DDL_AUTO=update
 
-  Payment:
+  payment:
       image: 'payment-service'
       ports:
       - "8100:8100"
@@ -26,6 +26,19 @@ services:
         - SPRING_DATASOURCE_USERNAME=postgres
         - SPRING_DATASOURCE_PASSWORD=password
         - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+  frontend:
+      container_name: krk-apartments-frontend
+      build: ./krk-apartments-frontend
+      volumes:
+        - './s:/krk-apartments/krk-apartments-frontend/src'
+        - 'krk-apartments/krk-apartments-frontend/node_modules'
+      ports:
+        - "3000:3000"
+      stdin_open: true
+      environment:
+        - CHOKIDAR_USEPOLLING=true
+      command: npm start
 
 
   postgresql:
