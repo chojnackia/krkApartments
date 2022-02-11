@@ -1,5 +1,6 @@
 --liquibase formatted sql
 --changeset em:1
+
 DROP TABLE IF EXISTS BOOKINGS;
 create table BOOKINGS
 (
