@@ -31,8 +31,8 @@ services:
       container_name: krk-apartments-frontend
       build: ./krk-apartments-frontend
       volumes:
-        - './s:/krk-apartments/krk-apartments-frontend/src'
-        - 'krk-apartments/krk-apartments-frontend/node_modules'
+        - "./s:/krk-apartments/krk-apartments-frontend/src"
+        - "./s:/krk-apartments/krk-apartments-frontend/node_modules"
       ports:
         - "3000:3000"
       stdin_open: true
