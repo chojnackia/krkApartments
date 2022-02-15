@@ -10,6 +10,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/apartments")
+@CrossOrigin(origins="http://localhost:3000")
 @RequiredArgsConstructor
 public class ApartmentController {
 
@@ -40,6 +41,4 @@ public class ApartmentController {
     public ApartmentDto deactivateApartment(@PathVariable UUID id) {
         return apartmentService.deactivateApartment(id);
     }
-
-
 }
