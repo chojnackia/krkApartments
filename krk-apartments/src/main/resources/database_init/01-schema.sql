@@ -17,7 +17,8 @@ create table USERS
     ID         UUID         not null primary key,
     EMAIL      VARCHAR(255) not null,
     FIRST_NAME VARCHAR(255) not null,
-    LAST_NAME  VARCHAR(255) not null
+    LAST_NAME  VARCHAR(255) not null,
+    TELEPHONE_NUMBER VARCHAR(255) not null
 );
 
 DROP TABLE IF EXISTS APARTMENTS;
