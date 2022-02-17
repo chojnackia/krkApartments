@@ -141,9 +141,12 @@ public class PaymentService {
         saveTransaction(new Transaction(transactionRequest.getMerchantId(), transactionRequest.getPosId(), transactionRequest.getSessionId(), transactionRequest.getAmount(), transactionRequest.getCurrency(), null, TransactionStatus.CREATED.getStatus()));
         String result = executeRequest(httpRequest);
         TransactionResponse transactionResponse = gson.fromJson(result, TransactionResponse.class);
-        //TODO zrobic z tego osobny thread
-        restConsumer.sendDataForUserCreation(createUserDto(request));
-
+        Thread createUser = new Thread() {
+            public void run(){
+                restConsumer.sendDataForUserCreation(createUserDto(request));
+            }
+        };
+        createUser.start();
         return new ClientTransactionResponse(transactionRequest, transactionResponse.getData().getToken());
     }
 
