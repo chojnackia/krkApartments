@@ -87,4 +87,11 @@ public class BookingService {
         return (occupiedApartments.isEmpty() && occupiedApartmentsV2.isEmpty());
     }
 
+    public List<BookingDto> findAllBookingsByApartment(UUID id) {
+        return bookingRepository.findAll()
+                .stream()
+                .filter(p -> p.getApartment().getId().equals(id))
+                .map(BookingConverter::convertToBookingDto)
+                .collect(Collectors.toList());
+    }
 }

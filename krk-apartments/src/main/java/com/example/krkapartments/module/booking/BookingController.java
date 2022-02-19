@@ -37,4 +37,9 @@ public class BookingController {
     public BookingDto updateBooking(@PathVariable UUID id, @RequestBody Map<Object, Object> fields) {
         return bookingService.updateBooking(id, fields);
     }
+
+    @GetMapping("/apartments/{id}")
+    public List<BookingDto> findAllBookingsByApartment(@PathVariable UUID id){
+        return bookingService.findAllBookingsByApartment(id);
+    }
 }
