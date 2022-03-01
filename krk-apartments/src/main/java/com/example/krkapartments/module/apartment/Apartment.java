@@ -34,7 +34,7 @@ public class Apartment implements Serializable {
     private String apartmentName;
 
     @NotBlank(message = "Price is mandatory")
-    private double priceForOneDay;
+    private int priceForOneDay;
 
     @NotBlank(message = "Apartment Description is mandatory")
     private String apartmentDescription;
