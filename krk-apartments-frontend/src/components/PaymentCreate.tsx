@@ -43,7 +43,7 @@ export function PaymentCreate() {
       <Controller
         name="currency"
         control={control}
-        defaultValue=""
+        defaultValue="PLN"
         render={({ field }) => <Input {...field} />}
       />
       <label>Email</label>
@@ -71,7 +71,7 @@ export function PaymentCreate() {
       <Controller
         name="description"
         control={control}
-        defaultValue=""
+        defaultValue="Room booking"
         render={({ field }) => <Input {...field} />}
       />
       <input type="submit" />

@@ -1,7 +1,10 @@
 import tw from "twin.macro";
 import styled from "@emotion/styled/macro";
-import { BookingForm, DateInput } from "react-booking-form";
+import { BookingForm, DateInput, LocationOption } from "react-booking-form";
 import { DatePickerInput } from "../layouts/DatePickerInput";
+import axios from "axios";
+import { IApartment } from "../interfaces/IApartment";
+import { SliderValueLabel } from "@mui/material";
 
 export const GuestButton = tw.button`appearance-none rounded-full p-2 flex items-center justify-center h-full overflow-hidden border border-gray-500 text-gray-500 hover:text-white hover:bg-green-500 hover:border-transparent transition ease-in-out disabled:opacity-50`;
 export const Container = tw.div`rounded-full bg-white p-6 shadow-xl flex justify-between flex-col md:flex-row md:space-x-2 md:space-y-0 space-y-2`;
@@ -24,7 +27,7 @@ export const OptionContainer = tw(
   OptionBase
 )`hover:bg-green-100 cursor-pointer`;
 
-export const DatePicker = (
+const DatePicker = (
   props: JSX.IntrinsicAttributes & {
     placeholder?: string | undefined;
     inputComponent?: any;

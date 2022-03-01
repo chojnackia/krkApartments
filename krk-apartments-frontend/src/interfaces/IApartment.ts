@@ -1,5 +1,5 @@
 export interface IApartment {
-    id: number,
+    id: string,
     apartmentName: string,
     priceForOneDay: number,
     apartmentDescription: string,

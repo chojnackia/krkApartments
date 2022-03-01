@@ -44,8 +44,11 @@ export function ApartmentDetails() {
             <td>{apartment?.address.apartmentNumber}</td>
             <td>{apartment?.address.postCode}</td>
             <td>
-              <Link to={`/apartments`} className="btn btn-primary mb-2">
-                Details
+              <Link
+                to={`/bookings/apartments/${params.id}`}
+                className="btn btn-primary mb-2"
+              >
+                Book apartment!
               </Link>
             </td>
           </tr>
