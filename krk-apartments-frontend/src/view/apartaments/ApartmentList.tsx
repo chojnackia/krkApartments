@@ -19,7 +19,14 @@ export default function ApartmentList(){
                 <thead>
                     <tr>
                         <td>Name</td>
-                        <td>Price</td>
+                        <td>Price for one day</td>
+                        <td>Apartment Description</td>
+                        <td>Country</td>
+                        <td>City</td>
+                        <td>Street Name</td>
+                        <td>Building number</td>
+                        <td>Apartment number</td>
+                        <td>Post Code</td>
                         <td>Actions</td>
                      </tr>
 
@@ -29,6 +36,13 @@ export default function ApartmentList(){
                      <tr key={apartment.id}>
                          <td>{apartment.apartmentName}</td>
                          <td>{apartment.priceForOneDay}</td>
+                         <td>{apartment.apartmentDescription}</td>
+                         <td>{apartment.address.country}</td>
+                         <td>{apartment.address.city}</td>
+                         <td>{apartment.address.streetName}</td>
+                         <td>{apartment.address.buildingNumber}</td>
+                         <td>{apartment.address.apartmentNumber}</td>
+                         <td>{apartment.address.postCode}</td>
                          <td>
                              <Link to={`/apartments/${apartment.id}`} className='btn btn-primary mb-2'>Details</Link>
                          </td>

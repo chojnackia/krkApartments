@@ -1,6 +1,7 @@
 package com.example.krkapartments.module.booking;
 
 import com.example.krkapartments.exception.ApartmentIsOccupiedException;
+import com.example.krkapartments.module.payment.ClientTransactionRequestDTO;
 import lombok.AllArgsConstructor;
 import net.fortuna.ical4j.data.ParserException;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public class BookingController {
     private final BookingService bookingService;
 
     @PostMapping("/")
-    public BookingDto addBooking(@Valid @RequestBody BookingDto bookingDto) throws ApartmentIsOccupiedException, ParserException, IOException {
+    public BookingDto addBooking(@RequestBody BookingDto bookingDto /*ClientTransactionRequestDTO clientTransactionRequestDTO*/) throws ApartmentIsOccupiedException, ParserException, IOException {
         return bookingService.addBooking(bookingDto);
     }
 
@@ -36,5 +37,10 @@ public class BookingController {
     @PatchMapping("/{id}")
     public BookingDto updateBooking(@PathVariable UUID id, @RequestBody Map<Object, Object> fields) {
         return bookingService.updateBooking(id, fields);
+    }
+
+    @GetMapping("/apartments/{id}")
+    public List<BookingDto> findAllBookingsByApartment(@PathVariable UUID id){
+        return bookingService.findAllBookingsByApartment(id);
     }
 }

@@ -9,4 +9,4 @@
 // export default function BasicLayout({ children, loading }: Props): JSX.Element {
 //   return <Box m={10}>{children}</Box>;
 // }
-export {}
+export {};
