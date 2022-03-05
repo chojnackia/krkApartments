@@ -140,7 +140,7 @@ class ApartmentServiceTest {
 
         ApartmentDto expectedApartmentDto = generator.getApartmentDtos().get(0);
         expectedApartmentDto.setApartmentName("UpdatedName");
-        expectedApartmentDto.setPriceForOneDay(500.0);
+        expectedApartmentDto.setPriceForOneDay(500);
         expectedApartmentDto.setApartmentDescription("UpdatedDescription");
         expectedApartmentDto.setActive(true);
         expectedApartmentDto.setBookings(null);
@@ -151,7 +151,7 @@ class ApartmentServiceTest {
         Mockito.when(apartmentRepository.findById(id)).thenReturn(apartment);
         Map<Object, Object> changesMap = new HashMap<>();
         changesMap.put("apartmentName", "UpdatedName");
-        changesMap.put("priceForOneDay", 500.0);
+        changesMap.put("priceForOneDay", 500);
         changesMap.put("apartmentDescription", "UpdatedDescription");
         changesMap.put("active", true);
         changesMap.put("bookings", null);

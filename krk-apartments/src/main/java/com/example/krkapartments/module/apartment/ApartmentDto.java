@@ -17,7 +17,7 @@ import java.util.UUID;
 public class ApartmentDto {
     private UUID id;
     private String apartmentName;
-    private double priceForOneDay;
+    private int priceForOneDay;
     private String apartmentDescription;
     private String bookingUrl;
     private boolean active;

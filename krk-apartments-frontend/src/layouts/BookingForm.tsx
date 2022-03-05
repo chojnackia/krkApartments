@@ -2,7 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import {
   FormSchema,
-  //FormSchema,
   GuestsSelect,
   useReactBookingForm,
 } from "react-booking-form";
@@ -20,45 +19,51 @@ import {
   Label,
 } from "../types/data";
 import { DatePicker } from "./DatePicker";
-import { formSchema } from "../types/FormSchema";
 import { OptionComponent } from "./OptionComponent";
 
+interface PaymentInputs {
+  amount: number;
+  currency: string;
+  email: string;
+  phone: string;
+  client: string;
+  description: string;
+}
+
+const TEMP_APARTMENT_ID = "1ae88fa0-38b0-11ec-8d3d-0242ac130004";
+
 export function BookingForm() {
-  const params = useParams();
-
-  interface PaymentInputs {
-    amount: number;
-    currency: string;
-    email: string;
-    phone: string;
-    client: string;
-    description: string;
-  }
-
-  const [bookings, setBookings] = useState<IBooking[]>();
+  const [bookings, setBookings] = useState<any[]>([]);
   const { control, handleSubmit } = useForm<FormSchema>();
-
   const occupiedDatesTemp: Date[] = [];
 
   useEffect(() => {
-    window.addEventListener("mousemove", () => {});
     axios
-      .get(`http://localhost:8080/bookings/apartments/${params.id}`)
+      .get(`http://localhost:8080/bookings/apartments/${useParams}`)
       .then(({ data }) => {
         console.log(data);
-        data.map((data: IBooking) => {
-          var start = new Date(data.checkInDate);
-          var end = new Date(data.checkOutDate);
-          var date = new Date(start);
+        // if (data) {
+        //   const occupiedDates = data.map((d: any) => ({
+        //     from: d.checkInDate,
+        //     to: d.checkOutDate,
+        //   }));
+        //   setBookings(occupiedDates);
+        // }
+        const occupiedDatesTemp: Date[] = [];
 
+        data.map((data: IBooking) => {
+          let start = new Date(data.checkInDate);
+          let end = new Date(data.checkOutDate);
+          let date = new Date(start);
           while (date <= end) {
             occupiedDatesTemp.push(new Date(date));
             date.setDate(date.getDate().valueOf() + 1);
           }
         });
-        console.log(occupiedDatesTemp);
+        setBookings(occupiedDatesTemp);
+        //console.log(occupiedDatesTemp);
       });
-  }, [occupiedDatesTemp, params.id]);
+  }, []);
 
   const onSubmit: SubmitHandler<PaymentInputs> = (event) => {
     fetch("http://localhost:8080/bookings/", {
@@ -90,6 +95,7 @@ export function BookingForm() {
             return occupiedDatesTemp.toString().includes(date.toDateString());
           },
         ],
+        // disable: bookings,
         wrap: true,
       },
     },
@@ -106,6 +112,7 @@ export function BookingForm() {
             return occupiedDatesTemp.toString().includes(date.toDateString());
           },
         ],
+        // disable: bookings,
         wrap: true,
       },
     },
@@ -140,22 +147,29 @@ export function BookingForm() {
     },
   };
 
-  const form = useReactBookingForm({ formSchema });
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Container>
         <InputContainer>
           <Label>{"Check in"}</Label>
-          <DatePicker placeholder="Add date" form={form} name={"checkIn"} />
+          <DatePicker
+            placeholder="Add date"
+            form={useReactBookingForm({ formSchema })}
+            name={"checkIn"}
+          />
         </InputContainer>
         <InputContainer>
           <Label>{"Check out"}</Label>
-          <DatePicker placeholder="Add date" form={form} name={"checkOut"} />
+          <DatePicker
+            placeholder="Add date"
+            form={useReactBookingForm({ formSchema })}
+            name={"checkOut"}
+          />
         </InputContainer>
         <InputContainer>
           <Label>{"Guests"}</Label>
           <GuestsSelect
-            form={form}
+            form={useReactBookingForm({ formSchema })}
             menuContainer={MenuContainer}
             optionComponent={OptionComponent}
             controlComponent={ControlComponent}
