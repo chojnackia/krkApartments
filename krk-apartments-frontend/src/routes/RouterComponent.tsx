@@ -9,7 +9,7 @@ import {
 import ApartmentList from "../view/apartaments/ApartmentList";
 import PaymentCreate from "../components/PaymentCreate";
 import { ApartmentDetails } from "../components/ApartmentDetails";
-import { BookingForm } from "../layouts/BookingForm";
+import { BookingForm } from "../components/BookingForm";
 
 export default function RouterComponent() {
   return (
