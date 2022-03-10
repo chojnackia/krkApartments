@@ -1,5 +1,12 @@
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import Input from "@material-ui/core/Input";
+import DatePicker from "react-datepicker";
+import { useParams } from "react-router-dom";
+import { IBooking } from "../interfaces/IBooking";
+
+import "react-datepicker/dist/react-datepicker.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 interface PaymentInputs {
   amount: number;
@@ -12,6 +19,35 @@ interface PaymentInputs {
 
 export function PaymentCreate() {
   const { control, handleSubmit } = useForm<PaymentInputs>();
+  const [bookings, setBookings] = useState<any[]>([]);
+  const [checkInDate, setCheckInDate] = useState(new Date());
+  const { id } = useParams();
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+
+  const onChange = (dates: [Date, Date]) => {
+    const [start, end] = dates;
+    setStartDate(start);
+    setEndDate(end);
+  };
+  const occupiedDatesTemp: Date[] = [];
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8080/bookings/apartments/${id}`)
+      .then(({ data }) => {
+        console.log(data);
+        data.map((data: IBooking) => {
+          let start = new Date(data.checkInDate);
+          let end = new Date(data.checkOutDate);
+          let date = new Date(start);
+          while (date <= end) {
+            occupiedDatesTemp.push(new Date(date));
+            date.setDate(date.getDate().valueOf() + 1);
+          }
+        });
+      });
+  }, [occupiedDatesTemp]);
 
   const onSubmit: SubmitHandler<PaymentInputs> = (event) => {
     fetch("http://localhost:8100/api/transaction/request", {
@@ -28,10 +64,22 @@ export function PaymentCreate() {
           "https://sandbox.przelewy24.pl/trnRequest/" + data.token
         )
       );
+    fetch("http://localhost:8080/bookings/");
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <DatePicker
+        selected={startDate}
+        minDate={new Date()}
+        onChange={onChange}
+        startDate={startDate}
+        endDate={endDate}
+        excludeDates={occupiedDatesTemp}
+        selectsRange
+        showDisabledMonthNavigation
+        inline
+      />
       <label>Amount</label>
       <Controller
         name="amount"

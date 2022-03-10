@@ -45,7 +45,7 @@ export function ApartmentDetails() {
             <td>{apartment?.address.postCode}</td>
             <td>
               <Link
-                to={`/bookings/apartments/${params.id}`}
+                to={`/api/transaction/request/${params.id}`}
                 className="btn btn-primary mb-2"
               >
                 Book apartment!

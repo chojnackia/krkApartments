@@ -7,6 +7,7 @@ import { IBooking } from "../interfaces/IBooking";
 import "react-datepicker/dist/react-datepicker.css";
 
 import { Container } from "@material-ui/core";
+import { useForm } from "react-hook-form";
 
 export function BookingForm() {
   const [bookings, setBookings] = useState<any[]>([]);
@@ -20,7 +21,6 @@ export function BookingForm() {
     setStartDate(start);
     setEndDate(end);
   };
-
   const occupiedDatesTemp: Date[] = [];
 
   useEffect(() => {
@@ -50,9 +50,10 @@ export function BookingForm() {
         endDate={endDate}
         excludeDates={occupiedDatesTemp}
         selectsRange
-        // selectsDisabledDaysInRange
+        showDisabledMonthNavigation
         inline
       />
+      <input type="submit" />
     </form>
   );
 }
