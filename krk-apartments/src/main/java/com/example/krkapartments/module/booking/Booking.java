@@ -39,7 +39,7 @@ public class Booking implements Serializable {
 
     private LocalDate checkOutDate;
 
-    private double price;
+    private int price;
 
     @Enumerated(EnumType.STRING)
     private BookingPayment paymentStatus;
