@@ -6,14 +6,12 @@ import com.example.krkapartments.exception.BookingNotFoundException;
 import com.example.krkapartments.exception.FieldDoesNotExistException;
 import com.example.krkapartments.module.apartment.Apartment;
 import com.example.krkapartments.module.apartment.ApartmentService;
-import com.example.krkapartments.module.payment.ClientTransactionRequestDTO;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
@@ -29,28 +27,18 @@ public class BookingService {
     private final RestConsumerImpl restConsumer;
 
     @SneakyThrows
-    public BookingDto addBooking(BookingDto bookingDto/*, ClientTransactionRequestDTO clientTransactionRequestDTO*/) throws ApartmentIsOccupiedException {
+    public BookingDto addBooking(BookingDto bookingDto) {
 
         Apartment apartmentInDatabase = apartmentService.findApartmentInDatabase(bookingDto.getApartmentId());
         Booking booking = BookingConverter.convertToBooking(bookingDto, apartmentInDatabase);
         booking.setId(UUID.randomUUID());
         booking.setPaymentStatus(BookingPayment.NOT_PAID);
-
         LocalDate checkInDate = bookingDto.getCheckInDate();
         LocalDate checkOutDate = bookingDto.getCheckOutDate();
-
-//        clientTransactionRequestDTO.setCurrency("PLN");
-//        clientTransactionRequestDTO.setDescription(apartmentInDatabase.getApartmentName());
-//        clientTransactionRequestDTO.setAmount(priceForBooking(bookingDto));
-//        clientTransactionRequestDTO.setClient("Adam Chojnacki");
-//        clientTransactionRequestDTO.setEmail("chojnackiadaam@op.pl");
-//        clientTransactionRequestDTO.setPhone("+48784308709");
-
+        booking.setPrice(priceForBooking(checkInDate, checkOutDate, bookingDto.getApartmentId()));
 
         if (isApartmentOccupied(bookingDto)) {
             bookingRepository.save(booking);
-            //restConsumer.beginTransactionForBooking(clientTransactionRequestDTO);
-
             return BookingConverter.convertToBookingDto(booking);
         } else
             throw new ApartmentIsOccupiedException("Apartment is occupied between " + checkInDate + " - " + checkOutDate);
@@ -111,11 +99,9 @@ public class BookingService {
                 .collect(Collectors.toList());
     }
 
-    public int priceForBooking(BookingDto bookingDto){
-        Apartment apartmentInDatabase = apartmentService.findApartmentInDatabase(bookingDto.getApartmentId());
+    private int priceForBooking(LocalDate checkInDate, LocalDate checkOutDate, UUID apartmentId) {
+        Apartment apartmentInDatabase = apartmentService.findApartmentInDatabase(apartmentId);
 
-        LocalDate checkInDate = bookingDto.getCheckInDate();
-        LocalDate checkOutDate = bookingDto.getCheckOutDate();
         int days = checkInDate.until(checkOutDate).getDays();
         return days * apartmentInDatabase.getPriceForOneDay();
     }

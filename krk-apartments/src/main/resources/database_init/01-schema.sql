@@ -7,6 +7,7 @@ create table BOOKINGS
     ID             UUID  not null primary key,
     USER_ID        UUID,
     APARTMENT_ID   UUID,
+    PRICE          INTEGER,
     CHECK_IN_DATE  DATE    not null,
     CHECK_OUT_DATE DATE    not null
 );
