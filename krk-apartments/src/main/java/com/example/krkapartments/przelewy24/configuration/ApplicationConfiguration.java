@@ -1,4 +1,4 @@
-package com.example.paymentservice.przelewy24.configuration;
+package com.example.krkapartments.przelewy24.configuration;
 
 import lombok.Getter;
 import lombok.Setter;

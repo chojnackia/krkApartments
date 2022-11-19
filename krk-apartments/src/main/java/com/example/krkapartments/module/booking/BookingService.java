@@ -1,6 +1,5 @@
 package com.example.krkapartments.module.booking;
 
-import com.example.krkapartments.consumer.RestConsumerImpl;
 import com.example.krkapartments.exception.ApartmentIsOccupiedException;
 import com.example.krkapartments.exception.BookingNotFoundException;
 import com.example.krkapartments.exception.FieldDoesNotExistException;
@@ -24,7 +23,6 @@ public class BookingService {
 
     private final BookingRepository bookingRepository;
     private final ApartmentService apartmentService;
-    private final RestConsumerImpl restConsumer;
 
     @SneakyThrows
     public BookingDto addBooking(BookingDto bookingDto) {

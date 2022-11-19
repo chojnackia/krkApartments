@@ -1,8 +1,8 @@
-package com.example.paymentservice.przelewy24.controller;
+package com.example.krkapartments.przelewy24.controller;
 
 
-import com.example.paymentservice.przelewy24.service.PaymentService;
-import com.example.paymentservice.przelewy24.service.request.ReturnTransactionRequest;
+import com.example.krkapartments.przelewy24.service.PaymentService;
+import com.example.krkapartments.przelewy24.service.request.ReturnTransactionRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

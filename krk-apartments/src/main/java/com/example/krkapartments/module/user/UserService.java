@@ -12,7 +12,7 @@ public class UserService {
     UserRepository userRepository;
     UserConverter userConverter;
 
-    public User addUser(UserDto userDto){
+    public User addUser(UserDto userDto) {
         userDto.setId(UUID.randomUUID());
         return userRepository.save(UserConverter.convertToUser(userDto));
     }

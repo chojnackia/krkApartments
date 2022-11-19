@@ -1,6 +1,6 @@
-package com.example.paymentservice.przelewy24.controller;
+package com.example.krkapartments.przelewy24.controller;
 
-import com.example.paymentservice.przelewy24.service.request.RegisterTransactionRequest;
+import com.example.krkapartments.przelewy24.service.request.RegisterTransactionRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

@@ -1,4 +1,4 @@
-package com.example.paymentservice.przelewy24.service.request;
+package com.example.krkapartments.przelewy24.service.request;
 
 import lombok.*;
 import org.springframework.lang.NonNull;

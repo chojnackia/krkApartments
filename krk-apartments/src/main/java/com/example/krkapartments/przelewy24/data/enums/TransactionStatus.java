@@ -1,4 +1,4 @@
-package com.example.paymentservice.przelewy24.data.enums;
+package com.example.krkapartments.przelewy24.data.enums;
 
 import lombok.Getter;
 

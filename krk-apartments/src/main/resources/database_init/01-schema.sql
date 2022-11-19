@@ -4,32 +4,32 @@
 DROP TABLE IF EXISTS BOOKINGS;
 create table BOOKINGS
 (
-    ID             UUID  not null primary key,
+    ID             UUID not null primary key,
     USER_ID        UUID,
     APARTMENT_ID   UUID,
     PRICE          INTEGER,
-    CHECK_IN_DATE  DATE    not null,
-    CHECK_OUT_DATE DATE    not null
+    CHECK_IN_DATE  DATE not null,
+    CHECK_OUT_DATE DATE not null
 );
 
 DROP TABLE IF EXISTS USERS;
 create table USERS
 (
-    ID         UUID         not null primary key,
-    EMAIL      VARCHAR(255) not null,
-    FIRST_NAME VARCHAR(255) not null,
-    LAST_NAME  VARCHAR(255) not null,
+    ID               UUID         not null primary key,
+    EMAIL            VARCHAR(255) not null,
+    FIRST_NAME       VARCHAR(255) not null,
+    LAST_NAME        VARCHAR(255) not null,
     TELEPHONE_NUMBER VARCHAR(255) not null
 );
 
 DROP TABLE IF EXISTS APARTMENTS;
 create table APARTMENTS
 (
-    ID                    UUID  not null primary key,
+    ID                    UUID             not null primary key,
     APARTMENT_NAME        VARCHAR(255),
-    PRICE_FOR_ONE_DAY     DOUBLE PRECISION  not null,
+    PRICE_FOR_ONE_DAY     DOUBLE PRECISION not null,
     APARTMENT_DESCRIPTION VARCHAR(10000),
-    ACTIVE                BOOLEAN not null,
+    ACTIVE                BOOLEAN          not null,
     BOOKING_URL           VARCHAR(255),
     ADDRESS_ID            UUID
 );
@@ -37,13 +37,13 @@ create table APARTMENTS
 DROP TABLE IF EXISTS ADDRESS;
 create table ADDRESS
 (
-    ID        UUID not null primary key,
-    CITY      VARCHAR(255),
-    STREET_NAME VARCHAR(255),
-    BUILDING_NUMBER INTEGER not null,
+    ID               UUID    not null primary key,
+    CITY             VARCHAR(255),
+    STREET_NAME      VARCHAR(255),
+    BUILDING_NUMBER  INTEGER not null,
     APARTMENT_NUMBER INTEGER not null,
-    POST_CODE VARCHAR(255),
-    COUNTRY   VARCHAR(255)
+    POST_CODE        VARCHAR(255),
+    COUNTRY          VARCHAR(255)
 );
 DROP TABLE IF EXISTS ADMINS;
 CREATE TABLE ADMINS

@@ -1,18 +1,17 @@
-package com.example.paymentservice.przelewy24.service;
+package com.example.krkapartments.przelewy24.service;
 
-import com.example.paymentservice.przelewy24.user.UserDto;
-import com.example.paymentservice.przelewy24.configuration.ApplicationConfiguration;
-import com.example.paymentservice.przelewy24.consumer.RestConsumerImpl;
-import com.example.paymentservice.przelewy24.controller.ClientTransactionRequest;
-import com.example.paymentservice.przelewy24.controller.ClientTransactionResponse;
-import com.example.paymentservice.przelewy24.data.entity.Transaction;
-import com.example.paymentservice.przelewy24.data.enums.TransactionStatus;
-import com.example.paymentservice.przelewy24.repository.TransactionRepository;
-import com.example.paymentservice.przelewy24.service.request.RegisterTransactionRequest;
-import com.example.paymentservice.przelewy24.service.request.RegisterTransactionRequestBuilder;
-import com.example.paymentservice.przelewy24.service.request.ReturnTransactionRequest;
-import com.example.paymentservice.przelewy24.service.request.VerifyTransactionRequest;
-import com.example.paymentservice.przelewy24.service.response.TransactionResponse;
+import com.example.krkapartments.przelewy24.configuration.ApplicationConfiguration;
+import com.example.krkapartments.przelewy24.controller.ClientTransactionRequest;
+import com.example.krkapartments.przelewy24.controller.ClientTransactionResponse;
+import com.example.krkapartments.przelewy24.data.entity.Transaction;
+import com.example.krkapartments.przelewy24.data.enums.TransactionStatus;
+import com.example.krkapartments.przelewy24.repository.TransactionRepository;
+import com.example.krkapartments.przelewy24.service.request.RegisterTransactionRequest;
+import com.example.krkapartments.przelewy24.service.request.RegisterTransactionRequestBuilder;
+import com.example.krkapartments.przelewy24.service.request.ReturnTransactionRequest;
+import com.example.krkapartments.przelewy24.service.request.VerifyTransactionRequest;
+import com.example.krkapartments.przelewy24.service.response.TransactionResponse;
+import com.example.krkapartments.przelewy24.user.UserDto;
 import com.google.gson.Gson;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpResponse;
@@ -45,13 +44,11 @@ public class PaymentService {
     private final TransactionRepository repository;
     private final Gson gson;
     private final ApplicationConfiguration applicationConfiguration;
-    private final RestConsumerImpl restConsumer;
 
-    public PaymentService(TransactionRepository repository, Gson gson, ApplicationConfiguration applicationConfiguration, RestConsumerImpl restConsumer) {
+    public PaymentService(TransactionRepository repository, Gson gson, ApplicationConfiguration applicationConfiguration) {
         this.repository = repository;
         this.gson = gson;
         this.applicationConfiguration = applicationConfiguration;
-        this.restConsumer = restConsumer;
     }
 
     public static String encrypt(String input) {
@@ -141,12 +138,12 @@ public class PaymentService {
         saveTransaction(new Transaction(transactionRequest.getMerchantId(), transactionRequest.getPosId(), transactionRequest.getSessionId(), transactionRequest.getAmount(), transactionRequest.getCurrency(), null, TransactionStatus.CREATED.getStatus()));
         String result = executeRequest(httpRequest);
         TransactionResponse transactionResponse = gson.fromJson(result, TransactionResponse.class);
-        Thread createUser = new Thread() {
-            public void run(){
-                restConsumer.sendDataForUserCreation(createUserDto(request));
-            }
-        };
-        createUser.start();
+//        Thread createUser = new Thread() {
+//            public void run() {
+//                restConsumer.sendDataForUserCreation(createUserDto(request));
+//            }
+//        };
+//        createUser.start();
         return new ClientTransactionResponse(transactionRequest, transactionResponse.getData().getToken());
     }
 

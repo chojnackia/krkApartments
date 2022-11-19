@@ -1,12 +1,10 @@
 package com.example.krkapartments.module.booking;
 
 import com.example.krkapartments.exception.ApartmentIsOccupiedException;
-import com.example.krkapartments.module.payment.ClientTransactionRequestDTO;
 import lombok.AllArgsConstructor;
 import net.fortuna.ical4j.data.ParserException;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -40,7 +38,7 @@ public class BookingController {
     }
 
     @GetMapping("/apartments/{id}")
-    public List<BookingDto> findAllBookingsByApartment(@PathVariable UUID id){
+    public List<BookingDto> findAllBookingsByApartment(@PathVariable UUID id) {
         return bookingService.findAllBookingsByApartment(id);
     }
 }

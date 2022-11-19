@@ -1,4 +1,4 @@
-package com.example.paymentservice.przelewy24.data.entity;
+package com.example.krkapartments.przelewy24.data.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

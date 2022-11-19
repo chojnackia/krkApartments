@@ -4,40 +4,114 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e19916ad-5202-4905-96ea-86774afc3068" name="Changes" comment="" />
+    <list default="true" id="e19916ad-5202-4905-96ea-86774afc3068" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_core_5_5_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_core_5_6_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/configuration/RestTemplateConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/consumer/RestConsumer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/consumer/RestConsumerImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/address/AddressService.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/address/AddressService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/admin/AdminRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/admin/AdminRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/admin/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/admin/AdminService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/apartment/ApartmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/apartment/ApartmentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/booking/BookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/booking/BookingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/booking/BookingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/booking/BookingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/user/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/security/AuthApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/security/AuthApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/security/JwtTokenFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/security/JwtTokenFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/security/JwtTokenUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/security/JwtTokenUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/resources/database_init/01-schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/resources/database_init/01-schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/resources/database_init/02-insert-init-data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/resources/database_init/02-insert-init-data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/resources/liquibase-changeLog.xml" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/resources/liquibase-changeLog.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/configuration/ApplicationConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/przelewy24/configuration/ApplicationConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/configuration/RestTemplateConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/consumer/RestConsumer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/consumer/RestConsumerImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/controller/ClientTransactionRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/przelewy24/controller/ClientTransactionRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/controller/ClientTransactionResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/przelewy24/controller/ClientTransactionResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/controller/PaymentApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/przelewy24/controller/PaymentApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/data/entity/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/przelewy24/data/entity/Transaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/data/enums/TransactionStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/przelewy24/data/enums/TransactionStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/repository/TransactionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/przelewy24/repository/TransactionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/service/PaymentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/przelewy24/service/PaymentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/service/request/RegisterTransactionRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/przelewy24/service/request/RegisterTransactionRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/service/request/RegisterTransactionRequestBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/przelewy24/service/request/RegisterTransactionRequestBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/service/request/ReturnTransactionRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/przelewy24/service/request/ReturnTransactionRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/service/request/VerifyTransactionRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/przelewy24/service/request/VerifyTransactionRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/service/response/TransactionResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/przelewy24/service/response/TransactionResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/user/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/przelewy24/user/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paymentService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/paymentService/src/main/resources/application.properties" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/PaymentServiceApplication.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/user/UserController.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/paymentService/src/main/resources/application.properties" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/consumer/RestConsumerImpl.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/krk-apartments/Dockerfile" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/KrkApartmentsApplication.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/krk-apartments/src/main/resources/database_init/02-insert-init-data.sql" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/calendar/CalendarService.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/krk-apartments/src/main/resources/liquibase-changeLog.xml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/krk-apartments/pom.xml" root0="FORCE_HIGHLIGHTING" />
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="JpbToolWindowState">
     <option name="myId2FirstActivated">
       <map>
+        <entry key="JPA Inspector" value="true" />
+        <entry key="JPA Palette" value="true" />
         <entry key="JPA Structure" value="true" />
       </map>
     </option>
     <option name="myId2Visible">
       <map>
+        <entry key="JPA Inspector" value="false" />
+        <entry key="JPA Palette" value="false" />
         <entry key="JPA Structure" value="false" />
       </map>
     </option>
   </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2DaKBwKuZFwuNu1n1PXZXSmcCoH" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
-  <component name="RunManager" selected="Spring Boot.PaymentServiceApplication">
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="postgresql" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$/OneDrive/Dokumenty/GitHub/webapp" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.example.krkapartments" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.KrkApartmentsApplication">
     <configuration name="KrkApartmentsApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="krkApartments" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.krkapartments.KrkApartmentsApplication" />
@@ -52,11 +126,45 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e19916ad-5202-4905-96ea-86774afc3068" name="Changes" comment="" />
+      <created>1660931629091</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1660931629091</updated>
+      <workItem from="1660931629092" duration="78000" />
+      <workItem from="1667300631269" duration="68000" />
+      <workItem from="1667300804201" duration="47000" />
+      <workItem from="1667300856498" duration="1354000" />
+      <workItem from="1668864593110" duration="1218000" />
+      <workItem from="1668878317438" duration="1973000" />
+    </task>
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XDebuggerManager">

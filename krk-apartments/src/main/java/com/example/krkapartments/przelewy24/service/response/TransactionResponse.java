@@ -1,4 +1,4 @@
-package com.example.paymentservice.przelewy24.service.response;
+package com.example.krkapartments.przelewy24.service.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
