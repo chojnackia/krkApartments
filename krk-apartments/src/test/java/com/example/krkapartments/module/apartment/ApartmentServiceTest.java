@@ -1,12 +1,16 @@
 package com.example.krkapartments.module.apartment;
 
-import com.example.krkapartments.exception.ApartmentNotFoundException;
+import com.example.krkapartments.business.apartment.ApartmentService;
+import com.example.krkapartments.endpoint.apartment.dto.ApartmentDto;
+import com.example.krkapartments.endpoint.apartment.exception.ApartmentNotFoundException;
+import com.example.krkapartments.endpoint.user.dto.UserDto;
 import com.example.krkapartments.exception.FieldDoesNotExistException;
 import com.example.krkapartments.generator.ObjectGenerator;
-import com.example.krkapartments.module.address.AddressEntity;
-import com.example.krkapartments.module.booking.BookingEntity;
-import com.example.krkapartments.module.user.UserEntity;
-import com.example.krkapartments.module.user.UserDto;
+import com.example.krkapartments.persistence.address.entity.AddressEntity;
+import com.example.krkapartments.persistence.apartment.entity.ApartmentEntity;
+import com.example.krkapartments.persistence.apartment.repository.ApartmentRepository;
+import com.example.krkapartments.persistence.booking.entity.BookingEntity;
+import com.example.krkapartments.persistence.user.entity.UserEntity;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

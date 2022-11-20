@@ -1,6 +1,10 @@
 package com.example.krkapartments.security;
 
-import com.example.krkapartments.module.admin.*;
+import com.example.krkapartments.business.admin.AdminService;
+import com.example.krkapartments.domain.admin.AdminMapper;
+import com.example.krkapartments.endpoint.admin.dto.AdminCreateCommand;
+import com.example.krkapartments.endpoint.admin.dto.AdminDto;
+import com.example.krkapartments.persistence.admin.entity.AdminEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -20,8 +24,9 @@ public class AuthApi {
     private final AuthenticationManager authenticationManager;
     private final JwtTokenUtil jwtTokenUtil;
     private final AdminService adminService;
+    private final AdminMapper adminMapper;
 
-    @PostMapping("login")
+    @PostMapping("/login")
     public ResponseEntity<AdminDto> login(@RequestBody AuthRequest request) {
 
         try {
@@ -35,15 +40,15 @@ public class AuthApi {
 
             return ResponseEntity.ok()
                     .header(HttpHeaders.AUTHORIZATION, "Bearer " + jwtTokenUtil.generateAccessToken(adminEntity))
-                    .body(AdminConverter.convertToAdminDto(adminEntity));
+                    .body(adminMapper.mapFromEntityToDto(adminEntity));
         } catch (BadCredentialsException ex) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
 
     @PostMapping("/register")
-    public AdminDto registerNewAdminAccount(@RequestBody AdminRegistrationCommand adminRegistrationCommand) {
-        return adminService.registerNewAdminAccount(adminRegistrationCommand);
+    public AdminDto registerNewAdminAccount(@RequestBody AdminCreateCommand adminCreateCommand) {
+        return adminService.registerNewAdminAccount(adminCreateCommand);
     }
 
 

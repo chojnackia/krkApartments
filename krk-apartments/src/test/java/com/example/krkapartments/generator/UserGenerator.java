@@ -1,7 +1,7 @@
 package com.example.krkapartments.generator;
 
-import com.example.krkapartments.module.user.UserEntity;
-import com.example.krkapartments.module.user.UserDto;
+import com.example.krkapartments.endpoint.user.dto.UserDto;
+import com.example.krkapartments.persistence.user.entity.UserEntity;
 import com.example.krkapartments.util.DateTimeProvider;
 
 import java.time.LocalDate;

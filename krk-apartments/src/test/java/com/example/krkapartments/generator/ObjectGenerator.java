@@ -1,13 +1,13 @@
 package com.example.krkapartments.generator;
 
-import com.example.krkapartments.module.address.AddressEntity;
-import com.example.krkapartments.module.address.AddressDto;
-import com.example.krkapartments.module.apartment.ApartmentEntity;
-import com.example.krkapartments.module.apartment.ApartmentDto;
-import com.example.krkapartments.module.booking.BookingEntity;
-import com.example.krkapartments.module.booking.BookingDto;
-import com.example.krkapartments.module.user.UserEntity;
-import com.example.krkapartments.module.user.UserDto;
+import com.example.krkapartments.endpoint.address.dto.AddressDto;
+import com.example.krkapartments.endpoint.apartment.dto.ApartmentDto;
+import com.example.krkapartments.endpoint.booking.dto.BookingDto;
+import com.example.krkapartments.endpoint.user.dto.UserDto;
+import com.example.krkapartments.persistence.address.entity.AddressEntity;
+import com.example.krkapartments.persistence.apartment.entity.ApartmentEntity;
+import com.example.krkapartments.persistence.booking.entity.BookingEntity;
+import com.example.krkapartments.persistence.user.entity.UserEntity;
 import lombok.Getter;
 
 import java.util.List;

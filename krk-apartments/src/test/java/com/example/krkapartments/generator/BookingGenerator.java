@@ -1,9 +1,9 @@
 package com.example.krkapartments.generator;
 
-import com.example.krkapartments.module.apartment.ApartmentEntity;
-import com.example.krkapartments.module.booking.BookingEntity;
-import com.example.krkapartments.module.booking.BookingDto;
-import com.example.krkapartments.module.user.UserEntity;
+import com.example.krkapartments.endpoint.booking.dto.BookingDto;
+import com.example.krkapartments.persistence.apartment.entity.ApartmentEntity;
+import com.example.krkapartments.persistence.booking.entity.BookingEntity;
+import com.example.krkapartments.persistence.user.entity.UserEntity;
 import com.example.krkapartments.util.DateTimeProvider;
 
 import java.time.LocalDate;

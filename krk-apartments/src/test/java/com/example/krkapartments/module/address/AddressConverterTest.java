@@ -1,6 +1,8 @@
 package com.example.krkapartments.module.address;
 
+import com.example.krkapartments.endpoint.address.dto.AddressDto;
 import com.example.krkapartments.generator.ObjectGenerator;
+import com.example.krkapartments.persistence.address.entity.AddressEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;

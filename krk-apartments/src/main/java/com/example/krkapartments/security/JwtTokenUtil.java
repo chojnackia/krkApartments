@@ -1,6 +1,6 @@
 package com.example.krkapartments.security;
 
-import com.example.krkapartments.module.admin.AdminEntity;
+import com.example.krkapartments.persistence.admin.entity.AdminEntity;
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

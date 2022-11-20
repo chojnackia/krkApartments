@@ -1,8 +1,12 @@
 package com.example.krkapartments.module.address;
 
-import com.example.krkapartments.exception.AddressNotFoundException;
+import com.example.krkapartments.business.address.AddressService;
+import com.example.krkapartments.endpoint.address.dto.AddressDto;
+import com.example.krkapartments.endpoint.address.exception.AddressNotFoundException;
 import com.example.krkapartments.exception.FieldDoesNotExistException;
 import com.example.krkapartments.generator.ObjectGenerator;
+import com.example.krkapartments.persistence.address.entity.AddressEntity;
+import com.example.krkapartments.persistence.address.repository.AddressRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,7 +1,7 @@
 package com.example.krkapartments.generator;
 
-import com.example.krkapartments.module.address.AddressEntity;
-import com.example.krkapartments.module.address.AddressDto;
+import com.example.krkapartments.endpoint.address.dto.AddressDto;
+import com.example.krkapartments.persistence.address.entity.AddressEntity;
 
 import java.util.ArrayList;
 import java.util.List;

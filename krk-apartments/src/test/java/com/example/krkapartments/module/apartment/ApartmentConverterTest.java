@@ -1,6 +1,8 @@
 package com.example.krkapartments.module.apartment;
 
+import com.example.krkapartments.endpoint.apartment.dto.ApartmentDto;
 import com.example.krkapartments.generator.ObjectGenerator;
+import com.example.krkapartments.persistence.apartment.entity.ApartmentEntity;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

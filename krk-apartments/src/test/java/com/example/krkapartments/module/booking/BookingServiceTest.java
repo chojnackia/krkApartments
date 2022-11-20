@@ -1,16 +1,16 @@
 //package com.example.krkapartments.module.booking;
 //
 //import com.example.krkapartments.consumer.RestConsumerImpl;
-//import com.example.krkapartments.exception.ApartmentIsOccupiedException;
+//import com.example.krkapartments.endpoint.apartment.exception.ApartmentIsOccupiedException;
 //import com.example.krkapartments.generator.ObjectGenerator;
-//import com.example.krkapartments.module.address.Address;
-//import com.example.krkapartments.module.address.AddressDto;
-//import com.example.krkapartments.module.apartment.Apartment;
-//import com.example.krkapartments.module.apartment.ApartmentDto;
-//import com.example.krkapartments.module.apartment.ApartmentRepository;
-//import com.example.krkapartments.module.apartment.ApartmentService;
-//import com.example.krkapartments.module.payment.ClientTransactionRequestDTO;
-//import com.example.krkapartments.module.user.User;
+//import com.example.krkapartments.domain.address.Address;
+//import com.example.krkapartments.endpoint.address.dto.AddressDto;
+//import com.example.krkapartments.domain.apartment.Apartment;
+//import com.example.krkapartments.endpoint.apartment.dto.ApartmentDto;
+//import com.example.krkapartments.persistence.apartment.repository.ApartmentRepository;
+//import com.example.krkapartments.business.apartment.ApartmentService;
+//import com.example.krkapartments.endpoint.payment.dto.ClientTransactionRequestDTO;
+//import com.example.krkapartments.domain.user.User;
 //import net.fortuna.ical4j.data.ParserException;
 //import org.junit.jupiter.api.Assertions;
 //import org.junit.jupiter.api.BeforeEach;

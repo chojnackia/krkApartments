@@ -1,7 +1,7 @@
 package com.example.krkapartments.security;
 
 import com.example.krkapartments.exception.InvalidUserOrPasswordException;
-import com.example.krkapartments.module.admin.AdminRepository;
+import com.example.krkapartments.persistence.admin.repository.AdminRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
