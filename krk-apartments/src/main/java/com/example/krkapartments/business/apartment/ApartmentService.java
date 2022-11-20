@@ -1,13 +1,13 @@
 package com.example.krkapartments.business.apartment;
 
-import com.example.krkapartments.endpoint.apartment.dto.ApartmentDto;
-import com.example.krkapartments.endpoint.apartment.exception.ApartmentNotFoundException;
+import com.example.krkapartments.domain.apartment.Apartment;
+import com.example.krkapartments.domain.apartment.ApartmentMapper;
 import com.example.krkapartments.exception.FieldDoesNotExistException;
-import com.example.krkapartments.module.apartment.ApartmentConverter;
 import com.example.krkapartments.persistence.apartment.entity.ApartmentEntity;
 import com.example.krkapartments.persistence.apartment.repository.ApartmentRepository;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
@@ -18,71 +18,77 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ApartmentService {
 
     private final ApartmentRepository apartmentRepository;
+    private final ApartmentMapper apartmentMapper;
 
-    public List<ApartmentDto> findAllActiveApartments() {
-        List<ApartmentEntity> apartmentEntityList = apartmentRepository.findAllByActive(true);
-        return apartmentEntityList.stream()
-                .map(ApartmentConverter::convertApartmentToDto)
+    @Transactional
+    public Optional<Apartment> save(Apartment apartment) {
+        return Optional.ofNullable(apartment)
+                .map(apartmentMapper::mapFromDomainToEntity)
+                .map(apartmentRepository::save)
+                .map(apartmentMapper::mapFromEntityToDomain);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Apartment> findAllActiveApartments() {
+        return apartmentRepository.findAllByActive(true)
+                .stream()
+                .map(apartmentMapper::mapFromEntityToDomain)
                 .collect(Collectors.toList());
     }
 
-    public ApartmentEntity addApartment(ApartmentDto apartmentDto) {
-        ApartmentEntity apartmentEntity = ApartmentConverter.convertDtoToApartment(apartmentDto);
-        apartmentEntity.setId(UUID.randomUUID());
-        apartmentEntity.setActive(true);
-        Optional<ApartmentEntity> occurrences = apartmentRepository
-                .findByApartmentNameIgnoreCase(apartmentEntity.getApartmentName());
-        if (occurrences.isEmpty()) {
-            apartmentRepository.save(apartmentEntity);
-            return apartmentEntity;
-        }
-        return occurrences.get();
+    @Transactional
+    public Optional<Apartment> createApartment(Apartment apartment) {
+        return this.save(apartment);
     }
 
-    public ApartmentEntity findApartmentInDatabase(UUID id) {
-        return apartmentRepository.findById(id).orElseThrow(() ->
-                new ApartmentNotFoundException("Could not find apartment with id: " + id));
-
+    @Transactional(readOnly = true)
+    public Optional<Apartment> findApartmentInDatabase(UUID id) {
+        return apartmentRepository.findById(id)
+                .map(apartmentMapper::mapFromEntityToDomain);
     }
 
-    public ApartmentDto findById(UUID id) {
-        ApartmentEntity apartmentEntity = findApartmentInDatabase(id);
-        return ApartmentConverter.convertApartmentToDto(apartmentEntity);
+    @Transactional(readOnly = true)
+    public Optional<Apartment> findById(UUID id) {
+        return findApartmentInDatabase(id);
     }
 
-
-    public ApartmentDto updateApartment(UUID id, Map<Object, Object> fields) {
-        ApartmentEntity apartmentEntity = findApartmentInDatabase(id);
+    @Transactional
+    public Optional<Apartment> updateApartment(UUID id, Map<Object, Object> fields) {
+        Optional<Apartment> apartment = findApartmentInDatabase(id);
         fields.forEach((key, value) -> {
             Field field = ReflectionUtils.findField(ApartmentEntity.class, (String) key);
             if (field == null) {
                 throw new FieldDoesNotExistException("Field " + key + " does not exist");
             }
             field.setAccessible(true);
-            ReflectionUtils.setField(field, apartmentEntity, value);
+            ReflectionUtils.setField(field, apartment, value);
         });
-        apartmentRepository.save(apartmentEntity);
-        return ApartmentConverter.convertApartmentToDto(apartmentEntity);
+        return apartment
+                .map(apartmentMapper::mapFromDomainToEntity)
+                .map(apartmentRepository::save)
+                .map(apartmentMapper::mapFromEntityToDomain);
     }
 
-
-    public ApartmentDto deactivateApartment(UUID id) {
-        ApartmentEntity apartmentEntity = findApartmentInDatabase(id);
-        apartmentEntity.setActive(false);
-        apartmentRepository.save(apartmentEntity);
-        return ApartmentConverter.convertApartmentToDto(apartmentEntity);
+    @Transactional(readOnly = true)
+    public Optional<Apartment> deactivateApartment(UUID id) {
+        return findApartmentInDatabase(id)
+                .map(apartment -> apartment.toBuilder()
+                        .active(false)
+                        .build())
+                .map(apartmentMapper::mapFromDomainToEntity)
+                .map(apartmentRepository::save)
+                .map(apartmentMapper::mapFromEntityToDomain);
     }
 
-    public List<ApartmentDto> findAll() {
-        List<ApartmentEntity> apartmentEntities = apartmentRepository.findAll();
-        return apartmentEntities.stream()
-                .map(ApartmentConverter::convertApartmentToDto)
+    @Transactional(readOnly = true)
+    public List<Apartment> findAll() {
+        return apartmentRepository.findAll()
+                .stream()
+                .map(apartmentMapper::mapFromEntityToDomain)
                 .collect(Collectors.toList());
     }
-
-
 }

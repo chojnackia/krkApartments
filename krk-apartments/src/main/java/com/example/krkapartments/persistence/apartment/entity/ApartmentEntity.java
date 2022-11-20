@@ -22,7 +22,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
-@Builder
+@Builder(toBuilder = true)
 public class ApartmentEntity implements Serializable {
 
     @Id
@@ -41,7 +41,7 @@ public class ApartmentEntity implements Serializable {
 
     @NotNull
     @JsonIgnore
-    private boolean active;
+    private boolean active = true;
 
     private String bookingUrl;
 

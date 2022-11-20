@@ -2,7 +2,6 @@ package com.example.krkapartments.business.address;
 
 import com.example.krkapartments.domain.address.Address;
 import com.example.krkapartments.domain.address.AddressMapper;
-import com.example.krkapartments.endpoint.address.dto.AddressDto;
 import com.example.krkapartments.endpoint.address.exception.AddressNotFoundException;
 import com.example.krkapartments.exception.FieldDoesNotExistException;
 import com.example.krkapartments.persistence.address.entity.AddressEntity;

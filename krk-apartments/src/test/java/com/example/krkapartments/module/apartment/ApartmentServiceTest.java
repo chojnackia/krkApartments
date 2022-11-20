@@ -1,6 +1,7 @@
 package com.example.krkapartments.module.apartment;
 
 import com.example.krkapartments.business.apartment.ApartmentService;
+import com.example.krkapartments.domain.apartment.ApartmentMapper;
 import com.example.krkapartments.endpoint.apartment.dto.ApartmentDto;
 import com.example.krkapartments.endpoint.apartment.exception.ApartmentNotFoundException;
 import com.example.krkapartments.endpoint.user.dto.UserDto;
@@ -31,11 +32,13 @@ class ApartmentServiceTest {
 
     @Mock
     private ApartmentRepository apartmentRepository;
+    @Mock
+    private ApartmentMapper apartmentMapper;
 
     @BeforeEach
     void init() {
         MockitoAnnotations.openMocks(this);
-        apartmentService = new ApartmentService(apartmentRepository);
+        apartmentService = new ApartmentService(apartmentRepository, apartmentMapper);
     }
 
     private List<ApartmentDto> convertApartmentToDtoList(List<ApartmentEntity> apartmentEntities) {
@@ -60,7 +63,7 @@ class ApartmentServiceTest {
 
         //when
         ApartmentDto apartmentDtoById = apartmentService.findById(id);
-        expectedApartmentDto.setBookingEntities(apartmentDtoById.getBookingEntities());
+        expectedApartmentDto.setBookings(apartmentDtoById.getBookings());
 
         //then
         assertThat(apartmentDtoById).isEqualTo(expectedApartmentDto);
@@ -94,9 +97,9 @@ class ApartmentServiceTest {
         ApartmentDto apartmentDto = generator.getApartmentDtos().get(0);
         ApartmentEntity expectedApartmentEntity = generator.getApartmentEntityList().get(0);
 
-        Mockito.when(apartmentService.addApartment(apartmentDto)).thenReturn(expectedApartmentEntity);
+        Mockito.when(apartmentService.createApartment(apartmentDto)).thenReturn(expectedApartmentEntity);
 
-        ApartmentEntity addedApartmentEntity = apartmentService.addApartment(apartmentDto);
+        ApartmentEntity addedApartmentEntity = apartmentService.createApartment(apartmentDto);
         expectedApartmentEntity.setId(addedApartmentEntity.getId());
         addedApartmentEntity.setBookings(expectedApartmentEntity.getBookings());
 
@@ -109,9 +112,9 @@ class ApartmentServiceTest {
         ApartmentDto apartmentDto = generator.getApartmentDtos().get(0);
         ApartmentEntity expectedApartmentEntity = generator.getApartmentEntityList().get(0);
 
-        Mockito.when(apartmentService.addApartment(apartmentDto)).thenReturn(expectedApartmentEntity);
+        Mockito.when(apartmentService.createApartment(apartmentDto)).thenReturn(expectedApartmentEntity);
 
-        ApartmentEntity addedApartmentEntity = apartmentService.addApartment(apartmentDto);
+        ApartmentEntity addedApartmentEntity = apartmentService.createApartment(apartmentDto);
         expectedApartmentEntity.setId(addedApartmentEntity.getId());
         expectedApartmentEntity.setBookings(addedApartmentEntity.getBookings());
 
@@ -147,8 +150,8 @@ class ApartmentServiceTest {
         expectedApartmentDto.setPriceForOneDay(500);
         expectedApartmentDto.setApartmentDescription("UpdatedDescription");
         expectedApartmentDto.setActive(true);
-        expectedApartmentDto.setBookingEntities(null);
-        expectedApartmentDto.setAddressEntity(null);
+        expectedApartmentDto.setBookings(null);
+        expectedApartmentDto.setAddress(null);
         UUID id = expectedApartmentDto.getId();
         Optional<ApartmentEntity> apartment = Optional.of(generator.getApartmentEntityList().get(0));
 
@@ -216,7 +219,7 @@ class ApartmentServiceTest {
         Optional<ApartmentEntity> optionalApartment = Optional.of(expectedApartmentEntity);
 
         Mockito.when(apartmentRepository.findByApartmentName(apartmentDto.getApartmentName())).thenReturn(optionalApartment);
-        ApartmentEntity addedApartmentEntity = apartmentService.addApartment(apartmentDto);
+        ApartmentEntity addedApartmentEntity = apartmentService.createApartment(apartmentDto);
         addedApartmentEntity.setId(expectedApartmentEntity.getId());
 
         assertThat(expectedApartmentEntity).isEqualTo(addedApartmentEntity);
