@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface ApartmentRepository extends JpaRepository<Apartment, UUID> {
+public interface ApartmentRepository extends JpaRepository<ApartmentEntity, UUID> {
 
-    Optional<Apartment> findByApartmentNameIgnoreCase(String name);
+    Optional<ApartmentEntity> findByApartmentNameIgnoreCase(String name);
 
-    @Query("SELECT a FROM Apartment a LEFT JOIN FETCH a.address WHERE a.active = ?1")
-    List<Apartment> findAllByActive(boolean active);
+    @Query("SELECT a FROM ApartmentEntity a LEFT JOIN FETCH a.address WHERE a.active = ?1")
+    List<ApartmentEntity> findAllByActive(boolean active);
 
-    Optional<Apartment> findByApartmentName(String name);
+    Optional<ApartmentEntity> findByApartmentName(String name);
 
 }

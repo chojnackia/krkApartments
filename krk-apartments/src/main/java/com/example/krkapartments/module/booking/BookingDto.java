@@ -1,6 +1,6 @@
 package com.example.krkapartments.module.booking;
 
-import com.example.krkapartments.module.user.User;
+import com.example.krkapartments.module.user.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,7 +17,7 @@ public class BookingDto {
 
     private UUID id;
     private UUID apartmentId;
-    private User user;
+    private UserEntity userEntity;
     private LocalDate checkInDate;
     private LocalDate checkOutDate;
     private BookingPayment paymentStatus;

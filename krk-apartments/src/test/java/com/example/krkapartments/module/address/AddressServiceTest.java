@@ -30,8 +30,8 @@ class AddressServiceTest {
         addressService = new AddressService(addressRepository);
     }
 
-    private List<AddressDto> convertAddressToDtoList(List<Address> addresses) {
-        return addresses.stream()
+    private List<AddressDto> convertAddressToDtoList(List<AddressEntity> addressEntities) {
+        return addressEntities.stream()
                 .map(AddressConverter::convertToAddressDto)
                 .collect(Collectors.toList());
     }
@@ -39,11 +39,11 @@ class AddressServiceTest {
     @Test
     void shouldFindAddressByIdAndReturnAddressDto() {
 
-        List<Address> addresses = generator.getAddressList();
+        List<AddressEntity> addressEntities = generator.getAddressEntityList();
 
-        Address address = addresses.get(3);
-        UUID id = address.getId();
-        Optional<Address> searchedAddress = Optional.of(address);
+        AddressEntity addressEntity = addressEntities.get(3);
+        UUID id = addressEntity.getId();
+        Optional<AddressEntity> searchedAddress = Optional.of(addressEntity);
 
         List<AddressDto> addressDtos = generator.getAddressDtos();
         AddressDto expectedAddressDto = addressDtos.get(3);
@@ -68,10 +68,10 @@ class AddressServiceTest {
     @Test
     void shouldFindAllAddressAndReturnAddressDtoList() {
 
-        List<Address> addresses = generator.getAddressList();
-        List<AddressDto> expectedAddressDtoList = convertAddressToDtoList(addresses);
+        List<AddressEntity> addressEntities = generator.getAddressEntityList();
+        List<AddressDto> expectedAddressDtoList = convertAddressToDtoList(addressEntities);
 
-        Mockito.when(addressRepository.findAll()).thenReturn(addresses);
+        Mockito.when(addressRepository.findAll()).thenReturn(addressEntities);
         List<AddressDto> addressDtoList = addressService.findAll();
 
         assertThat(addressDtoList).isEqualTo(expectedAddressDtoList);
@@ -81,14 +81,14 @@ class AddressServiceTest {
     void shouldAddAddressToDatabase() {
 
         AddressDto addressDto = generator.getAddressDtos().get(0);
-        Address expectedAddress = generator.getAddressList().get(0);
+        AddressEntity expectedAddressEntity = generator.getAddressEntityList().get(0);
 
-        Mockito.when(addressService.addAddress(addressDto)).thenReturn(expectedAddress);
+        Mockito.when(addressService.createAddress(addressDto)).thenReturn(expectedAddressEntity);
 
-        Address addedAddress = addressService.addAddress(addressDto);
-        expectedAddress.setId(addedAddress.getId());
+        AddressEntity addedAddressEntity = addressService.createAddress(addressDto);
+        expectedAddressEntity.setId(addedAddressEntity.getId());
 
-        assertThat(addedAddress).isEqualTo(expectedAddress);
+        assertThat(addedAddressEntity).isEqualTo(expectedAddressEntity);
 
     }
 
@@ -96,8 +96,8 @@ class AddressServiceTest {
     void shouldReturnAddressWhenAddedAddressExistingInDatabase() {
 
         AddressDto addressDto = generator.getAddressDtos().get(0);
-        Address expectedAddress = generator.getAddressList().get(0);
-        Optional<Address> optionalAddress = Optional.of(expectedAddress);
+        AddressEntity expectedAddressEntity = generator.getAddressEntityList().get(0);
+        Optional<AddressEntity> optionalAddress = Optional.of(expectedAddressEntity);
 
         Mockito.when(addressRepository.findByCityAndStreetNameAndBuildingNumberAndApartmentNumber(
                 addressDto.getCity(),
@@ -105,11 +105,11 @@ class AddressServiceTest {
                 addressDto.getBuildingNumber(),
                 addressDto.getApartmentNumber()
         )).thenReturn(optionalAddress);
-        Address addedAddress = addressService.addAddress(addressDto);
-        addedAddress.setId(expectedAddress.getId());
-        addedAddress.setApartment(null);
+        AddressEntity addedAddressEntity = addressService.createAddress(addressDto);
+        addedAddressEntity.setId(expectedAddressEntity.getId());
+        addedAddressEntity.setApartmentEntity(null);
 
-        assertThat(expectedAddress).isEqualTo(addedAddress);
+        assertThat(expectedAddressEntity).isEqualTo(addedAddressEntity);
     }
 
     @Test
@@ -123,7 +123,7 @@ class AddressServiceTest {
         expectedAddressDto.setBuildingNumber(8);
         expectedAddressDto.setApartmentNumber(8);
         UUID id = expectedAddressDto.getId();
-        Optional<Address> address = Optional.of(generator.getAddressList().get(0));
+        Optional<AddressEntity> address = Optional.of(generator.getAddressEntityList().get(0));
 
         Mockito.when(addressRepository.findById(id)).thenReturn(address);
         Map<Object, Object> changesMap = new HashMap<>();
@@ -155,7 +155,7 @@ class AddressServiceTest {
         AddressDto expectedAddressDto = generator.getAddressDtos().get(0);
         UUID id = expectedAddressDto.getId();
         UUID updatedId = UUID.fromString("1715c6ec-7939-4f9b-b0ad-6c6a11111111");
-        Optional<Address> address = Optional.ofNullable(generator.getAddressList().get(0));
+        Optional<AddressEntity> address = Optional.ofNullable(generator.getAddressEntityList().get(0));
 
         Mockito.when(addressRepository.findById(id)).thenReturn(address);
         Map<Object, Object> changesMap = new HashMap<>();

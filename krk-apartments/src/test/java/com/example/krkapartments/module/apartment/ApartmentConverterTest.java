@@ -14,10 +14,10 @@ class ApartmentConverterTest {
     @Test
     void shouldConvertApartmentToDto() {
 
-        Apartment apartment = generator.getApartmentList().get(0);
+        ApartmentEntity apartmentEntity = generator.getApartmentEntityList().get(0);
         ApartmentDto expectedApartment = generator.getApartmentDtos().get(0);
 
-        ApartmentDto apartmentDto = ApartmentConverter.convertApartmentToDto(apartment);
+        ApartmentDto apartmentDto = ApartmentConverter.convertApartmentToDto(apartmentEntity);
 
         assertThat(apartmentDto).isEqualTo(expectedApartment);
     }
@@ -26,20 +26,20 @@ class ApartmentConverterTest {
     void shouldConvertDtoToApartment() {
 
         ApartmentDto apartmentDto = generator.getApartmentDtos().get(0);
-        Apartment expectedApartment = generator.getApartmentList().get(0);
+        ApartmentEntity expectedApartmentEntity = generator.getApartmentEntityList().get(0);
 
-        Apartment apartment = ApartmentConverter.convertDtoToApartment(apartmentDto);
+        ApartmentEntity apartmentEntity = ApartmentConverter.convertDtoToApartment(apartmentDto);
 
-        assertThat(apartment).isEqualTo(expectedApartment);
+        assertThat(apartmentEntity).isEqualTo(expectedApartmentEntity);
     }
 
     @Test
     void shouldConvertApartmentListToDtoList() {
 
-        List<Apartment> apartmentList = generator.getApartmentList();
+        List<ApartmentEntity> apartmentEntityList = generator.getApartmentEntityList();
         List<ApartmentDto> expectedList = generator.getApartmentDtos();
 
-        List<ApartmentDto> apartments = ApartmentConverter.convertApartmentListToDtoList(apartmentList);
+        List<ApartmentDto> apartments = ApartmentConverter.convertApartmentListToDtoList(apartmentEntityList);
 
         assertThat(apartments).isEqualTo(expectedList);
     }
@@ -48,10 +48,10 @@ class ApartmentConverterTest {
     void shouldConvertDtoListToApartmentList() {
 
         List<ApartmentDto> apartmentList = generator.getApartmentDtos();
-        List<Apartment> expectedList = generator.getApartmentList();
+        List<ApartmentEntity> expectedList = generator.getApartmentEntityList();
 
-        List<Apartment> apartments = ApartmentConverter.convertDtoListToApartmentList(apartmentList);
+        List<ApartmentEntity> apartmentEntities = ApartmentConverter.convertDtoListToApartmentList(apartmentList);
 
-        assertThat(apartments).isEqualTo(expectedList);
+        assertThat(apartmentEntities).isEqualTo(expectedList);
     }
 }

@@ -1,10 +1,10 @@
 package com.example.krkapartments.module.calendar;
 
-import com.example.krkapartments.module.apartment.Apartment;
+import com.example.krkapartments.module.apartment.ApartmentEntity;
 import com.example.krkapartments.module.apartment.ApartmentConverter;
 import com.example.krkapartments.module.apartment.ApartmentDto;
 import com.example.krkapartments.module.apartment.ApartmentService;
-import com.example.krkapartments.module.booking.Booking;
+import com.example.krkapartments.module.booking.BookingEntity;
 import com.example.krkapartments.module.booking.BookingRepository;
 import lombok.AllArgsConstructor;
 import net.fortuna.ical4j.data.CalendarBuilder;
@@ -40,32 +40,32 @@ public class CalendarService {
     @Scheduled(fixedRate = 1000 * 60) //Calendar synchronization every 60 seconds
     public void synchronizeCalendar() throws IOException, ParserException {
         List<ApartmentDto> apartmentDtos = apartmentService.findAllActiveApartments();
-        List<Apartment> apartments = apartmentDtos.stream()
+        List<ApartmentEntity> apartmentEntities = apartmentDtos.stream()
                 .map(ApartmentConverter::convertDtoToApartment)
                 .collect(Collectors.toList());
 
-        for (Apartment apartment : apartments) {
-            URL bookingUrl = new URL(apartment.getBookingUrl());
+        for (ApartmentEntity apartmentEntity : apartmentEntities) {
+            URL bookingUrl = new URL(apartmentEntity.getBookingUrl());
             try (InputStream is = bookingUrl.openStream()) {
                 Calendar c = new CalendarBuilder().build(is);
                 List<VEvent> events = c.getComponents(Component.VEVENT);
-                Apartment apartmentInDatabase = apartmentService.findApartmentInDatabase(apartment.getId());
+                ApartmentEntity apartmentEntityInDatabase = apartmentService.findApartmentInDatabase(apartmentEntity.getId());
 
                 for (VEvent event : events) {
                     LocalDate startDate = event.getStartDate().getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                     LocalDate endDate = event.getEndDate().getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
-                    List<Booking> occupiedApartments = bookingRepository.findAllByApartmentEqualsAndCheckInDateIsBetweenOrCheckOutDateIsBetween(
-                            apartmentService.findApartmentInDatabase(apartment.getId()),
+                    List<BookingEntity> occupiedApartments = bookingRepository.findAllByApartmentEqualsAndCheckInDateIsBetweenOrCheckOutDateIsBetween(
+                            apartmentService.findApartmentInDatabase(apartmentEntity.getId()),
                             startDate,
                             endDate);
 
                     if (occupiedApartments.isEmpty()) {
-                        bookingRepository.save(Booking.builder()
+                        bookingRepository.save(BookingEntity.builder()
                                 .id(UUID.randomUUID())
                                 .checkInDate(startDate)
                                 .checkOutDate(endDate)
-                                .apartment(apartmentInDatabase)
+                                .apartmentEntity(apartmentEntityInDatabase)
                                 .build());
                     }
                 }

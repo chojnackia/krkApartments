@@ -1,23 +1,19 @@
 package com.example.krkapartments.module.address;
 
-import com.example.krkapartments.module.apartment.Apartment;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-import java.util.UUID;
-
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
 @Builder
-public class Address {
-
-    private UUID id;
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+public class AddressCreateCommand {
     private String city;
     private String streetName;
     private int buildingNumber;
     private int apartmentNumber;
     private String postCode;
     private String country;
-    private Apartment apartment;
 }

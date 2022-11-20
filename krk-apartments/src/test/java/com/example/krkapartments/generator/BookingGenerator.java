@@ -1,9 +1,9 @@
 package com.example.krkapartments.generator;
 
-import com.example.krkapartments.module.apartment.Apartment;
-import com.example.krkapartments.module.booking.Booking;
+import com.example.krkapartments.module.apartment.ApartmentEntity;
+import com.example.krkapartments.module.booking.BookingEntity;
 import com.example.krkapartments.module.booking.BookingDto;
-import com.example.krkapartments.module.user.User;
+import com.example.krkapartments.module.user.UserEntity;
 import com.example.krkapartments.util.DateTimeProvider;
 
 import java.time.LocalDate;
@@ -18,38 +18,38 @@ public class BookingGenerator {
     private static final UUID id3 = UUID.randomUUID();
     private static final LocalDate now = DateTimeProvider.getLocalDateToday();
 
-    static List<Booking> generateBookingList() {
-        List<Booking> bookings = new ArrayList<>();
+    static List<BookingEntity> generateBookingList() {
+        List<BookingEntity> bookingEntities = new ArrayList<>();
 
-        Booking booking1 = Booking.builder()
+        BookingEntity bookingEntity1 = BookingEntity.builder()
                 .id(id1)
-                .user(new User())
-                .apartment(null)
+                .userEntity(new UserEntity())
+                .apartmentEntity(null)
                 .checkInDate(LocalDate.of(2021, 10, 1))
                 .checkOutDate(LocalDate.of(2021, 10, 10))
                 .build();
 
-        Booking booking2 = Booking.builder()
+        BookingEntity bookingEntity2 = BookingEntity.builder()
                 .id(id2)
-                .user(new User())
-                .apartment(new Apartment())
+                .userEntity(new UserEntity())
+                .apartmentEntity(new ApartmentEntity())
                 .checkInDate(LocalDate.of(2021, 10, 1))
                 .checkOutDate(LocalDate.of(2021, 10, 10))
                 .build();
 
-        Booking booking3 = Booking.builder()
+        BookingEntity bookingEntity3 = BookingEntity.builder()
                 .id(id3)
-                .user(new User())
-                .apartment(new Apartment())
+                .userEntity(new UserEntity())
+                .apartmentEntity(new ApartmentEntity())
                 .checkInDate(LocalDate.of(2021, 10, 11))
                 .checkOutDate(LocalDate.of(2021, 10, 15))
                 .build();
 
-        bookings.add(booking1);
-        bookings.add(booking2);
-        bookings.add(booking3);
+        bookingEntities.add(bookingEntity1);
+        bookingEntities.add(bookingEntity2);
+        bookingEntities.add(bookingEntity3);
 
-        return bookings;
+        return bookingEntities;
     }
 
     static List<BookingDto> generateBookingDtoList() {
@@ -57,24 +57,24 @@ public class BookingGenerator {
 
         BookingDto bookingDto1 = BookingDto.builder()
                 .id(id1)
-                .apartmentId(new Apartment().getId())
+                .apartmentId(new ApartmentEntity().getId())
                 .checkInDate(LocalDate.of(2021, 10, 1))
                 .checkOutDate(LocalDate.of(2021, 10, 10))
-                .user(new User()).build();
+                .userEntity(new UserEntity()).build();
 
         BookingDto bookingDto2 = BookingDto.builder()
                 .id(id2)
-                .apartmentId(new Apartment().getId())
+                .apartmentId(new ApartmentEntity().getId())
                 .checkInDate(LocalDate.of(2021, 10, 1))
                 .checkOutDate(LocalDate.of(2021, 10, 10))
-                .user(new User()).build();
+                .userEntity(new UserEntity()).build();
 
         BookingDto bookingDto3 = BookingDto.builder()
                 .id(id3)
-                .apartmentId(new Apartment().getId())
+                .apartmentId(new ApartmentEntity().getId())
                 .checkInDate(LocalDate.of(2021, 10, 11))
                 .checkOutDate(LocalDate.of(2021, 10, 15))
-                .user(new User()).build();
+                .userEntity(new UserEntity()).build();
 
         bookingDtos.add(bookingDto1);
         bookingDtos.add(bookingDto2);

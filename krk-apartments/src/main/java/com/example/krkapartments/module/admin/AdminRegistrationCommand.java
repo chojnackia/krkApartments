@@ -8,7 +8,7 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AdminRegistrationDto {
+public class AdminRegistrationCommand {
     private String firstName;
     private String lastName;
     private String email;

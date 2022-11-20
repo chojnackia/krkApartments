@@ -8,21 +8,21 @@ import java.util.stream.Collectors;
 @Service
 public class UserConverter {
 
-    public static UserDto convertUserToDto(User user) {
-        if (user == null) return null;
+    public static UserDto convertUserToDto(UserEntity userEntity) {
+        if (userEntity == null) return null;
         return UserDto.builder()
-                .id(user.getId())
-                .firstName(user.getFirstName())
-                .lastName(user.getLastName())
-                .email(user.getEmail())
-                .telephoneNumber(user.getTelephoneNumber())
+                .id(userEntity.getId())
+                .firstName(userEntity.getFirstName())
+                .lastName(userEntity.getLastName())
+                .email(userEntity.getEmail())
+                .telephoneNumber(userEntity.getTelephoneNumber())
                 .build();
 
     }
 
-    public static User convertToUser(UserDto userDto) {
+    public static UserEntity convertToUser(UserDto userDto) {
         if (userDto == null) return null;
-        return User.builder()
+        return UserEntity.builder()
                 .id(userDto.getId())
                 .firstName(userDto.getFirstName())
                 .lastName(userDto.getLastName())
@@ -31,14 +31,14 @@ public class UserConverter {
                 .build();
     }
 
-    public static List<User> convertDtoListToUserList(List<UserDto> userDtos) {
+    public static List<UserEntity> convertDtoListToUserList(List<UserDto> userDtos) {
         return userDtos.stream()
                 .map(UserConverter::convertToUser)
                 .collect(Collectors.toList());
     }
 
-    public static List<UserDto> convertUserListToDtoList(List<User> users) {
-        return users.stream()
+    public static List<UserDto> convertUserListToDtoList(List<UserEntity> userEntities) {
+        return userEntities.stream()
                 .map(UserConverter::convertUserToDto)
                 .collect(Collectors.toList());
     }

@@ -1,6 +1,6 @@
 package com.example.krkapartments.generator;
 
-import com.example.krkapartments.module.address.Address;
+import com.example.krkapartments.module.address.AddressEntity;
 import com.example.krkapartments.module.address.AddressDto;
 
 import java.util.ArrayList;
@@ -15,20 +15,20 @@ public class AddressGenerator {
     private static final UUID id4 = UUID.randomUUID();
     private static final UUID id5 = UUID.randomUUID();
 
-    static List<Address> generateAddressList() {
-        List<Address> addresses = new ArrayList<>();
-        Address address1 = new Address(id1, "Poznań", "Lechicka", 8, 5, "61-101", "Poland", null);
-        Address address2 = new Address(id2, "Poznań", "Polska", 7, 4, "61-201", "Poland", null);
-        Address address3 = new Address(id3, "Poznań", "Długa", 6, 3, "61-301", "Poland", null);
-        Address address4 = new Address(id4, "Poznań", "Krótka", 5, 2, "61-401", "Poland", null);
-        Address address5 = new Address(id5, "Poznań", "Zamek", 4, 1, "61-501", "Poland", null);
+    static List<AddressEntity> generateAddressList() {
+        List<AddressEntity> addressEntities = new ArrayList<>();
+        AddressEntity addressEntity1 = new AddressEntity(id1, "Poznań", "Lechicka", 8, 5, "61-101", "Poland", null);
+        AddressEntity addressEntity2 = new AddressEntity(id2, "Poznań", "Polska", 7, 4, "61-201", "Poland", null);
+        AddressEntity addressEntity3 = new AddressEntity(id3, "Poznań", "Długa", 6, 3, "61-301", "Poland", null);
+        AddressEntity addressEntity4 = new AddressEntity(id4, "Poznań", "Krótka", 5, 2, "61-401", "Poland", null);
+        AddressEntity addressEntity5 = new AddressEntity(id5, "Poznań", "Zamek", 4, 1, "61-501", "Poland", null);
 
-        addresses.add(address1);
-        addresses.add(address2);
-        addresses.add(address3);
-        addresses.add(address4);
-        addresses.add(address5);
-        return addresses;
+        addressEntities.add(addressEntity1);
+        addressEntities.add(addressEntity2);
+        addressEntities.add(addressEntity3);
+        addressEntities.add(addressEntity4);
+        addressEntities.add(addressEntity5);
+        return addressEntities;
     }
 
     static List<AddressDto> generateAddressDtoList() {

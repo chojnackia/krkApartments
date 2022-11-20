@@ -1,6 +1,6 @@
 package com.example.krkapartments.generator;
 
-import com.example.krkapartments.module.apartment.Apartment;
+import com.example.krkapartments.module.apartment.ApartmentEntity;
 import com.example.krkapartments.module.apartment.ApartmentDto;
 
 import java.util.ArrayList;
@@ -16,21 +16,21 @@ public class ApartmentGenerator {
     private static final UUID id5 = UUID.fromString("1ae88fa0-38b0-11ec-8d3d-0242ac130006");
 
 
-    static List<Apartment> generateApartmentList() {
-        List<Apartment> apartments = new ArrayList<>();
-        Apartment apartments1 = new Apartment(id1, "The Beściak", 300, "Beściak z najlepszych", true, "apartmentURL1", new ArrayList<>(), null);
-        Apartment apartments2 = new Apartment(id2, "Najdroższy", 350, "Najdroższy z najlepszych", true, "apartmentURL2", new ArrayList<>(), null);
-        Apartment apartments3 = new Apartment(id3, "Taki se", 325, "Taki se z najlepszych", true, "apartmentURL3", new ArrayList<>(), null);
-        Apartment apartments4 = new Apartment(id4, "Sredniak", 275, "Sredniak z najlepszych", true, "apartmentURL4", new ArrayList<>(), null);
-        Apartment apartments5 = new Apartment(id5, "Najtańszy", 250, "Najtańszy z najlepszych", true, "apartmentURL5", new ArrayList<>(), null);
+    static List<ApartmentEntity> generateApartmentList() {
+        List<ApartmentEntity> apartmentEntities = new ArrayList<>();
+        ApartmentEntity apartments1 = new ApartmentEntity(id1, "The Beściak", 300, "Beściak z najlepszych", true, "apartmentURL1", new ArrayList<>(), null);
+        ApartmentEntity apartments2 = new ApartmentEntity(id2, "Najdroższy", 350, "Najdroższy z najlepszych", true, "apartmentURL2", new ArrayList<>(), null);
+        ApartmentEntity apartments3 = new ApartmentEntity(id3, "Taki se", 325, "Taki se z najlepszych", true, "apartmentURL3", new ArrayList<>(), null);
+        ApartmentEntity apartments4 = new ApartmentEntity(id4, "Sredniak", 275, "Sredniak z najlepszych", true, "apartmentURL4", new ArrayList<>(), null);
+        ApartmentEntity apartments5 = new ApartmentEntity(id5, "Najtańszy", 250, "Najtańszy z najlepszych", true, "apartmentURL5", new ArrayList<>(), null);
 
 
-        apartments.add(apartments1);
-        apartments.add(apartments2);
-        apartments.add(apartments3);
-        apartments.add(apartments4);
-        apartments.add(apartments5);
-        return apartments;
+        apartmentEntities.add(apartments1);
+        apartmentEntities.add(apartments2);
+        apartmentEntities.add(apartments3);
+        apartmentEntities.add(apartments4);
+        apartmentEntities.add(apartments5);
+        return apartmentEntities;
     }
 
     static List<ApartmentDto> generateApartmentDtoList() {

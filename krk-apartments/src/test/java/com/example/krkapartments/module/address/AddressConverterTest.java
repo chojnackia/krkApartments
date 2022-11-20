@@ -19,11 +19,11 @@ class AddressConverterTest {
     @Test
     void shouldConvertToAddressDto() {
         //given
-        Address address = generator.getAddressList().get(0);
+        AddressEntity addressEntity = generator.getAddressEntityList().get(0);
         AddressDto expectedAddressDto = generator.getAddressDtos().get(0);
 
         //when
-        AddressDto addressDto = AddressConverter.convertToAddressDto(address);
+        AddressDto addressDto = AddressConverter.convertToAddressDto(addressEntity);
 
         //then
         assertThat(addressDto).isEqualTo(expectedAddressDto);
@@ -33,13 +33,13 @@ class AddressConverterTest {
     void shouldConvertDtoIntoAddress() {
         //given
         AddressDto addressDto = generator.getAddressDtos().get(0);
-        Address expectedAddress = generator.getAddressList().get(0);
+        AddressEntity expectedAddressEntity = generator.getAddressEntityList().get(0);
 
         //when
-        Address address = AddressConverter.convertDtoToAddress(addressDto);
+        AddressEntity addressEntity = AddressConverter.convertDtoToAddress(addressDto);
 
         //then
-        assertThat(address).isEqualTo(expectedAddress);
+        assertThat(addressEntity).isEqualTo(expectedAddressEntity);
     }
 
 }

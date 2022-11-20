@@ -3,7 +3,7 @@ package com.example.krkapartments.module.booking;
 import com.example.krkapartments.exception.ApartmentIsOccupiedException;
 import com.example.krkapartments.exception.BookingNotFoundException;
 import com.example.krkapartments.exception.FieldDoesNotExistException;
-import com.example.krkapartments.module.apartment.Apartment;
+import com.example.krkapartments.module.apartment.ApartmentEntity;
 import com.example.krkapartments.module.apartment.ApartmentService;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
@@ -27,17 +27,17 @@ public class BookingService {
     @SneakyThrows
     public BookingDto addBooking(BookingDto bookingDto) {
 
-        Apartment apartmentInDatabase = apartmentService.findApartmentInDatabase(bookingDto.getApartmentId());
-        Booking booking = BookingConverter.convertToBooking(bookingDto, apartmentInDatabase);
-        booking.setId(UUID.randomUUID());
-        booking.setPaymentStatus(BookingPayment.NOT_PAID);
+        ApartmentEntity apartmentEntityInDatabase = apartmentService.findApartmentInDatabase(bookingDto.getApartmentId());
+        BookingEntity bookingEntity = BookingConverter.convertToBooking(bookingDto, apartmentEntityInDatabase);
+        bookingEntity.setId(UUID.randomUUID());
+        bookingEntity.setPaymentStatus(BookingPayment.NOT_PAID);
         LocalDate checkInDate = bookingDto.getCheckInDate();
         LocalDate checkOutDate = bookingDto.getCheckOutDate();
-        booking.setPrice(priceForBooking(checkInDate, checkOutDate, bookingDto.getApartmentId()));
+        bookingEntity.setPrice(priceForBooking(checkInDate, checkOutDate, bookingDto.getApartmentId()));
 
         if (isApartmentOccupied(bookingDto)) {
-            bookingRepository.save(booking);
-            return BookingConverter.convertToBookingDto(booking);
+            bookingRepository.save(bookingEntity);
+            return BookingConverter.convertToBookingDto(bookingEntity);
         } else
             throw new ApartmentIsOccupiedException("Apartment is occupied between " + checkInDate + " - " + checkOutDate);
     }
@@ -49,39 +49,39 @@ public class BookingService {
                 .collect(Collectors.toList());
     }
 
-    public Booking deleteBooking(UUID id) {
-        Booking bookingToDelete = findBookingInDatabase(id);
+    public BookingEntity deleteBooking(UUID id) {
+        BookingEntity bookingEntityToDelete = findBookingInDatabase(id);
         bookingRepository.deleteById(id);
-        return bookingToDelete;
+        return bookingEntityToDelete;
     }
 
-    public Booking findBookingInDatabase(UUID id) {
+    public BookingEntity findBookingInDatabase(UUID id) {
         return bookingRepository.findById(id).orElseThrow(() ->
                 new BookingNotFoundException("Could not find project with id: " + id));
     }
 
     public BookingDto updateBooking(UUID id, Map<Object, Object> fields) {
-        Booking booking = findBookingInDatabase(id);
+        BookingEntity bookingEntity = findBookingInDatabase(id);
         fields.forEach((key, value) -> {
-            Field field = ReflectionUtils.findField(Booking.class, (String) key);
+            Field field = ReflectionUtils.findField(BookingEntity.class, (String) key);
             if (field == null) {
                 throw new FieldDoesNotExistException("Field " + key + " does not exist");
             }
             field.setAccessible(true);
-            ReflectionUtils.setField(field, booking, value);
+            ReflectionUtils.setField(field, bookingEntity, value);
         });
-        bookingRepository.save(booking);
-        return BookingConverter.convertToBookingDto(booking);
+        bookingRepository.save(bookingEntity);
+        return BookingConverter.convertToBookingDto(bookingEntity);
     }
 
     private Boolean isApartmentOccupied(BookingDto bookingDto) {
 
-        List<Booking> occupiedApartments = bookingRepository.findAllByApartmentEqualsAndCheckInDateIsBetweenOrCheckOutDateIsBetween(
+        List<BookingEntity> occupiedApartments = bookingRepository.findAllByApartmentEqualsAndCheckInDateIsBetweenOrCheckOutDateIsBetween(
                 apartmentService.findApartmentInDatabase(bookingDto.getApartmentId()),
                 bookingDto.getCheckInDate(),
                 bookingDto.getCheckOutDate());
 
-        List<Booking> occupiedApartmentsV2 = bookingRepository.findAllByApartmentEqualsAndAndCheckInDateIsBeforeAndAndCheckOutDateIsAfter(
+        List<BookingEntity> occupiedApartmentsV2 = bookingRepository.findAllByApartmentEqualsAndAndCheckInDateIsBeforeAndAndCheckOutDateIsAfter(
                 apartmentService.findApartmentInDatabase(bookingDto.getApartmentId()),
                 bookingDto.getCheckInDate(),
                 bookingDto.getCheckOutDate());
@@ -98,9 +98,9 @@ public class BookingService {
     }
 
     private int priceForBooking(LocalDate checkInDate, LocalDate checkOutDate, UUID apartmentId) {
-        Apartment apartmentInDatabase = apartmentService.findApartmentInDatabase(apartmentId);
+        ApartmentEntity apartmentEntityInDatabase = apartmentService.findApartmentInDatabase(apartmentId);
 
         int days = checkInDate.until(checkOutDate).getDays();
-        return days * apartmentInDatabase.getPriceForOneDay();
+        return days * apartmentEntityInDatabase.getPriceForOneDay();
     }
 }

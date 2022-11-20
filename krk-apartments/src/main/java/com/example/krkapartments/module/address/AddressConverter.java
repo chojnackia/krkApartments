@@ -1,22 +1,22 @@
 package com.example.krkapartments.module.address;
 
 public class AddressConverter {
-    public static AddressDto convertToAddressDto(Address address) {
-        if (address == null) return null;
+    public static AddressDto convertToAddressDto(AddressEntity addressEntity) {
+        if (addressEntity == null) return null;
         return AddressDto.builder()
-                .id(address.getId())
-                .city(address.getCity())
-                .streetName(address.getStreetName())
-                .buildingNumber(address.getBuildingNumber())
-                .apartmentNumber(address.getApartmentNumber())
-                .postCode(address.getPostCode())
-                .country(address.getCountry())
+                .id(addressEntity.getId())
+                .city(addressEntity.getCity())
+                .streetName(addressEntity.getStreetName())
+                .buildingNumber(addressEntity.getBuildingNumber())
+                .apartmentNumber(addressEntity.getApartmentNumber())
+                .postCode(addressEntity.getPostCode())
+                .country(addressEntity.getCountry())
                 .build();
     }
 
-    public static Address convertDtoToAddress(AddressDto addressDto) {
+    public static AddressEntity convertDtoToAddress(AddressDto addressDto) {
         if (addressDto == null) return null;
-        return Address.builder()
+        return AddressEntity.builder()
                 .id(addressDto.getId())
                 .city(addressDto.getCity())
                 .streetName(addressDto.getStreetName())

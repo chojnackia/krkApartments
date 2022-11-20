@@ -47,24 +47,24 @@ public class AdminService {
     }
 
     public List<AdminDto> getAdminList() {
-        List<Admin> adminList = adminRepository.findAll();
-        return AdminConverter.entityToDto(adminList);
+        List<AdminEntity> adminEntityList = adminRepository.findAll();
+        return AdminConverter.entityToDto(adminEntityList);
     }
 
-    public AdminDto registerNewAdminAccount(AdminRegistrationDto adminRegistrationDto) {
-        validateEmail(adminRegistrationDto.getEmail());
-        validatePassword(adminRegistrationDto.getPassword());
+    public AdminDto registerNewAdminAccount(AdminRegistrationCommand adminRegistrationCommand) {
+        validateEmail(adminRegistrationCommand.getEmail());
+        validatePassword(adminRegistrationCommand.getPassword());
 
-        Admin admin = Admin.builder()
+        AdminEntity adminEntity = AdminEntity.builder()
                 .id(UUID.randomUUID())
-                .firstName(adminRegistrationDto.getFirstName())
-                .lastName(adminRegistrationDto.getLastName())
+                .firstName(adminRegistrationCommand.getFirstName())
+                .lastName(adminRegistrationCommand.getLastName())
                 .active(true)
-                .password(passwordEncoder.encode(adminRegistrationDto.getPassword()))
+                .password(passwordEncoder.encode(adminRegistrationCommand.getPassword()))
                 .role(UserRole.ROLE_ADMIN)
-                .email(adminRegistrationDto.getEmail())
+                .email(adminRegistrationCommand.getEmail())
                 .build();
-        return AdminConverter.convertToAdminDto(adminRepository.save(admin));
+        return AdminConverter.convertToAdminDto(adminRepository.save(adminEntity));
     }
 
 

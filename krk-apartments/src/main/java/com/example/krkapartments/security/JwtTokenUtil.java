@@ -1,6 +1,6 @@
 package com.example.krkapartments.security;
 
-import com.example.krkapartments.module.admin.Admin;
+import com.example.krkapartments.module.admin.AdminEntity;
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,9 +22,9 @@ public class JwtTokenUtil {
     private final String jwtIssuer = "${jwtIssuer}";
 
 
-    public String generateAccessToken(Admin admin) {
+    public String generateAccessToken(AdminEntity adminEntity) {
         return Jwts.builder()
-                .setSubject(format("%s,%s", admin.getId(), admin.getUsername()))
+                .setSubject(format("%s,%s", adminEntity.getId(), adminEntity.getUsername()))
                 .setIssuer(jwtIssuer)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + 7 * 24 * 60 * 60 * 1000)) // 1 week

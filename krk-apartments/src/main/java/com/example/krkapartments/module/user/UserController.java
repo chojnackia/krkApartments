@@ -15,7 +15,7 @@ public class UserController {
 
     @PostMapping("/")
     public UserDto addUser(@Valid @RequestBody UserDto userDto) {
-        User user = userService.addUser(userDto);
-        return UserConverter.convertUserToDto(user);
+        UserEntity userEntity = userService.addUser(userDto);
+        return UserConverter.convertUserToDto(userEntity);
     }
 }

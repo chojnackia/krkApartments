@@ -20,62 +20,62 @@ public class ApartmentService {
     private final ApartmentRepository apartmentRepository;
 
     public List<ApartmentDto> findAllActiveApartments() {
-        List<Apartment> apartmentList = apartmentRepository.findAllByActive(true);
-        return apartmentList.stream()
+        List<ApartmentEntity> apartmentEntityList = apartmentRepository.findAllByActive(true);
+        return apartmentEntityList.stream()
                 .map(ApartmentConverter::convertApartmentToDto)
                 .collect(Collectors.toList());
     }
 
-    public Apartment addApartment(ApartmentDto apartmentDto) {
-        Apartment apartment = ApartmentConverter.convertDtoToApartment(apartmentDto);
-        apartment.setId(UUID.randomUUID());
-        apartment.setActive(true);
-        Optional<Apartment> occurrences = apartmentRepository
-                .findByApartmentNameIgnoreCase(apartment.getApartmentName());
+    public ApartmentEntity addApartment(ApartmentDto apartmentDto) {
+        ApartmentEntity apartmentEntity = ApartmentConverter.convertDtoToApartment(apartmentDto);
+        apartmentEntity.setId(UUID.randomUUID());
+        apartmentEntity.setActive(true);
+        Optional<ApartmentEntity> occurrences = apartmentRepository
+                .findByApartmentNameIgnoreCase(apartmentEntity.getApartmentName());
         if (occurrences.isEmpty()) {
-            apartmentRepository.save(apartment);
-            return apartment;
+            apartmentRepository.save(apartmentEntity);
+            return apartmentEntity;
         }
         return occurrences.get();
     }
 
-    public Apartment findApartmentInDatabase(UUID id) {
+    public ApartmentEntity findApartmentInDatabase(UUID id) {
         return apartmentRepository.findById(id).orElseThrow(() ->
                 new ApartmentNotFoundException("Could not find apartment with id: " + id));
 
     }
 
     public ApartmentDto findById(UUID id) {
-        Apartment apartment = findApartmentInDatabase(id);
-        return ApartmentConverter.convertApartmentToDto(apartment);
+        ApartmentEntity apartmentEntity = findApartmentInDatabase(id);
+        return ApartmentConverter.convertApartmentToDto(apartmentEntity);
     }
 
 
     public ApartmentDto updateApartment(UUID id, Map<Object, Object> fields) {
-        Apartment apartment = findApartmentInDatabase(id);
+        ApartmentEntity apartmentEntity = findApartmentInDatabase(id);
         fields.forEach((key, value) -> {
-            Field field = ReflectionUtils.findField(Apartment.class, (String) key);
+            Field field = ReflectionUtils.findField(ApartmentEntity.class, (String) key);
             if (field == null) {
                 throw new FieldDoesNotExistException("Field " + key + " does not exist");
             }
             field.setAccessible(true);
-            ReflectionUtils.setField(field, apartment, value);
+            ReflectionUtils.setField(field, apartmentEntity, value);
         });
-        apartmentRepository.save(apartment);
-        return ApartmentConverter.convertApartmentToDto(apartment);
+        apartmentRepository.save(apartmentEntity);
+        return ApartmentConverter.convertApartmentToDto(apartmentEntity);
     }
 
 
     public ApartmentDto deactivateApartment(UUID id) {
-        Apartment apartment = findApartmentInDatabase(id);
-        apartment.setActive(false);
-        apartmentRepository.save(apartment);
-        return ApartmentConverter.convertApartmentToDto(apartment);
+        ApartmentEntity apartmentEntity = findApartmentInDatabase(id);
+        apartmentEntity.setActive(false);
+        apartmentRepository.save(apartmentEntity);
+        return ApartmentConverter.convertApartmentToDto(apartmentEntity);
     }
 
     public List<ApartmentDto> findAll() {
-        List<Apartment> apartments = apartmentRepository.findAll();
-        return apartments.stream()
+        List<ApartmentEntity> apartmentEntities = apartmentRepository.findAll();
+        return apartmentEntities.stream()
                 .map(ApartmentConverter::convertApartmentToDto)
                 .collect(Collectors.toList());
     }

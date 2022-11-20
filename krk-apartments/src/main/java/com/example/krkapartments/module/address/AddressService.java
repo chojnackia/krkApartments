@@ -2,7 +2,9 @@ package com.example.krkapartments.module.address;
 
 import com.example.krkapartments.exception.AddressNotFoundException;
 import com.example.krkapartments.exception.FieldDoesNotExistException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
@@ -13,55 +15,54 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class AddressService {
     private final AddressRepository addressRepository;
+    private final AddressMapper addressMapper;
 
-    public AddressService(AddressRepository addressRepository) {
-        this.addressRepository = addressRepository;
-    }
-
-    public List<AddressDto> findAll() {
-        List<Address> addresses = addressRepository.findAll();
-        return addresses.stream()
-                .map(AddressConverter::convertToAddressDto)
+    @Transactional(readOnly = true)
+    public List<Address> findAll() {
+        return addressRepository.findAll()
+                .stream()
+                .map(addressMapper::mapFromEntityToDomain)
                 .collect(Collectors.toList());
     }
 
-    public Address addAddress(AddressDto addressDto) {
-        Address address = AddressConverter.convertDtoToAddress(addressDto);
-        address.setId(UUID.randomUUID());
-        Optional<Address> occurrences = addressRepository
-                .findByCityAndStreetNameAndBuildingNumberAndApartmentNumber(address.getCity(),
-                        address.getStreetName(), address.getBuildingNumber(), address.getApartmentNumber());
-        if (occurrences.isEmpty()) {
-            addressRepository.save(address);
-            return address;
-        }
-        return occurrences.get();
+    @Transactional
+    public Optional<Address> save(Address address) {
+        return Optional.ofNullable(address)
+                .map(addressMapper::mapFromDomainToEntity)
+                .map(addressRepository::save)
+                .map(addressMapper::mapFromEntityToDomain);
     }
 
-    public AddressDto findById(UUID id) {
-        Address address = findAddressInDatabase(id);
-        return AddressConverter.convertToAddressDto(address);
+    @Transactional
+    public Optional<Address> createAddress(Address address) {
+        return this.save(address);
     }
 
-    public Address findAddressInDatabase(UUID id) {
-        return addressRepository.findById(id).orElseThrow(() ->
-                new AddressNotFoundException("Could not find address with id: " + id));
+    public Optional<Address> findById(UUID id) {
+        return addressRepository.findById(id)
+                .map(addressMapper::mapFromEntityToDomain);
+    }
+
+    public AddressEntity findAddressInDatabase(UUID id) {
+        return addressRepository.findById(id)
+                .orElseThrow(AddressNotFoundException::new);
     }
 
     public AddressDto updateAddress(UUID id, Map<Object, Object> fields) {
-        Address address = findAddressInDatabase(id);
+        AddressEntity addressEntity = findAddressInDatabase(id);
         fields.forEach((key, value) -> {
-            Field field = ReflectionUtils.findField(Address.class, (String) key);
+            Field field = ReflectionUtils.findField(AddressEntity.class, (String) key);
             if (field == null) {
                 throw new FieldDoesNotExistException("Field " + key + " does not exist");
             }
             field.setAccessible(true);
-            ReflectionUtils.setField(field, address, value);
+            ReflectionUtils.setField(field, addressEntity, value);
         });
-        addressRepository.save(address);
-        return AddressConverter.convertToAddressDto(address);
+        addressRepository.save(addressEntity);
+        return AddressConverter.convertToAddressDto(addressEntity);
     }
 
 

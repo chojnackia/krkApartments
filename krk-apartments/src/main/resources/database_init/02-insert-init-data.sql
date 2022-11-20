@@ -7,10 +7,10 @@ VALUES ('01234567890123456789012345678912', 'Kraków', '61-292', 'Polska', 'Teli
 
 INSERT INTO APARTMENTS(ID, APARTMENT_NAME, PRICE_FOR_ONE_DAY, APARTMENT_DESCRIPTION, ACTIVE, BOOKING_URL, ADDRESS_ID)
 VALUES ('1ae88fa038b011ec8d3d0242ac130004', 'Piękny', '300', 'Lepszego nie znajdziesz', true,
-        'https://admin.booking.com/hotel/hoteladmin/ical.html?t=d78b4a40-59d8-40c7-8da3-1dc83b7dcca3',
+        'https://adminEntity.bookingEntity.com/hotel/hoteladmin/ical.html?t=d78b4a40-59d8-40c7-8da3-1dc83b7dcca3',
         '01234567890123456789012345678912')
      , ('1ae88fa038b011ec8d3d0242ac130003', 'Drugi', '500', ' Fachurka', true,
-        'https://admin.booking.com/hotel/hoteladmin/ical.html?t=4d10d9fa-6694-495a-bfd7-2d01a212abc9',
+        'https://adminEntity.bookingEntity.com/hotel/hoteladmin/ical.html?t=4d10d9fa-6694-495a-bfd7-2d01a212abc9',
         '01234567890123456789012345678913');
 INSERT INTO ADMINS (UUID, ACTIVE, EMAIL, FIRST_NAME, LAST_NAME, PASSWORD, ROLE)
 VALUES ('1ae88fa038b011ec8d3d0242ac130003', true, 'wojciech.mann@gft.com', 'Wojciech', 'Mann',

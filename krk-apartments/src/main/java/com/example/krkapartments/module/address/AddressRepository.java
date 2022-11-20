@@ -6,15 +6,15 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface AddressRepository extends JpaRepository<Address, UUID> {
+public interface AddressRepository extends JpaRepository<AddressEntity, UUID> {
 
-    Optional<Address> findByCityAndStreetNameAndBuildingNumberAndApartmentNumber(String city, String streetName, int buildingNumber, int apartmentNumber);
+    Optional<AddressEntity> findByCityAndStreetNameAndBuildingNumberAndApartmentNumber(String city, String streetName, int buildingNumber, int apartmentNumber);
 
-    Optional<Address> findByCity(String city);
+    Optional<AddressEntity> findByCity(String city);
 
-    @Query("SELECT a FROM Address a WHERE lower(a.city) = lower(?1) AND lower(a.postCode) = lower(?2) AND lower(a.country) = lower(?3)")
-    Optional<Address> findByCityAndPostCodeAndCountry(String city, String postcode, String country);
+    @Query("SELECT a FROM AddressEntity a WHERE lower(a.city) = lower(?1) AND lower(a.postCode) = lower(?2) AND lower(a.country) = lower(?3)")
+    Optional<AddressEntity> findByCityAndPostCodeAndCountry(String city, String postcode, String country);
 
-    Optional<Address> findByStreetNameAndBuildingNumberAndApartmentNumberAndCityAndCountry(String streetName, int buildingNumber, int apartmentNumber, String city, String country);
+    Optional<AddressEntity> findByStreetNameAndBuildingNumberAndApartmentNumberAndCityAndCountry(String streetName, int buildingNumber, int apartmentNumber, String city, String country);
 
 }

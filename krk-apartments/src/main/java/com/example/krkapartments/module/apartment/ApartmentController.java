@@ -16,7 +16,7 @@ public class ApartmentController {
 
     private final ApartmentService apartmentService;
 
-    @GetMapping("/")
+    @GetMapping
     public List<ApartmentDto> getApartmentsList() {
         return apartmentService.findAllActiveApartments();
     }
@@ -26,10 +26,10 @@ public class ApartmentController {
         return apartmentService.findById(id);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ApartmentDto addApartment(@Valid @RequestBody ApartmentDto apartmentDto) {
-        Apartment apartment = apartmentService.addApartment(apartmentDto);
-        return ApartmentConverter.convertApartmentToDto(apartment);
+        ApartmentEntity apartmentEntity = apartmentService.addApartment(apartmentDto);
+        return ApartmentConverter.convertApartmentToDto(apartmentEntity);
     }
 
     @PatchMapping("/{id}")

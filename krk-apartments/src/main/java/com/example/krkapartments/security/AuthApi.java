@@ -31,19 +31,19 @@ public class AuthApi {
                                     request.getUsername(), request.getPassword()
                             )
                     );
-            Admin admin = (Admin) authentication.getPrincipal();
+            AdminEntity adminEntity = (AdminEntity) authentication.getPrincipal();
 
             return ResponseEntity.ok()
-                    .header(HttpHeaders.AUTHORIZATION, "Bearer " + jwtTokenUtil.generateAccessToken(admin))
-                    .body(AdminConverter.convertToAdminDto(admin));
+                    .header(HttpHeaders.AUTHORIZATION, "Bearer " + jwtTokenUtil.generateAccessToken(adminEntity))
+                    .body(AdminConverter.convertToAdminDto(adminEntity));
         } catch (BadCredentialsException ex) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
 
     @PostMapping("/register")
-    public AdminDto registerNewAdminAccount(@RequestBody AdminRegistrationDto adminRegistrationDto) {
-        return adminService.registerNewAdminAccount(adminRegistrationDto);
+    public AdminDto registerNewAdminAccount(@RequestBody AdminRegistrationCommand adminRegistrationCommand) {
+        return adminService.registerNewAdminAccount(adminRegistrationCommand);
     }
 
 

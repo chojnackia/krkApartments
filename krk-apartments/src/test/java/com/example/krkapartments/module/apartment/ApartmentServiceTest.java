@@ -3,9 +3,9 @@ package com.example.krkapartments.module.apartment;
 import com.example.krkapartments.exception.ApartmentNotFoundException;
 import com.example.krkapartments.exception.FieldDoesNotExistException;
 import com.example.krkapartments.generator.ObjectGenerator;
-import com.example.krkapartments.module.address.Address;
-import com.example.krkapartments.module.booking.Booking;
-import com.example.krkapartments.module.user.User;
+import com.example.krkapartments.module.address.AddressEntity;
+import com.example.krkapartments.module.booking.BookingEntity;
+import com.example.krkapartments.module.user.UserEntity;
 import com.example.krkapartments.module.user.UserDto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,8 +34,8 @@ class ApartmentServiceTest {
         apartmentService = new ApartmentService(apartmentRepository);
     }
 
-    private List<ApartmentDto> convertApartmentToDtoList(List<Apartment> apartments) {
-        return apartments.stream()
+    private List<ApartmentDto> convertApartmentToDtoList(List<ApartmentEntity> apartmentEntities) {
+        return apartmentEntities.stream()
                 .map(ApartmentConverter::convertApartmentToDto)
                 .collect(Collectors.toList());
     }
@@ -43,11 +43,11 @@ class ApartmentServiceTest {
     @Test
     void shouldFindApartmentByIdAndReturnApartmentDto() {
         //given
-        List<Apartment> apartments = generator.getApartmentList();
+        List<ApartmentEntity> apartmentEntities = generator.getApartmentEntityList();
 
-        Apartment apartment = apartments.get(3);
-        UUID id = apartment.getId();
-        Optional<Apartment> searchedApartment = Optional.of(apartment);
+        ApartmentEntity apartmentEntity = apartmentEntities.get(3);
+        UUID id = apartmentEntity.getId();
+        Optional<ApartmentEntity> searchedApartment = Optional.of(apartmentEntity);
 
         List<ApartmentDto> apartmentDto = generator.getApartmentDtos();
         ApartmentDto expectedApartmentDto = apartmentDto.get(3);
@@ -56,7 +56,7 @@ class ApartmentServiceTest {
 
         //when
         ApartmentDto apartmentDtoById = apartmentService.findById(id);
-        expectedApartmentDto.setBookings(apartmentDtoById.getBookings());
+        expectedApartmentDto.setBookingEntities(apartmentDtoById.getBookingEntities());
 
         //then
         assertThat(apartmentDtoById).isEqualTo(expectedApartmentDto);
@@ -75,10 +75,10 @@ class ApartmentServiceTest {
     @Test
     void shouldFindAllApartmentsAndReturnApartmentsDtoList() {
 
-        List<Apartment> apartments = generator.getApartmentList();
-        List<ApartmentDto> expectedAllApartmentsDtoList = convertApartmentToDtoList(apartments);
+        List<ApartmentEntity> apartmentEntities = generator.getApartmentEntityList();
+        List<ApartmentDto> expectedAllApartmentsDtoList = convertApartmentToDtoList(apartmentEntities);
 
-        Mockito.when(apartmentRepository.findAll()).thenReturn(apartments);
+        Mockito.when(apartmentRepository.findAll()).thenReturn(apartmentEntities);
         List<ApartmentDto> allApartmentsDtoList = apartmentService.findAll();
 
         assertThat(allApartmentsDtoList).isEqualTo(expectedAllApartmentsDtoList);
@@ -88,48 +88,48 @@ class ApartmentServiceTest {
     void shouldAddApartmentToDatabase() {
 
         ApartmentDto apartmentDto = generator.getApartmentDtos().get(0);
-        Apartment expectedApartment = generator.getApartmentList().get(0);
+        ApartmentEntity expectedApartmentEntity = generator.getApartmentEntityList().get(0);
 
-        Mockito.when(apartmentService.addApartment(apartmentDto)).thenReturn(expectedApartment);
+        Mockito.when(apartmentService.addApartment(apartmentDto)).thenReturn(expectedApartmentEntity);
 
-        Apartment addedApartment = apartmentService.addApartment(apartmentDto);
-        expectedApartment.setId(addedApartment.getId());
-        addedApartment.setBookings(expectedApartment.getBookings());
+        ApartmentEntity addedApartmentEntity = apartmentService.addApartment(apartmentDto);
+        expectedApartmentEntity.setId(addedApartmentEntity.getId());
+        addedApartmentEntity.setBookings(expectedApartmentEntity.getBookings());
 
-        assertThat(addedApartment).isEqualTo(expectedApartment);
+        assertThat(addedApartmentEntity).isEqualTo(expectedApartmentEntity);
     }
 
     @Test
     void shouldFindApartmentInDatabase() {
 
         ApartmentDto apartmentDto = generator.getApartmentDtos().get(0);
-        Apartment expectedApartment = generator.getApartmentList().get(0);
+        ApartmentEntity expectedApartmentEntity = generator.getApartmentEntityList().get(0);
 
-        Mockito.when(apartmentService.addApartment(apartmentDto)).thenReturn(expectedApartment);
+        Mockito.when(apartmentService.addApartment(apartmentDto)).thenReturn(expectedApartmentEntity);
 
-        Apartment addedApartment = apartmentService.addApartment(apartmentDto);
-        expectedApartment.setId(addedApartment.getId());
-        expectedApartment.setBookings(addedApartment.getBookings());
+        ApartmentEntity addedApartmentEntity = apartmentService.addApartment(apartmentDto);
+        expectedApartmentEntity.setId(addedApartmentEntity.getId());
+        expectedApartmentEntity.setBookings(addedApartmentEntity.getBookings());
 
-        assertThat(addedApartment).isEqualTo(expectedApartment);
+        assertThat(addedApartmentEntity).isEqualTo(expectedApartmentEntity);
     }
 
     @Test
     void findAllActiveApartments() {
 
-        List<Apartment> apartments = generator.getApartmentList();
-        List<Address> addresses = generator.getAddressList();
-        List<Booking> bookings = generator.getBookingList();
-        List<User> users = generator.getUserList();
+        List<ApartmentEntity> apartmentEntities = generator.getApartmentEntityList();
+        List<AddressEntity> addressEntities = generator.getAddressEntityList();
+        List<BookingEntity> bookingEntities = generator.getBookingEntityList();
+        List<UserEntity> userEntities = generator.getUserEntityList();
         List<UserDto> usersDto = generator.getUserDtoList();
-        generator.generateDependencies(apartments, addresses, bookings, users);
+        generator.generateDependencies(apartmentEntities, addressEntities, bookingEntities, userEntities);
 
-        List<Apartment> activeApartments = apartments.stream()
-                .filter(Apartment::isActive)
+        List<ApartmentEntity> activeApartmentEntities = apartmentEntities.stream()
+                .filter(ApartmentEntity::isActive)
                 .collect(Collectors.toList());
-        List<ApartmentDto> activeApartmentsDto = convertApartmentToDtoList(activeApartments);
+        List<ApartmentDto> activeApartmentsDto = convertApartmentToDtoList(activeApartmentEntities);
 
-        Mockito.when(apartmentRepository.findAllByActive(true)).thenReturn(activeApartments);
+        Mockito.when(apartmentRepository.findAllByActive(true)).thenReturn(activeApartmentEntities);
         List<ApartmentDto> allActiveApartments = apartmentService.findAllActiveApartments();
 
         assertThat(allActiveApartments).isEqualTo(activeApartmentsDto);
@@ -143,10 +143,10 @@ class ApartmentServiceTest {
         expectedApartmentDto.setPriceForOneDay(500);
         expectedApartmentDto.setApartmentDescription("UpdatedDescription");
         expectedApartmentDto.setActive(true);
-        expectedApartmentDto.setBookings(null);
-        expectedApartmentDto.setAddress(null);
+        expectedApartmentDto.setBookingEntities(null);
+        expectedApartmentDto.setAddressEntity(null);
         UUID id = expectedApartmentDto.getId();
-        Optional<Apartment> apartment = Optional.of(generator.getApartmentList().get(0));
+        Optional<ApartmentEntity> apartment = Optional.of(generator.getApartmentEntityList().get(0));
 
         Mockito.when(apartmentRepository.findById(id)).thenReturn(apartment);
         Map<Object, Object> changesMap = new HashMap<>();
@@ -178,7 +178,7 @@ class ApartmentServiceTest {
         ApartmentDto expectedApartmentDto = generator.getApartmentDtos().get(0);
         UUID id = expectedApartmentDto.getId();
         UUID updatedId = UUID.fromString("1715c6ec-7939-4f9b-b0ad-6c6a11111111");
-        Optional<Apartment> apartment = Optional.ofNullable(generator.getApartmentList().get(0));
+        Optional<ApartmentEntity> apartment = Optional.ofNullable(generator.getApartmentEntityList().get(0));
 
         Mockito.when(apartmentRepository.findById(id)).thenReturn(apartment);
         Map<Object, Object> changesMap = new HashMap<>();
@@ -193,29 +193,29 @@ class ApartmentServiceTest {
     @Test
     void shouldDeactivateApartment() {
 
-        Apartment apartment = generator.getApartmentList().get(0);
-        UUID id = apartment.getId();
+        ApartmentEntity apartmentEntity = generator.getApartmentEntityList().get(0);
+        UUID id = apartmentEntity.getId();
 
-        Mockito.when(apartmentRepository.findById(id)).thenReturn(Optional.of(apartment));
-        Mockito.when(apartmentRepository.save(apartment)).thenReturn(apartment);
+        Mockito.when(apartmentRepository.findById(id)).thenReturn(Optional.of(apartmentEntity));
+        Mockito.when(apartmentRepository.save(apartmentEntity)).thenReturn(apartmentEntity);
 
         apartmentService.deactivateApartment(id);
 
-        assertThat(apartment.isActive()).isFalse();
+        assertThat(apartmentEntity.isActive()).isFalse();
     }
 
     @Test
     void shouldReturnApartmentWhenAddedApartmentExistingInDatabase() {
 
         ApartmentDto apartmentDto = generator.getApartmentDtos().get(0);
-        Apartment expectedApartment = generator.getApartmentList().get(0);
-        Optional<Apartment> optionalApartment = Optional.of(expectedApartment);
+        ApartmentEntity expectedApartmentEntity = generator.getApartmentEntityList().get(0);
+        Optional<ApartmentEntity> optionalApartment = Optional.of(expectedApartmentEntity);
 
         Mockito.when(apartmentRepository.findByApartmentName(apartmentDto.getApartmentName())).thenReturn(optionalApartment);
-        Apartment addedApartment = apartmentService.addApartment(apartmentDto);
-        addedApartment.setId(expectedApartment.getId());
+        ApartmentEntity addedApartmentEntity = apartmentService.addApartment(apartmentDto);
+        addedApartmentEntity.setId(expectedApartmentEntity.getId());
 
-        assertThat(expectedApartment).isEqualTo(addedApartment);
+        assertThat(expectedApartmentEntity).isEqualTo(addedApartmentEntity);
     }
 
 }

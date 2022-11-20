@@ -1,6 +1,6 @@
 package com.example.krkapartments.generator;
 
-import com.example.krkapartments.module.user.User;
+import com.example.krkapartments.module.user.UserEntity;
 import com.example.krkapartments.module.user.UserDto;
 import com.example.krkapartments.util.DateTimeProvider;
 
@@ -15,10 +15,10 @@ public class UserGenerator {
     private static final UUID id2 = UUID.randomUUID();
     private static final LocalDate now = DateTimeProvider.getLocalDateToday();
 
-    static List<User> generateUserList() {
-        List<User> users = new ArrayList<>();
+    static List<UserEntity> generateUserList() {
+        List<UserEntity> userEntities = new ArrayList<>();
 
-        User user1 = User.builder()
+        UserEntity userEntity1 = UserEntity.builder()
                 .id(id1)
                 .firstName("Adam")
                 .lastName("Chojnacki")
@@ -26,7 +26,7 @@ public class UserGenerator {
                 .telephoneNumber("987654321")
                 .build();
 
-        User user2 = User.builder()
+        UserEntity userEntity2 = UserEntity.builder()
                 .id(id2)
                 .firstName("Eryk")
                 .lastName("Mikuła")
@@ -34,10 +34,10 @@ public class UserGenerator {
                 .telephoneNumber("123456789")
                 .build();
 
-        users.add(user1);
-        users.add(user2);
+        userEntities.add(userEntity1);
+        userEntities.add(userEntity2);
 
-        return users;
+        return userEntities;
     }
 
     static List<UserDto> generateUserDtoList() {

@@ -1,7 +1,7 @@
 package com.example.krkapartments.module.apartment;
 
-import com.example.krkapartments.module.address.Address;
-import com.example.krkapartments.module.booking.Booking;
+import com.example.krkapartments.module.address.AddressEntity;
+import com.example.krkapartments.module.booking.BookingEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,6 +21,6 @@ public class ApartmentDto {
     private String apartmentDescription;
     private String bookingUrl;
     private boolean active;
-    private List<Booking> bookings;
-    private Address address;
+    private List<BookingEntity> bookingEntities;
+    private AddressEntity addressEntity;
 }

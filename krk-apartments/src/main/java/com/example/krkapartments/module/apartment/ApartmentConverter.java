@@ -8,42 +8,42 @@ import java.util.stream.Collectors;
 @Service
 public class ApartmentConverter {
 
-    public static ApartmentDto convertApartmentToDto(Apartment apartment) {
-        if (apartment == null) return null;
+    public static ApartmentDto convertApartmentToDto(ApartmentEntity apartmentEntity) {
+        if (apartmentEntity == null) return null;
         return ApartmentDto.builder()
-                .id(apartment.getId())
-                .apartmentName(apartment.getApartmentName())
-                .priceForOneDay(apartment.getPriceForOneDay())
-                .apartmentDescription(apartment.getApartmentDescription())
-                .active(apartment.isActive())
-                .bookingUrl(apartment.getBookingUrl())
-                .bookings(apartment.getBookings())
-                .address(apartment.getAddress())
+                .id(apartmentEntity.getId())
+                .apartmentName(apartmentEntity.getApartmentName())
+                .priceForOneDay(apartmentEntity.getPriceForOneDay())
+                .apartmentDescription(apartmentEntity.getApartmentDescription())
+                .active(apartmentEntity.isActive())
+                .bookingUrl(apartmentEntity.getBookingUrl())
+                .bookingEntities(apartmentEntity.getBookings())
+                .addressEntity(apartmentEntity.getAddress())
                 .build();
     }
 
 
-    public static Apartment convertDtoToApartment(ApartmentDto apartmentDto) {
+    public static ApartmentEntity convertDtoToApartment(ApartmentDto apartmentDto) {
         if (apartmentDto == null) return null;
-        return Apartment.builder()
+        return ApartmentEntity.builder()
                 .id(apartmentDto.getId())
                 .apartmentName(apartmentDto.getApartmentName())
                 .priceForOneDay(apartmentDto.getPriceForOneDay())
                 .apartmentDescription(apartmentDto.getApartmentDescription())
                 .active(apartmentDto.isActive())
                 .bookingUrl(apartmentDto.getBookingUrl())
-                .bookings(apartmentDto.getBookings())
-                .address(apartmentDto.getAddress())
+                .bookingEntities(apartmentDto.getBookingEntities())
+                .addressEntity(apartmentDto.getAddressEntity())
                 .build();
     }
 
-    public static List<ApartmentDto> convertApartmentListToDtoList(List<Apartment> apartments) {
-        return apartments.stream()
+    public static List<ApartmentDto> convertApartmentListToDtoList(List<ApartmentEntity> apartmentEntities) {
+        return apartmentEntities.stream()
                 .map(ApartmentConverter::convertApartmentToDto)
                 .collect(Collectors.toList());
     }
 
-    public static List<Apartment> convertDtoListToApartmentList(List<ApartmentDto> apartmentDtos) {
+    public static List<ApartmentEntity> convertDtoListToApartmentList(List<ApartmentDto> apartmentDtos) {
         return apartmentDtos.stream()
                 .map(ApartmentConverter::convertDtoToApartment)
                 .collect(Collectors.toList());

@@ -5,52 +5,90 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e19916ad-5202-4905-96ea-86774afc3068" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_core_5_5_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_core_5_6_0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mapstruct_mapstruct_1_5_3_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/exception/AddressCreationException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/address/AddressCreateCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/address/AddressEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/address/AddressMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/admin/AdminEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/admin/AdminMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/apartment/ApartmentEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/apartment/ApartmentMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/booking/BookingEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/booking/BookingMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/user/UserEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/user/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1839b203-f475-4fc6-9237-b7db5ca8b44c.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1839b203-f475-4fc6-9237-b7db5ca8b44c/storage_v2/_src_/database/krkapartments.ZaI0fg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1839b203-f475-4fc6-9237-b7db5ca8b44c/storage_v2/_src_/database/krkapartments.ZaI0fg/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1839b203-f475-4fc6-9237-b7db5ca8b44c/storage_v2/_src_/database/krkapartments.ZaI0fg/schema/information_schema.FNRwLQ.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1839b203-f475-4fc6-9237-b7db5ca8b44c/storage_v2/_src_/database/krkapartments.ZaI0fg/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1839b203-f475-4fc6-9237-b7db5ca8b44c/storage_v2/_src_/database/krkapartments.ZaI0fg/schema/pg_catalog.0S1ZNQ.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1839b203-f475-4fc6-9237-b7db5ca8b44c/storage_v2/_src_/database/krkapartments.ZaI0fg/schema/public.abK9xQ.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/export.ics" beforeDir="false" afterPath="$PROJECT_DIR$/export.ics" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/mvnw.cmd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/krk-apartments/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/configuration/RestTemplateConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/consumer/RestConsumer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/consumer/RestConsumerImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/exception/AddressNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/exception/AddressNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/address/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/address/Address.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/address/AddressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/address/AddressController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/address/AddressConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/address/AddressConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/address/AddressRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/address/AddressRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/address/AddressService.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/address/AddressService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/admin/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/admin/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/admin/AdminConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/admin/AdminConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/admin/AdminRegistrationDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/admin/AdminRegistrationCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/admin/AdminRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/admin/AdminRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/admin/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/admin/AdminService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/apartment/Apartment.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/apartment/Apartment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/apartment/ApartmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/apartment/ApartmentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/apartment/ApartmentConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/apartment/ApartmentConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/apartment/ApartmentDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/apartment/ApartmentDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/apartment/ApartmentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/apartment/ApartmentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/apartment/ApartmentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/apartment/ApartmentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/booking/Booking.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/booking/Booking.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/booking/BookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/booking/BookingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/booking/BookingConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/booking/BookingConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/booking/BookingDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/booking/BookingDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/booking/BookingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/booking/BookingRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/booking/BookingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/booking/BookingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/calendar/CalendarService.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/calendar/CalendarService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/user/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/user/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/user/UserConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/user/UserConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/user/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/user/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/module/user/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/security/AuthApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/security/AuthApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/security/JwtTokenFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/security/JwtTokenFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/security/JwtTokenUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/security/JwtTokenUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/resources/database_init/01-schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/resources/database_init/01-schema.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/resources/database_init/02-insert-init-data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/resources/database_init/02-insert-init-data.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/resources/liquibase-changeLog.xml" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/resources/liquibase-changeLog.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/configuration/ApplicationConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/przelewy24/configuration/ApplicationConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/configuration/RestTemplateConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/consumer/RestConsumer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/consumer/RestConsumerImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/controller/ClientTransactionRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/przelewy24/controller/ClientTransactionRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/controller/ClientTransactionResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/przelewy24/controller/ClientTransactionResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/controller/PaymentApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/przelewy24/controller/PaymentApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/data/entity/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/przelewy24/data/entity/Transaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/data/enums/TransactionStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/przelewy24/data/enums/TransactionStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/repository/TransactionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/przelewy24/repository/TransactionRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/service/PaymentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/przelewy24/service/PaymentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/service/request/RegisterTransactionRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/przelewy24/service/request/RegisterTransactionRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/service/request/RegisterTransactionRequestBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/przelewy24/service/request/RegisterTransactionRequestBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/service/request/ReturnTransactionRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/przelewy24/service/request/ReturnTransactionRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/service/request/VerifyTransactionRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/przelewy24/service/request/VerifyTransactionRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/service/response/TransactionResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/przelewy24/service/response/TransactionResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paymentService/src/main/java/com/example/paymentservice/przelewy24/user/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/przelewy24/user/UserDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paymentService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/paymentService/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/test/java/com/example/krkapartments/generator/AddressGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/test/java/com/example/krkapartments/generator/AddressGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/test/java/com/example/krkapartments/generator/ApartmentGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/test/java/com/example/krkapartments/generator/ApartmentGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/test/java/com/example/krkapartments/generator/BookingGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/test/java/com/example/krkapartments/generator/BookingGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/test/java/com/example/krkapartments/generator/ObjectGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/test/java/com/example/krkapartments/generator/ObjectGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/test/java/com/example/krkapartments/generator/UserGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/test/java/com/example/krkapartments/generator/UserGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/test/java/com/example/krkapartments/module/address/AddressConverterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/test/java/com/example/krkapartments/module/address/AddressConverterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/test/java/com/example/krkapartments/module/address/AddressServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/test/java/com/example/krkapartments/module/address/AddressServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/test/java/com/example/krkapartments/module/apartment/ApartmentConverterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/test/java/com/example/krkapartments/module/apartment/ApartmentConverterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/test/java/com/example/krkapartments/module/apartment/ApartmentServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/test/java/com/example/krkapartments/module/apartment/ApartmentServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paymentService/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/paymentService/mvnw.cmd" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -110,6 +148,12 @@
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.example.krkapartments" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.krkapartments.module.user" />
+      <recent name="com.example.krkapartments.module.booking" />
+      <recent name="com.example.krkapartments.module.apartment" />
+      <recent name="com.example.krkapartments.module.admin" />
+    </key>
   </component>
   <component name="RunManager" selected="Spring Boot.KrkApartmentsApplication">
     <configuration name="KrkApartmentsApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
@@ -149,6 +193,7 @@
       <workItem from="1667300856498" duration="1354000" />
       <workItem from="1668864593110" duration="1218000" />
       <workItem from="1668878317438" duration="1973000" />
+      <workItem from="1668927901686" duration="5642000" />
     </task>
     <servers />
   </component>
