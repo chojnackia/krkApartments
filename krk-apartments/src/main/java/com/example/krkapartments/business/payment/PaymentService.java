@@ -2,10 +2,10 @@ package com.example.krkapartments.business.payment;
 
 import com.example.krkapartments.config.ApplicationConfiguration;
 import com.example.krkapartments.endpoint.payment.dto.*;
+import com.example.krkapartments.endpoint.user.dto.UserDto;
 import com.example.krkapartments.persistence.payment.entity.TransactionEntity;
 import com.example.krkapartments.persistence.payment.repository.TransactionRepository;
 import com.example.krkapartments.persistence.shared.TransactionStatus;
-import com.example.krkapartments.przelewy24.user.UserDto;
 import com.google.gson.Gson;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpResponse;

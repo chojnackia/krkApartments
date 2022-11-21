@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class AddressService {
+
     private final AddressRepository addressRepository;
     private final AddressMapper addressMapper;
 

@@ -39,7 +39,7 @@ public class BookingService {
                 .map(bookingMapper::mapFromEntityToDomain);
     }
 
-    @SneakyThrows
+//    @SneakyThrows
     //TODO refactor this method COMPLETELY
 //    public BookingDto addBooking(BookingDto bookingDto) {
 //

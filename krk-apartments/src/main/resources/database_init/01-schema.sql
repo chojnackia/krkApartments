@@ -1,8 +1,8 @@
 --liquibase formatted sql
 --changeset em:1
 
-DROP TABLE IF EXISTS BOOKINGS;
-create table BOOKINGS
+DROP TABLE IF EXISTS bookings;
+create table bookings
 (
     ID             UUID not null primary key,
     USER_ID        UUID,
@@ -12,8 +12,8 @@ create table BOOKINGS
     CHECK_OUT_DATE DATE not null
 );
 
-DROP TABLE IF EXISTS USERS;
-create table USERS
+DROP TABLE IF EXISTS users;
+create table users
 (
     ID               UUID         not null primary key,
     EMAIL            VARCHAR(255) not null,
@@ -22,8 +22,8 @@ create table USERS
     TELEPHONE_NUMBER VARCHAR(255) not null
 );
 
-DROP TABLE IF EXISTS APARTMENTS;
-create table APARTMENTS
+DROP TABLE IF EXISTS apartments;
+create table apartments
 (
     ID                    UUID             not null primary key,
     APARTMENT_NAME        VARCHAR(255),
@@ -34,8 +34,8 @@ create table APARTMENTS
     ADDRESS_ID            UUID
 );
 
-DROP TABLE IF EXISTS ADDRESS;
-create table ADDRESS
+DROP TABLE IF EXISTS address;
+create table address
 (
     ID               UUID    not null primary key,
     CITY             VARCHAR(255),
@@ -45,8 +45,8 @@ create table ADDRESS
     POST_CODE        VARCHAR(255),
     COUNTRY          VARCHAR(255)
 );
-DROP TABLE IF EXISTS ADMINS;
-CREATE TABLE ADMINS
+DROP TABLE IF EXISTS admins;
+CREATE TABLE admins
 (
     UUID       UUID         not null primary key,
     ACTIVE     BOOLEAN      not null,
@@ -56,14 +56,14 @@ CREATE TABLE ADMINS
     PASSWORD   VARCHAR(255) not null,
     ROLE       VARCHAR(255) not null
 );
-ALTER TABLE ADMINS
+ALTER TABLE admins
     ADD CONSTRAINT UK_OB8KQYQQGMEFL0ACO34AKDTPE UNIQUE (EMAIL);
-alter TABLE BOOKINGS
+alter TABLE bookings
     add CONSTRAINT FKDW0XFNNTHBJ8AFP1IRA6SNDWQ
-        foreign key (USER_ID) references USERS (ID);
-alter table BOOKINGS
+        foreign key (USER_ID) references users (ID);
+alter table bookings
     add CONSTRAINT FKDW0XFNNTHBJ8AFP1IRA6SNDV
-        foreign key (APARTMENT_ID) references APARTMENTS (ID);
-alter table APARTMENTS
+        foreign key (APARTMENT_ID) references apartments (ID);
+alter table apartments
     add constraint FKDK0XFNNTHBJ8AFP1IRA6SNXTE
-        foreign key (ADDRESS_ID) references ADDRESS (ID);
+        foreign key (ADDRESS_ID) references address (ID);

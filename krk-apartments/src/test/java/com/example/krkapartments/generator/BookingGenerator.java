@@ -23,24 +23,24 @@ public class BookingGenerator {
 
         BookingEntity bookingEntity1 = BookingEntity.builder()
                 .id(id1)
-                .userEntity(new UserEntity())
-                .apartmentEntity(null)
+                .user(new UserEntity())
+                .apartment(null)
                 .checkInDate(LocalDate.of(2021, 10, 1))
                 .checkOutDate(LocalDate.of(2021, 10, 10))
                 .build();
 
         BookingEntity bookingEntity2 = BookingEntity.builder()
                 .id(id2)
-                .userEntity(new UserEntity())
-                .apartmentEntity(new ApartmentEntity())
+                .user(new UserEntity())
+                .apartment(new ApartmentEntity())
                 .checkInDate(LocalDate.of(2021, 10, 1))
                 .checkOutDate(LocalDate.of(2021, 10, 10))
                 .build();
 
         BookingEntity bookingEntity3 = BookingEntity.builder()
                 .id(id3)
-                .userEntity(new UserEntity())
-                .apartmentEntity(new ApartmentEntity())
+                .user(new UserEntity())
+                .apartment(new ApartmentEntity())
                 .checkInDate(LocalDate.of(2021, 10, 11))
                 .checkOutDate(LocalDate.of(2021, 10, 15))
                 .build();

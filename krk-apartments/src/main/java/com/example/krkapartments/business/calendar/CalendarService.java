@@ -27,6 +27,7 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -41,24 +42,23 @@ public class CalendarService {
 
     @Scheduled(fixedRate = 1000 * 60) //Calendar synchronization every 60 seconds
     public void synchronizeCalendar() throws IOException, ParserException {
-        List<ApartmentDto> apartmentDtos = apartmentService.findAllActiveApartments();
-        List<Apartment> apartments = apartmentDtos.stream()
-                .map(apartmentMapper::mapFromDtoToDomain)
-                .collect(Collectors.toList());
+        List<Apartment> apartments = apartmentService.findAllActiveApartments();
 
         for (Apartment apartment : apartments) {
             URL bookingUrl = new URL(apartment.getBookingUrl());
             try (InputStream is = bookingUrl.openStream()) {
                 Calendar c = new CalendarBuilder().build(is);
                 List<VEvent> events = c.getComponents(Component.VEVENT);
-                ApartmentEntity apartmentEntityInDatabase = apartmentService.findApartmentInDatabase(apartment.getId());
+                ApartmentEntity apartmentEntity = apartmentService.findApartmentInDatabase(apartment.getId())
+                        .map(apartmentMapper::mapFromDomainToEntity)
+                        .orElse(null);
 
                 for (VEvent event : events) {
                     LocalDate startDate = event.getStartDate().getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                     LocalDate endDate = event.getEndDate().getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
                     List<BookingEntity> occupiedApartments = bookingRepository.findAllByApartmentEqualsAndCheckInDateIsBetweenOrCheckOutDateIsBetween(
-                            apartmentService.findApartmentInDatabase(apartment.getId()),
+                            apartment.getId(),
                             startDate,
                             endDate);
 
@@ -67,7 +67,7 @@ public class CalendarService {
                                 .id(UUID.randomUUID())
                                 .checkInDate(startDate)
                                 .checkOutDate(endDate)
-                                .apartment(apartmentEntityInDatabase)
+                                .apartment(apartmentEntity)
                                 .build());
                     }
                 }
