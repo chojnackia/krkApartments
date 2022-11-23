@@ -2,17 +2,15 @@ package com.example.krkapartments.endpoint.booking.dto;
 
 import com.example.krkapartments.persistence.shared.BookingPayment;
 import com.example.krkapartments.persistence.user.entity.UserEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 public class BookingDto {
 

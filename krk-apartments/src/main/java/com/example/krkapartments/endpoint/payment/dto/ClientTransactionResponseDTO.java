@@ -8,7 +8,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-@Data
 public class ClientTransactionResponseDTO {
     private ClientTransactionRequestDTO request;
     private String token;

@@ -4,17 +4,15 @@ import com.example.krkapartments.endpoint.address.dto.AddressDto;
 import com.example.krkapartments.endpoint.booking.dto.BookingDto;
 import com.example.krkapartments.persistence.address.entity.AddressEntity;
 import com.example.krkapartments.persistence.booking.entity.BookingEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 import java.util.UUID;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 public class ApartmentDto {
     private UUID id;
