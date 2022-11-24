@@ -14,7 +14,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
-@Table(name = "BOOKINGS")
+@Table(name = "booking")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -28,7 +28,7 @@ public class BookingEntity implements Serializable {
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
 
-    @JoinColumn
+    @JoinColumn(name = "user_id")
     @ManyToOne
     private UserEntity user;
 

@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "APARTMENTS")
+@Table(name = "apartment")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -45,10 +45,6 @@ public class ApartmentEntity implements Serializable {
 
     private String bookingUrl;
 
-    @OneToMany(mappedBy = "apartment", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JsonIgnore
-    private List<BookingEntity> bookings = new ArrayList<>();
-
     @OneToOne
     private AddressEntity address;
 
@@ -60,12 +56,12 @@ public class ApartmentEntity implements Serializable {
 
         ApartmentEntity apartmentEntity = (ApartmentEntity) o;
 
-        return new EqualsBuilder().append(priceForOneDay, apartmentEntity.priceForOneDay).append(active, apartmentEntity.active).append(id, apartmentEntity.id).append(apartmentName, apartmentEntity.apartmentName).append(apartmentDescription, apartmentEntity.apartmentDescription).append(bookingUrl, apartmentEntity.bookingUrl).append(bookings, apartmentEntity.bookings).append(address, apartmentEntity.address).isEquals();
+        return new EqualsBuilder().append(priceForOneDay, apartmentEntity.priceForOneDay).append(active, apartmentEntity.active).append(id, apartmentEntity.id).append(apartmentName, apartmentEntity.apartmentName).append(apartmentDescription, apartmentEntity.apartmentDescription).append(bookingUrl, apartmentEntity.bookingUrl).append(address, apartmentEntity.address).isEquals();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder(17, 37).append(id).append(apartmentName).append(priceForOneDay).append(apartmentDescription).append(active).append(bookingUrl).append(bookings).append(address).toHashCode();
+        return new HashCodeBuilder(17, 37).append(id).append(apartmentName).append(priceForOneDay).append(apartmentDescription).append(active).append(bookingUrl).append(address).toHashCode();
     }
 }
 

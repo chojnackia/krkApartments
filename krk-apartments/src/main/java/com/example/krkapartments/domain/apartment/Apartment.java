@@ -20,6 +20,5 @@ public class Apartment {
     private String apartmentDescription;
     private boolean active;
     private String bookingUrl;
-    private List<Booking> bookings = new ArrayList<>();
     private Address address;
 }

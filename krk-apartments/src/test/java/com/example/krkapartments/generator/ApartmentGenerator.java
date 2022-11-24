@@ -18,11 +18,11 @@ public class ApartmentGenerator {
 
     static List<ApartmentEntity> generateApartmentList() {
         List<ApartmentEntity> apartmentEntities = new ArrayList<>();
-        ApartmentEntity apartments1 = new ApartmentEntity(id1, "The Beściak", 300, "Beściak z najlepszych", true, "apartmentURL1", new ArrayList<>(), null);
-        ApartmentEntity apartments2 = new ApartmentEntity(id2, "Najdroższy", 350, "Najdroższy z najlepszych", true, "apartmentURL2", new ArrayList<>(), null);
-        ApartmentEntity apartments3 = new ApartmentEntity(id3, "Taki se", 325, "Taki se z najlepszych", true, "apartmentURL3", new ArrayList<>(), null);
-        ApartmentEntity apartments4 = new ApartmentEntity(id4, "Sredniak", 275, "Sredniak z najlepszych", true, "apartmentURL4", new ArrayList<>(), null);
-        ApartmentEntity apartments5 = new ApartmentEntity(id5, "Najtańszy", 250, "Najtańszy z najlepszych", true, "apartmentURL5", new ArrayList<>(), null);
+        ApartmentEntity apartments1 = new ApartmentEntity(id1, "The Beściak", 300, "Beściak z najlepszych", true, "apartmentURL1", null);
+        ApartmentEntity apartments2 = new ApartmentEntity(id2, "Najdroższy", 350, "Najdroższy z najlepszych", true, "apartmentURL2", null);
+        ApartmentEntity apartments3 = new ApartmentEntity(id3, "Taki se", 325, "Taki se z najlepszych", true, "apartmentURL3", null);
+        ApartmentEntity apartments4 = new ApartmentEntity(id4, "Sredniak", 275, "Sredniak z najlepszych", true, "apartmentURL4", null);
+        ApartmentEntity apartments5 = new ApartmentEntity(id5, "Najtańszy", 250, "Najtańszy z najlepszych", true, "apartmentURL5", null);
 
 
         apartmentEntities.add(apartments1);
@@ -35,11 +35,11 @@ public class ApartmentGenerator {
 
     static List<ApartmentDto> generateApartmentDtoList() {
         List<ApartmentDto> apartments = new ArrayList<>();
-        ApartmentDto apartments1 = new ApartmentDto(id1, "The Beściak", 300, "Beściak z najlepszych", "apartmentURL1", true, new ArrayList<>(), null);
-        ApartmentDto apartments2 = new ApartmentDto(id2, "Najdroższy", 350, "Najdroższy z najlepszych", "apartmentURL2", true, new ArrayList<>(), null);
-        ApartmentDto apartments3 = new ApartmentDto(id3, "Taki se", 325, "Taki se z najlepszych", "apartmentURL3", true, new ArrayList<>(), null);
-        ApartmentDto apartments4 = new ApartmentDto(id4, "Sredniak", 275, "Sredniak z najlepszych", "apartmentURL4", true, new ArrayList<>(), null);
-        ApartmentDto apartments5 = new ApartmentDto(id5, "Najtańszy", 250, "Najtańszy z najlepszych", "apartmentURL5", true, new ArrayList<>(), null);
+        ApartmentDto apartments1 = new ApartmentDto(id1, "The Beściak", 300, "Beściak z najlepszych", "apartmentURL1", true, null);
+        ApartmentDto apartments2 = new ApartmentDto(id2, "Najdroższy", 350, "Najdroższy z najlepszych", "apartmentURL2", true, null);
+        ApartmentDto apartments3 = new ApartmentDto(id3, "Taki se", 325, "Taki se z najlepszych", "apartmentURL3", true, null);
+        ApartmentDto apartments4 = new ApartmentDto(id4, "Sredniak", 275, "Sredniak z najlepszych", "apartmentURL4", true, null);
+        ApartmentDto apartments5 = new ApartmentDto(id5, "Najtańszy", 250, "Najtańszy z najlepszych", "apartmentURL5", true, null);
 
 
         apartments.add(apartments1);

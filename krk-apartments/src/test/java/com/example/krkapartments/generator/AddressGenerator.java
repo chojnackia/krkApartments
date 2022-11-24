@@ -17,11 +17,11 @@ public class AddressGenerator {
 
     static List<AddressEntity> generateAddressList() {
         List<AddressEntity> addressEntities = new ArrayList<>();
-        AddressEntity addressEntity1 = new AddressEntity(id1, "Poznań", "Lechicka", 8, 5, "61-101", "Poland", null);
-        AddressEntity addressEntity2 = new AddressEntity(id2, "Poznań", "Polska", 7, 4, "61-201", "Poland", null);
-        AddressEntity addressEntity3 = new AddressEntity(id3, "Poznań", "Długa", 6, 3, "61-301", "Poland", null);
-        AddressEntity addressEntity4 = new AddressEntity(id4, "Poznań", "Krótka", 5, 2, "61-401", "Poland", null);
-        AddressEntity addressEntity5 = new AddressEntity(id5, "Poznań", "Zamek", 4, 1, "61-501", "Poland", null);
+        AddressEntity addressEntity1 = new AddressEntity(id1, "Poznań", "Lechicka", 8, 5, "61-101", "Poland");
+        AddressEntity addressEntity2 = new AddressEntity(id2, "Poznań", "Polska", 7, 4, "61-201", "Poland");
+        AddressEntity addressEntity3 = new AddressEntity(id3, "Poznań", "Długa", 6, 3, "61-301", "Poland");
+        AddressEntity addressEntity4 = new AddressEntity(id4, "Poznań", "Krótka", 5, 2, "61-401", "Poland");
+        AddressEntity addressEntity5 = new AddressEntity(id5, "Poznań", "Zamek", 4, 1, "61-501", "Poland");
 
         addressEntities.add(addressEntity1);
         addressEntities.add(addressEntity2);

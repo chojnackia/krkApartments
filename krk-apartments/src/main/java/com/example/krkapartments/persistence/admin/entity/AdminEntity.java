@@ -14,7 +14,7 @@ import java.util.Collections;
 import java.util.UUID;
 
 @Entity
-@Table(name = "ADMINS")
+@Table(name = "admin")
 @Getter
 @Setter
 @Builder

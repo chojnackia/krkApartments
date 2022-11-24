@@ -1,25 +1,22 @@
 package com.example.krkapartments.persistence.user.entity;
 
-import com.example.krkapartments.persistence.booking.entity.BookingEntity;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.List;
+import javax.validation.constraints.Email;
 import java.util.UUID;
 
 @Entity
-@Table(name = "USERS")
+@Table(name="\"user\"")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Builder
 public class UserEntity {
-
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
@@ -28,13 +25,10 @@ public class UserEntity {
     private String firstName;
     private String lastName;
     @Column(unique = true)
+    @Email
     private String email;
 
     private String telephoneNumber;
-
-    @OneToMany(mappedBy = "user")
-    @JsonIgnore
-    private List<BookingEntity> bookings;
 
     @Override
     public boolean equals(Object o) {
@@ -44,11 +38,11 @@ public class UserEntity {
 
         UserEntity userEntity = (UserEntity) o;
 
-        return new EqualsBuilder().append(id, userEntity.id).append(firstName, userEntity.firstName).append(lastName, userEntity.lastName).append(email, userEntity.email).append(telephoneNumber, userEntity.telephoneNumber).append(bookings, userEntity.bookings).isEquals();
+        return new EqualsBuilder().append(id, userEntity.id).append(firstName, userEntity.firstName).append(lastName, userEntity.lastName).append(email, userEntity.email).append(telephoneNumber, userEntity.telephoneNumber).isEquals();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder(17, 37).append(id).append(firstName).append(lastName).append(email).append(telephoneNumber).append(bookings).toHashCode();
+        return new HashCodeBuilder(17, 37).append(id).append(firstName).append(lastName).append(email).append(telephoneNumber).toHashCode();
     }
 }

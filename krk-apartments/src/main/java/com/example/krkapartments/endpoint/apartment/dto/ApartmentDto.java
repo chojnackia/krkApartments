@@ -21,6 +21,5 @@ public class ApartmentDto {
     private String apartmentDescription;
     private String bookingUrl;
     private boolean active;
-    private List<BookingDto> bookings;
     private AddressDto address;
 }

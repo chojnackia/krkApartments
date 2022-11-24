@@ -1,19 +1,20 @@
 package com.example.krkapartments.persistence.address.entity;
 
-import com.example.krkapartments.persistence.apartment.entity.ApartmentEntity;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
-@Table(name = "ADDRESS")
+@Table(name = "address")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -44,10 +45,6 @@ public class AddressEntity implements Serializable {
     @NotBlank(message = "Country is mandatory")
     private String country;
 
-    @OneToOne(mappedBy = "address")
-    @JsonIgnore
-    private ApartmentEntity apartmentEntity;
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -56,11 +53,11 @@ public class AddressEntity implements Serializable {
 
         AddressEntity addressEntity = (AddressEntity) o;
 
-        return new EqualsBuilder().append(buildingNumber, addressEntity.buildingNumber).append(apartmentNumber, addressEntity.apartmentNumber).append(id, addressEntity.id).append(city, addressEntity.city).append(streetName, addressEntity.streetName).append(postCode, addressEntity.postCode).append(country, addressEntity.country).append(apartmentEntity, addressEntity.apartmentEntity).isEquals();
+        return new EqualsBuilder().append(buildingNumber, addressEntity.buildingNumber).append(apartmentNumber, addressEntity.apartmentNumber).append(id, addressEntity.id).append(city, addressEntity.city).append(streetName, addressEntity.streetName).append(postCode, addressEntity.postCode).append(country, addressEntity.country).isEquals();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder(17, 37).append(id).append(city).append(streetName).append(buildingNumber).append(apartmentNumber).append(postCode).append(country).append(apartmentEntity).toHashCode();
+        return new HashCodeBuilder(17, 37).append(id).append(city).append(streetName).append(buildingNumber).append(apartmentNumber).append(postCode).append(country).toHashCode();
     }
 }
