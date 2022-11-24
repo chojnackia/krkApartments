@@ -4,25 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e19916ad-5202-4905-96ea-86774afc3068" name="Changes" comment="refactored address, booking and admin modules">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="e19916ad-5202-4905-96ea-86774afc3068" name="Changes" comment="refactored database liquibase migrations and changed mappings for entities">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_boot_starter_3_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_data_rest_3_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_oas_3_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_spring_webflux_3_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_spring_webmvc_3_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_swagger2_3_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_swagger_common_3_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_swagger_core_v3_swagger_annotations_2_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_swagger_core_v3_swagger_models_2_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_swagger_swagger_annotations_1_5_20.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_swagger_swagger_models_1_5_20.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_swagger_ui_2_7_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_swagger_ui_3_0_0.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/export.ics" beforeDir="false" afterPath="$PROJECT_DIR$/export.ics" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/domain/apartment/Apartment.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/domain/apartment/Apartment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/domain/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/domain/user/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/endpoint/apartment/dto/ApartmentDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/endpoint/apartment/dto/ApartmentDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/endpoint/user/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/endpoint/user/dto/UserDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/persistence/address/entity/AddressEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/persistence/address/entity/AddressEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/persistence/admin/entity/AdminEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/persistence/admin/entity/AdminEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/persistence/apartment/entity/ApartmentEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/persistence/apartment/entity/ApartmentEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/persistence/booking/entity/BookingEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/persistence/booking/entity/BookingEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/persistence/payment/entity/TransactionEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/persistence/payment/entity/TransactionEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/persistence/user/entity/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/persistence/user/entity/UserEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/config/SpringFoxConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/java/com/example/krkapartments/config/SpringFoxConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/resources/database_init/01-schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/resources/database/01-init.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/resources/database_init/02-insert-init-data.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/krk-apartments/src/main/resources/liquibase-changeLog.xml" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/main/resources/liquibase-changeLog.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/krk-apartments/src/test/java/com/example/krkapartments/generator/ApartmentGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/krk-apartments/src/test/java/com/example/krkapartments/generator/ApartmentGenerator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,7 +201,7 @@
       <workItem from="1669055169322" duration="534000" />
       <workItem from="1669055714256" duration="930000" />
       <workItem from="1669222315832" duration="1323000" />
-      <workItem from="1669311939753" duration="2879000" />
+      <workItem from="1669311939753" duration="4708000" />
     </task>
     <task id="LOCAL-00001" summary="changed project naming convention">
       <created>1668934395113</created>
@@ -231,7 +231,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669055574074</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="refactored database liquibase migrations and changed mappings for entities">
+      <created>1669315505551</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1669315505551</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -253,7 +260,8 @@
     <MESSAGE value="changed project naming convention" />
     <MESSAGE value="refactored project structure and architecture" />
     <MESSAGE value="refactored address, booking and admin modules" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored address, booking and admin modules" />
+    <MESSAGE value="refactored database liquibase migrations and changed mappings for entities" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactored database liquibase migrations and changed mappings for entities" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
