@@ -1,16 +1,14 @@
 package com.example.krkapartments.domain.user;
 
-import com.example.krkapartments.domain.booking.Booking;
 import lombok.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@Builder
+@Builder(toBuilder = true)
 public class User {
     private UUID id;
     private String firstName;

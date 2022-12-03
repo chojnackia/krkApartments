@@ -3,7 +3,6 @@ package com.example.krkapartments.business.calendar;
 import com.example.krkapartments.business.apartment.ApartmentService;
 import com.example.krkapartments.domain.apartment.Apartment;
 import com.example.krkapartments.domain.apartment.ApartmentMapper;
-import com.example.krkapartments.endpoint.apartment.dto.ApartmentDto;
 import com.example.krkapartments.persistence.apartment.entity.ApartmentEntity;
 import com.example.krkapartments.persistence.booking.entity.BookingEntity;
 import com.example.krkapartments.persistence.booking.repository.BookingRepository;
@@ -27,9 +26,7 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -49,7 +46,7 @@ public class CalendarService {
             try (InputStream is = bookingUrl.openStream()) {
                 Calendar c = new CalendarBuilder().build(is);
                 List<VEvent> events = c.getComponents(Component.VEVENT);
-                ApartmentEntity apartmentEntity = apartmentService.findApartmentInDatabase(apartment.getId())
+                ApartmentEntity apartmentEntity = apartmentService.findById(apartment.getId())
                         .map(apartmentMapper::mapFromDomainToEntity)
                         .orElse(null);
 
@@ -57,7 +54,7 @@ public class CalendarService {
                     LocalDate startDate = event.getStartDate().getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                     LocalDate endDate = event.getEndDate().getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
-                    List<BookingEntity> occupiedApartments = bookingRepository.findAllByApartmentEqualsAndCheckInDateIsBetweenOrCheckOutDateIsBetween(
+                    List<BookingEntity> occupiedApartments = bookingRepository.findAllBookedBetween(
                             apartment.getId(),
                             startDate,
                             endDate);

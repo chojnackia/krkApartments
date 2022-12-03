@@ -9,7 +9,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
-@Builder
+@Builder(toBuilder = true)
 public class Address {
 
     private UUID id;

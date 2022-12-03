@@ -22,7 +22,7 @@ public class ObjectGenerator {
     private final List<BookingEntity> bookingEntityList = BookingGenerator.generateBookingList();
     private final List<BookingDto> bookingDtoList = BookingGenerator.generateBookingDtoList();
     private final List<UserEntity> userEntityList = UserGenerator.generateUserList();
-    private final List<UserDto> userDtoList = UserGenerator.generateUserDtoList();
+    private final List<com.example.krkapartments.endpoint.user.dto.UserDto> userDtoList = UserGenerator.generateUserDtoList();
 
 
     public void generateDependencies(List<ApartmentEntity> apartmentEntities, List<AddressEntity> addressEntities, List<BookingEntity> bookingEntities, List<UserEntity> userEntities) {
@@ -42,16 +42,16 @@ public class ObjectGenerator {
 
     }
 
-    public void generateDtoDependencies(List<ApartmentDto> apartmentDtos, List<AddressDto> addressDtos, List<BookingDto> bookingDtos, List<UserEntity> userEntities) {
-
-        bookingDtos.get(0).setApartmentId(apartmentEntityList.get(0).getId());
-        bookingDtos.get(1).setApartmentId(apartmentEntityList.get(1).getId());
-        bookingDtos.get(2).setApartmentId(apartmentEntityList.get(0).getId());
-
-        bookingDtos.get(0).setUserEntity(userEntities.get(0));
-        bookingDtos.get(1).setUserEntity(userEntities.get(1));
-        bookingDtos.get(2).setUserEntity(userEntities.get(0));
-
-    }
+//    public void generateDtoDependencies(List<ApartmentDto> apartmentDtos, List<AddressDto> addressDtos, List<BookingDto> bookingDtos, List<UserDto> userDtos) {
+//
+//        bookingDtos.get(0).setApartment(apartmentDtos.get(0));
+//        bookingDtos.get(1).setApartment(apartmentDtos.get(1));
+//        bookingDtos.get(2).setApartment(apartmentDtos.get(0));
+//
+//        bookingDtos.get(0).setUser(userDtos.get(0));
+//        bookingDtos.get(1).setUser(userDtos.get(1));
+//        bookingDtos.get(2).setUser(userDtos.get(0));
+//
+//    }
 
 }

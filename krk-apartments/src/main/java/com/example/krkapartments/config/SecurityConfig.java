@@ -33,10 +33,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(email -> adminRepository.findByEmailAllIgnoreCase(email)
-                .orElseThrow(() -> new UserNotFoundException("Invalid user or password")));
+                .orElseThrow(UserNotFoundException::new));
 
         auth.userDetailsService(password -> adminRepository.findByPassword(password)
-                .orElseThrow(() -> new UserNotFoundException("Invalid user or password")));
+                .orElseThrow(UserNotFoundException::new));
     }
 
     @Bean

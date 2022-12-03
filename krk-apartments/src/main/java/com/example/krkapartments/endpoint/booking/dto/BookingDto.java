@@ -1,7 +1,8 @@
 package com.example.krkapartments.endpoint.booking.dto;
 
+import com.example.krkapartments.endpoint.apartment.dto.ApartmentDto;
+import com.example.krkapartments.endpoint.user.dto.UserDto;
 import com.example.krkapartments.persistence.shared.BookingPayment;
-import com.example.krkapartments.persistence.user.entity.UserEntity;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -11,12 +12,12 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
-@Builder
+@Builder(toBuilder = true)
 public class BookingDto {
 
     private UUID id;
-    private UUID apartmentId;
-    private UserEntity userEntity;
+    private ApartmentDto apartment;
+    private UserDto user;
     private LocalDate checkInDate;
     private LocalDate checkOutDate;
     private BookingPayment paymentStatus;

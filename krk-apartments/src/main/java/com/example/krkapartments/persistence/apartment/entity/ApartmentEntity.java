@@ -30,13 +30,10 @@ public class ApartmentEntity implements Serializable {
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
 
-    @NotBlank(message = "Apartment name is mandatory")
     private String apartmentName;
 
-    @NotBlank(message = "Price is mandatory")
     private int priceForOneDay;
 
-    @NotBlank(message = "Apartment Description is mandatory")
     private String apartmentDescription;
 
     @NotNull
@@ -45,7 +42,7 @@ public class ApartmentEntity implements Serializable {
 
     private String bookingUrl;
 
-    @OneToOne
+    @OneToOne(orphanRemoval = true, cascade = CascadeType.ALL)
     private AddressEntity address;
 
     @Override

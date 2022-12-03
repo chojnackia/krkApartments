@@ -1,6 +1,5 @@
 package com.example.krkapartments.generator;
 
-import com.example.krkapartments.endpoint.user.dto.UserDto;
 import com.example.krkapartments.persistence.user.entity.UserEntity;
 import com.example.krkapartments.util.DateTimeProvider;
 
@@ -40,10 +39,10 @@ public class UserGenerator {
         return userEntities;
     }
 
-    static List<UserDto> generateUserDtoList() {
-        List<UserDto> userDtos = new ArrayList<>();
+    static List<com.example.krkapartments.endpoint.user.dto.UserDto> generateUserDtoList() {
+        List<com.example.krkapartments.endpoint.user.dto.UserDto> userDtos = new ArrayList<>();
 
-        UserDto userDto1 = UserDto.builder()
+        com.example.krkapartments.endpoint.user.dto.UserDto userDto1 = com.example.krkapartments.endpoint.user.dto.UserDto.builder()
                 .id(id1)
                 .firstName("Adam")
                 .lastName("Chojnacki")
@@ -51,7 +50,7 @@ public class UserGenerator {
                 .telephoneNumber("987654321")
                 .build();
 
-        UserDto userDto2 = UserDto.builder()
+        com.example.krkapartments.endpoint.user.dto.UserDto userDto2 = com.example.krkapartments.endpoint.user.dto.UserDto.builder()
                 .id(id2)
                 .firstName("Eryk")
                 .lastName("Mikuła")

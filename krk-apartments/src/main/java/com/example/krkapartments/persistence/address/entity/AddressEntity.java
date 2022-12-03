@@ -5,10 +5,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.UUID;
@@ -19,30 +16,24 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
-@Builder
+@Builder(toBuilder = true)
 public class AddressEntity implements Serializable {
 
     @Id
+    @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "ID")
     private UUID id;
 
-    @NotBlank(message = "City is mandatory")
     private String city;
 
-    @NotBlank(message = "Street name is mandatory")
     private String streetName;
 
-    @NotBlank(message = "Building number is mandatory")
     private int buildingNumber;
 
-    @NotBlank(message = "Apartment number is mandatory")
     private int apartmentNumber;
 
-    @NotBlank(message = "Post code is mandatory")
     private String postCode;
 
-    @NotBlank(message = "Country is mandatory")
     private String country;
 
     @Override

@@ -7,7 +7,7 @@ import org.springframework.lang.NonNull;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@Builder(toBuilder = true)
 public class RegisterTransactionRequest {
     @NonNull
     private Integer merchantId;
