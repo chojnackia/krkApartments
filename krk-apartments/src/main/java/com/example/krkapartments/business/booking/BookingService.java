@@ -41,8 +41,6 @@ public class BookingService {
                 .map(b -> b.toBuilder()
                         .price(countPriceForBooking(b.getCheckInDate(), b.getCheckOutDate(), b.getApartment().getPriceForOneDay()))
                         .paymentStatus(BookingPayment.NOT_PAID)
-                        .apartment(b.getApartment())
-                        .user(b.getUser())
                         .build())
                 .flatMap(this::save);
     }
