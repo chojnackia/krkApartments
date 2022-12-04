@@ -1,6 +1,7 @@
 package com.example.krkapartments.generator;
 
 import com.example.krkapartments.endpoint.booking.dto.BookingDto;
+import com.example.krkapartments.endpoint.user.dto.UserDto;
 import com.example.krkapartments.persistence.apartment.entity.ApartmentEntity;
 import com.example.krkapartments.persistence.booking.entity.BookingEntity;
 import com.example.krkapartments.persistence.user.entity.UserEntity;
@@ -57,24 +58,24 @@ public class BookingGenerator {
 
         BookingDto bookingDto1 = BookingDto.builder()
                 .id(id1)
-                .apartmentId(new ApartmentEntity().getId())
+//                .apartmentId(new ApartmentEntity().getId())
                 .checkInDate(LocalDate.of(2021, 10, 1))
                 .checkOutDate(LocalDate.of(2021, 10, 10))
-                .userEntity(new UserEntity()).build();
+                .user(new UserDto()).build();
 
         BookingDto bookingDto2 = BookingDto.builder()
                 .id(id2)
-                .apartmentId(new ApartmentEntity().getId())
+//                .apartmentId(new ApartmentEntity().getId())
                 .checkInDate(LocalDate.of(2021, 10, 1))
                 .checkOutDate(LocalDate.of(2021, 10, 10))
-                .userEntity(new UserEntity()).build();
+                .user(new UserDto()).build();
 
         BookingDto bookingDto3 = BookingDto.builder()
                 .id(id3)
-                .apartmentId(new ApartmentEntity().getId())
+//                .apartmentId(new ApartmentEntity().getId())
                 .checkInDate(LocalDate.of(2021, 10, 11))
                 .checkOutDate(LocalDate.of(2021, 10, 15))
-                .userEntity(new UserEntity()).build();
+                .user(new UserDto()).build();
 
         bookingDtos.add(bookingDto1);
         bookingDtos.add(bookingDto2);

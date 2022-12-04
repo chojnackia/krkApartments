@@ -1,16 +1,13 @@
 package com.example.krkapartments.endpoint.user.dto;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.UUID;
-
-@NoArgsConstructor
-@AllArgsConstructor
+@Builder(toBuilder = true)
 @Getter
 @Setter
-@Builder(toBuilder = true)
-public class UserDto {
-    private UUID id;
+public class UserCreateCommand {
     private String firstName;
     private String lastName;
     private String email;

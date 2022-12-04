@@ -3,7 +3,6 @@ services:
       image: 'krk-apartments'
       ports:
         - "8080:8080"
-    #  restart: always
       depends_on:
         postgresql:
           condition: service_healthy
@@ -17,7 +16,6 @@ services:
       image: 'payment-service'
       ports:
       - "8100:8100"
-     # restart: always
       depends_on:
         postgresql:
           condition: service_healthy
@@ -59,22 +57,3 @@ services:
         interval: 10s
         timeout: 5s
         retries: 5
-
-#  liquibase:
-#      build: .
-#      image: liquibase/liquibase
-##      depends_on:
-##        postgresql:
-##          condition: service_healthy
-#      volumes:
-#        - ./krk-apartments/src/main/resources/liquibase-changeLog.xml:/liquibase/liquibase-changeLog.xml
-#        - ./krk-apartments/src/main/resources/database_init:/liquibase/database_init
-#      command: --changeLogFile=liquibase-changeLog.xml --url=jdbc:postgresql://postgresql:5432/krkapartments --username=postgres --password=password update
-
-#      environment:
-#        - POSTGRES_HOST=postgresql
-#        - LIQUIBASE_PASSWORD=password
-#        - LIQUIBASE_USER=postgres
-#        - LIQUIBASE_DB=krkapartments
-#        - LIQUIBASE_CHANGELOG=./krk-apartments/src/main/resources/liquibase-changeLog.xml
-#        - LIQUIBASE_URL=jdbc:postgresql://postgresql:5432/krkapartments

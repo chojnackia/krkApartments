@@ -46,19 +46,14 @@ public class ApartmentService {
     }
 
     @Transactional(readOnly = true)
-    public Optional<Apartment> findApartmentInDatabase(UUID id) {
+    public Optional<Apartment> findById(UUID id) {
         return apartmentRepository.findById(id)
                 .map(apartmentMapper::mapFromEntityToDomain);
     }
 
-    @Transactional(readOnly = true)
-    public Optional<Apartment> findById(UUID id) {
-        return findApartmentInDatabase(id);
-    }
-
     @Transactional
     public Optional<Apartment> updateApartment(UUID id, Map<Object, Object> fields) {
-        Optional<Apartment> apartment = findApartmentInDatabase(id);
+        Optional<Apartment> apartment = findById(id);
         fields.forEach((key, value) -> {
             Field field = ReflectionUtils.findField(ApartmentEntity.class, (String) key);
             if (field == null) {
@@ -75,7 +70,7 @@ public class ApartmentService {
 
     @Transactional(readOnly = true)
     public Optional<Apartment> deactivateApartment(UUID id) {
-        return findApartmentInDatabase(id)
+        return findById(id)
                 .map(apartment -> apartment.toBuilder()
                         .active(false)
                         .build())

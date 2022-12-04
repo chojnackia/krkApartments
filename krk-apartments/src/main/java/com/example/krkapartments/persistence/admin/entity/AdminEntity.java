@@ -17,7 +17,7 @@ import java.util.UUID;
 @Table(name = "admin")
 @Getter
 @Setter
-@Builder
+@Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
 public class AdminEntity implements UserDetails {

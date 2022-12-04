@@ -1,16 +1,13 @@
 package com.example.krkapartments.business.booking;
 
-import com.example.krkapartments.business.apartment.ApartmentService;
-import com.example.krkapartments.domain.apartment.Apartment;
 import com.example.krkapartments.domain.booking.Booking;
 import com.example.krkapartments.domain.booking.BookingMapper;
-import com.example.krkapartments.endpoint.apartment.exception.ApartmentNotFoundException;
 import com.example.krkapartments.endpoint.booking.exception.BookingNotFoundException;
 import com.example.krkapartments.exception.FieldDoesNotExistException;
 import com.example.krkapartments.persistence.booking.entity.BookingEntity;
 import com.example.krkapartments.persistence.booking.repository.BookingRepository;
+import com.example.krkapartments.persistence.shared.BookingPayment;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ReflectionUtils;
@@ -28,7 +25,6 @@ import java.util.stream.Collectors;
 public class BookingService {
 
     private final BookingRepository bookingRepository;
-    private final ApartmentService apartmentService;
     private final BookingMapper bookingMapper;
 
     @Transactional
@@ -39,25 +35,17 @@ public class BookingService {
                 .map(bookingMapper::mapFromEntityToDomain);
     }
 
-//    @SneakyThrows
-    //TODO refactor this method COMPLETELY
-//    public BookingDto addBooking(BookingDto bookingDto) {
-//
-//        ApartmentEntity apartmentEntityInDatabase = apartmentService.findApartmentInDatabase(bookingDto.getApartmentId());
-//        BookingEntity bookingEntity = BookingConverter.convertToBooking(bookingDto, apartmentEntityInDatabase);
-//        bookingEntity.setId(UUID.randomUUID());
-//        bookingEntity.setPaymentStatus(BookingPayment.NOT_PAID);
-//        LocalDate checkInDate = bookingDto.getCheckInDate();
-//        LocalDate checkOutDate = bookingDto.getCheckOutDate();
-//        bookingEntity.setPrice(priceForBooking(checkInDate, checkOutDate, bookingDto.getApartmentId()));
-//
-//        if (isApartmentOccupied(bookingDto)) {
-//            bookingRepository.save(bookingEntity);
-//            return BookingConverter.convertToBookingDto(bookingEntity);
-//        } else
-//            throw new ApartmentIsOccupiedException("Apartment is occupied between " + checkInDate + " - " + checkOutDate);
-//    }
+    @Transactional
+    public Optional<Booking> addBooking(Booking booking) {
+        return Optional.ofNullable(booking)
+                .map(b -> b.toBuilder()
+                        .price(countPriceForBooking(b.getCheckInDate(), b.getCheckOutDate(), b.getApartment().getPriceForOneDay()))
+                        .paymentStatus(BookingPayment.NOT_PAID)
+                        .build())
+                .flatMap(this::save);
+    }
 
+    @Transactional(readOnly = true)
     public List<Booking> findAllBookings() {
         return bookingRepository.findAll()
                 .stream()
@@ -65,6 +53,7 @@ public class BookingService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional
     public void deleteBooking(UUID id) {
         Optional.ofNullable(id)
                 .map(this::findBookingInDatabase)
@@ -72,10 +61,12 @@ public class BookingService {
                 .ifPresent(bookingRepository::deleteById);
     }
 
+    @Transactional(readOnly = true)
     public BookingEntity findBookingInDatabase(UUID id) {
         return bookingRepository.findById(id).orElseThrow(BookingNotFoundException::new);
     }
 
+    @Transactional
     public Optional<Booking> updateBooking(UUID id, Map<Object, Object> fields) {
         BookingEntity booking = findBookingInDatabase(id);
         fields.forEach((key, value) -> {
@@ -90,22 +81,7 @@ public class BookingService {
                 .map(bookingMapper::mapFromEntityToDomain);
     }
 
-    //TODO make this a separate validator
-//    private Boolean isApartmentOccupied(Booking booking) {
-//
-//        List<BookingEntity> occupiedApartments = bookingRepository.findAllByApartmentEqualsAndCheckInDateIsBetweenOrCheckOutDateIsBetween(
-//                apartmentService.findApartmentInDatabase(booking.getApartmentId()),
-//                booking.getCheckInDate(),
-//                booking.getCheckOutDate());
-//
-//        List<BookingEntity> occupiedApartmentsV2 = bookingRepository.findAllByApartmentEqualsAndAndCheckInDateIsBeforeAndAndCheckOutDateIsAfter(
-//                apartmentService.findApartmentInDatabase(booking.getApartmentId()),
-//                booking.getCheckInDate(),
-//                booking.getCheckOutDate());
-//
-//        return (occupiedApartments.isEmpty() && occupiedApartmentsV2.isEmpty());
-//    }
-
+    @Transactional(readOnly = true)
     public List<Booking> findAllBookingsByApartment(UUID id) {
         return bookingRepository.findAllByApartmentUuid(id)
                 .stream()
@@ -113,12 +89,9 @@ public class BookingService {
                 .collect(Collectors.toList());
     }
 
-    private int priceForBooking(LocalDate checkInDate, LocalDate checkOutDate, UUID apartmentId) {
-        Apartment apartment = apartmentService.findApartmentInDatabase(apartmentId)
-                .orElseThrow(ApartmentNotFoundException::new);
-
+    private int countPriceForBooking(LocalDate checkInDate, LocalDate checkOutDate, int price) {
         int days = checkInDate.until(checkOutDate).getDays();
-        return days * apartment.getPriceForOneDay();
+        return days * price;
     }
 }
 
