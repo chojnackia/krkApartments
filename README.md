@@ -9,14 +9,14 @@ The frontend of the application is currently only for checking the functionality
 
 Project can be build by maven
 ```
-mvn clean verify
+mvn clean build
 ```
 **Docker instruction**
 Build docker image
 ```
-docker-compose build
+docker-compose docker-compose.yml build
 ```
 Run Docker Images
 ```
-docker-compose up
+docker-compose docker-compose.yml up
 ```
