@@ -17,7 +17,7 @@ public class AdminDto {
     private String lastName;
     private UserRole role;
     private String email;
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ToString.Exclude
     private String password;
     private boolean active;
 }

@@ -4,6 +4,7 @@ import com.example.krkapartments.endpoint.user.exception.UserNotFoundException;
 import com.example.krkapartments.persistence.admin.repository.AdminRepository;
 import com.example.krkapartments.security.JwtTokenFilter;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -70,8 +71,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("**/swagger-resources/**").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/register/**").permitAll()
-                .antMatchers("/booking/**").permitAll()
-                .antMatchers("/apartments/**").permitAll()
+                .antMatchers(HttpMethod.POST,"/booking/**").authenticated()
+                .antMatchers(HttpMethod.POST,"/apartments/**").authenticated()
+                .antMatchers(HttpMethod.GET, "/apartments/**").permitAll()
                 .antMatchers("/api/**").permitAll()
                 .anyRequest().permitAll();
         http.addFilterBefore(
