@@ -30,7 +30,6 @@ public class AuthApi {
 
     @PostMapping("/login")
     public ResponseEntity<AdminDto> login(@RequestBody AuthRequest request) {
-
         try {
             Authentication authentication = authenticationManager
                     .authenticate(
